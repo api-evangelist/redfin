@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://redfin.com/schemas/redfin/property.json",
+  "title": "Redfin Property",
+  "description": "A real estate property listing as represented in the Redfin Stingray API, including address, price, physical characteristics, and listing metadata.",
+  "type": "object",
+  "required": ["propertyId", "address"],
+  "properties": {
+    "propertyId": {
+      "type": "integer",
+      "description": "Unique Redfin property identifier."
+    },
+    "listingId": {
+      "type": "integer",
+      "description": "Unique Redfin listing identifier. A property may have multiple listings over time."
+    },
+    "mlsId": {
+      "type": "string",
+      "description": "MLS listing identifier assigned by the local Multiple Listing Service."
+    },
+    "address": {
+      "$ref": "#/$defs/Address"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Current listing or last sale price in USD."
+    },
+    "beds": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of bedrooms."
+    },
+    "baths": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Number of bathrooms, may include half-baths as 0.5."
+    },
+    "sqFt": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Approximate living area in square feet."
+    },
+    "lotSize": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Lot size in square feet."
+    },
+    "yearBuilt": {
+      "type": "integer",
+      "minimum": 1600,
+      "maximum": 2030,
+      "description": "Year the property was constructed."
+    },
+    "stories": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of stories or levels in the building."
+    },
+    "propertyType": {
+      "type": "string",
+      "enum": ["house", "condo", "townhouse", "multi-family", "land", "other"],
+      "description": "Type of property."
+    },
+    "propertyTypeCode": {
+      "type": "integer",
+      "enum": [1, 2, 3, 4, 5, 6],
+      "description": "Numeric property type code (1=house, 2=condo, 3=townhouse, 4=multi-family, 5=land, 6=other)."
+    },
+    "listingStatus": {
+      "type": "string",
+      "enum": ["active", "pending", "sold", "off-market", "contingent"],
+      "description": "Current listing status."
+    },
+    "listingType": {
+      "type": "string",
+      "description": "Type of listing source (e.g., MLS, FSBO)."
+    },
+    "daysOnMarket": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of days the property has been actively listed."
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "description": "Latitude coordinate of the property."
+    },
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "description": "Longitude coordinate of the property."
+    },
+    "url": {
+      "type": "string",
+      "description": "Relative URL path to the property listing on Redfin."
+    },
+    "redfinEstimate": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Redfin automated valuation model (AVM) estimate in USD."
+    },
+    "hasGarage": {
+      "type": "boolean",
+      "description": "Whether the property has a garage."
+    },
+    "hasBasement": {
+      "type": "boolean",
+      "description": "Whether the property has a basement."
+    },
+    "parkingSpaces": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of parking spaces."
+    },
+    "hoaFee": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Monthly HOA fee in USD, 0 if no HOA."
+    },
+    "history": {
+      "type": "array",
+      "description": "Historical events for the property including sales, price changes, and listing status changes.",
+      "items": {
+        "$ref": "#/$defs/PropertyHistoryEvent"
+      }
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "Physical address of a property.",
+      "required": ["streetAddress", "city", "state", "zip"],
+      "properties": {
+        "streetAddress": {
+          "type": "string",
+          "description": "Street number and name."
+        },
+        "city": {
+          "type": "string",
+          "description": "City name."
+        },
+        "state": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 2,
+          "pattern": "^[A-Z]{2}$",
+          "description": "Two-letter US state abbreviation."
+        },
+        "zip": {
+          "type": "string",
+          "pattern": "^[0-9]{5}(-[0-9]{4})?$",
+          "description": "5-digit or 9-digit US ZIP code."
+        }
+      }
+    },
+    "PropertyHistoryEvent": {
+      "type": "object",
+      "description": "A historical event in a property's listing or sale history.",
+      "required": ["eventDate", "eventType"],
+      "properties": {
+        "eventDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of the event."
+        },
+        "eventType": {
+          "type": "string",
+          "enum": ["Listed", "Sold", "PriceChange", "Pending", "Delisted", "Relisted"],
+          "description": "Type of historical event."
+        },
+        "price": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Price associated with the event in USD."
+        },
+        "source": {
+          "type": "string",
+          "description": "Data source for the event record (e.g., MLS name)."
+        }
+      }
+    }
+  }
+}

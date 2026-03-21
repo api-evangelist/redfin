@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "redfin": "https://www.redfin.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+
+    "Property": {
+      "@id": "schema:RealEstateListing",
+      "@context": {
+        "propertyId": "redfin:propertyId",
+        "listingId": "redfin:listingId",
+        "mlsId": "redfin:mlsId",
+        "address": "schema:address",
+        "price": "schema:price",
+        "beds": "schema:numberOfBedrooms",
+        "baths": "schema:numberOfBathroomsTotal",
+        "sqFt": "schema:floorSize",
+        "lotSize": "schema:lotSize",
+        "yearBuilt": "schema:yearBuilt",
+        "propertyType": "schema:propertyType",
+        "listingStatus": "redfin:listingStatus",
+        "daysOnMarket": "redfin:daysOnMarket",
+        "latitude": "geo:lat",
+        "longitude": "geo:long",
+        "url": {
+          "@id": "schema:url",
+          "@type": "@id"
+        },
+        "redfinEstimate": "redfin:redfinEstimate",
+        "history": {
+          "@id": "redfin:propertyHistory",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Address": {
+      "@id": "schema:PostalAddress",
+      "@context": {
+        "streetAddress": "schema:streetAddress",
+        "city": "schema:addressLocality",
+        "state": "schema:addressRegion",
+        "zip": "schema:postalCode"
+      }
+    },
+
+    "PropertyHistoryEvent": {
+      "@id": "redfin:PropertyHistoryEvent",
+      "@context": {
+        "eventDate": {
+          "@id": "dcterms:date",
+          "@type": "xsd:date"
+        },
+        "eventType": "redfin:eventType",
+        "price": "schema:price",
+        "source": "dcterms:source"
+      }
+    },
+
+    "MarketTrackerRecord": {
+      "@id": "redfin:MarketTrackerRecord",
+      "@context": {
+        "periodBegin": {
+          "@id": "redfin:periodBegin",
+          "@type": "xsd:date"
+        },
+        "periodEnd": {
+          "@id": "redfin:periodEnd",
+          "@type": "xsd:date"
+        },
+        "periodDuration": "redfin:periodDuration",
+        "regionType": "redfin:regionType",
+        "region": "schema:name",
+        "state": "schema:addressRegion",
+        "stateCode": "redfin:stateCode",
+        "propertyType": "schema:propertyType",
+        "medianSalePrice": "redfin:medianSalePrice",
+        "medianListPrice": "redfin:medianListPrice",
+        "medianPpsf": "redfin:medianPricePerSquareFoot",
+        "homesSold": "redfin:homesSold",
+        "newListings": "redfin:newListings",
+        "inventory": "redfin:inventory",
+        "medianDom": "redfin:medianDaysOnMarket",
+        "priceDrops": "redfin:priceDrops"
+      }
+    }
+  }
+}

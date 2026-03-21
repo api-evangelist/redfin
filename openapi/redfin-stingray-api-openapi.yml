@@ -1,0 +1,885 @@
+openapi: 3.1.0
+info:
+  title: Redfin Stingray API
+  description: >-
+    The Redfin Stingray API is the internal REST API that powers the Redfin
+    website and mobile applications. It provides endpoints for property
+    search, listing details, home value estimates (Redfin Estimates),
+    neighborhood statistics, commute information, and GIS-based map data.
+    The API supports searching by region, price range, property type, and
+    various filters, returning structured JSON responses with property
+    details including address, price, beds, baths, square footage, lot
+    size, and days on market. While not officially documented by Redfin,
+    this API has been reverse-engineered by the developer community and
+    is accessible at redfin.com/stingray endpoints.
+  version: '1.0.0'
+  contact:
+    name: Redfin
+    url: https://www.redfin.com
+  termsOfService: https://www.redfin.com/about/terms-of-use
+externalDocs:
+  description: Reverse-Engineered API Documentation
+  url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
+servers:
+  - url: https://www.redfin.com/stingray
+    description: Redfin Stingray Production Server
+tags:
+  - name: Search
+    description: >-
+      Endpoints for searching properties by location, region, and filters.
+  - name: Property Details
+    description: >-
+      Endpoints for retrieving detailed information about a specific property.
+  - name: Valuation
+    description: >-
+      Endpoints for automated valuation model (AVM) data and estimates.
+  - name: Neighborhood
+    description: >-
+      Endpoints for neighborhood statistics, commute data, and area info.
+  - name: Market Trends
+    description: >-
+      Endpoints for regional aggregate and historical market trends.
+paths:
+  /do/gis-search:
+    get:
+      operationId: gisSearch
+      summary: Search properties via GIS
+      description: >-
+        Performs a geographic information system search for properties within
+        a specified region. Returns property listings matching the provided
+        filters including price range, property type, bedroom and bathroom
+        counts, and geographic boundaries.
+      tags:
+        - Search
+      parameters:
+        - $ref: '#/components/parameters/regionId'
+        - $ref: '#/components/parameters/regionType'
+        - $ref: '#/components/parameters/uipt'
+        - $ref: '#/components/parameters/status'
+        - $ref: '#/components/parameters/minPrice'
+        - $ref: '#/components/parameters/maxPrice'
+        - $ref: '#/components/parameters/numBeds'
+        - $ref: '#/components/parameters/maxNumBeds'
+        - $ref: '#/components/parameters/numBaths'
+        - $ref: '#/components/parameters/maxNumBaths'
+        - $ref: '#/components/parameters/minYearBuilt'
+        - $ref: '#/components/parameters/maxYearBuilt'
+        - $ref: '#/components/parameters/minListingApproxSize'
+        - $ref: '#/components/parameters/maxListingApproxSize'
+        - $ref: '#/components/parameters/minParcelSize'
+        - $ref: '#/components/parameters/maxParcelSize'
+        - $ref: '#/components/parameters/numHomes'
+        - $ref: '#/components/parameters/pageNumber'
+        - name: user_poly
+          in: query
+          description: >-
+            Custom polygon coordinates defining a geographic search boundary.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful property search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GisSearchResponse'
+  /api/gis:
+    get:
+      operationId: gisApiSearch
+      summary: Search properties via GIS API
+      description: >-
+        Alternative GIS-based property search endpoint. Returns property
+        data in JSON format matching the specified region and filter criteria.
+        Supports polygon-based geographic boundaries and all standard
+        property filters.
+      tags:
+        - Search
+      parameters:
+        - $ref: '#/components/parameters/regionId'
+        - $ref: '#/components/parameters/regionType'
+        - $ref: '#/components/parameters/uipt'
+        - $ref: '#/components/parameters/status'
+        - $ref: '#/components/parameters/minPrice'
+        - $ref: '#/components/parameters/maxPrice'
+        - $ref: '#/components/parameters/numBeds'
+        - $ref: '#/components/parameters/numBaths'
+        - $ref: '#/components/parameters/numHomes'
+        - $ref: '#/components/parameters/pageNumber'
+        - name: al
+          in: query
+          description: >-
+            Access level for the request, controlling the detail of data returned.
+          schema:
+            type: integer
+        - name: sp
+          in: query
+          description: >-
+            Sort parameter controlling the ordering of search results.
+          schema:
+            type: string
+        - name: v
+          in: query
+          description: >-
+            API version parameter.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful property search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GisSearchResponse'
+  /api/home/details/initialInfo:
+    get:
+      operationId: getInitialInfo
+      summary: Get initial property information
+      description: >-
+        Retrieves the initial information for a property, including the
+        propertyId and listingId needed for subsequent detail requests.
+        Takes a property URL path as input and returns identifiers and
+        basic property metadata.
+      tags:
+        - Property Details
+      parameters:
+        - name: path
+          in: query
+          required: true
+          description: >-
+            The URL path of the property listing page on Redfin, such as
+            /CA/San-Francisco/123-Main-St-94105/home/12345678.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Initial property information with identifiers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InitialInfoResponse'
+  /api/home/details/aboveTheFold:
+    get:
+      operationId: getAboveTheFold
+      summary: Get above-the-fold property details
+      description: >-
+        Retrieves the primary property details displayed above the fold
+        on the listing page, including price, address, photos, key facts,
+        and listing status information.
+      tags:
+        - Property Details
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/listingId'
+        - $ref: '#/components/parameters/accessLevel'
+      responses:
+        '200':
+          description: Above-the-fold property details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AboveTheFoldResponse'
+  /api/home/details/belowTheFold:
+    get:
+      operationId: getBelowTheFold
+      summary: Get below-the-fold property details
+      description: >-
+        Retrieves detailed MLS data for a property, including property
+        history, tax information, schools, similar homes, and extended
+        property characteristics. This endpoint provides the most
+        comprehensive data for a single property listing. Note that
+        propertyHistoryInfo may not always be available.
+      tags:
+        - Property Details
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/listingId'
+        - $ref: '#/components/parameters/accessLevel'
+      responses:
+        '200':
+          description: Below-the-fold property details with MLS data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BelowTheFoldResponse'
+  /api/home/details/mainHouseInfoPanelInfo:
+    get:
+      operationId: getMainHouseInfoPanelInfo
+      summary: Get main house info panel data
+      description: >-
+        Retrieves the structured property information typically shown in
+        the main info panel, including beds, baths, square footage, lot
+        size, year built, property type, and other key property attributes.
+      tags:
+        - Property Details
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/listingId'
+        - $ref: '#/components/parameters/accessLevel'
+      responses:
+        '200':
+          description: Main house information panel data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MainHouseInfoPanelResponse'
+  /api/home/details/avmHistoricalData:
+    get:
+      operationId: getAvmHistoricalData
+      summary: Get AVM historical valuation data
+      description: >-
+        Retrieves historical automated valuation model (AVM) data for a
+        property, including Redfin Estimate history over time. Returns
+        time-series data showing estimated property values at various
+        points in history.
+      tags:
+        - Valuation
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/accessLevel'
+        - name: type
+          in: query
+          description: >-
+            The type of AVM data to retrieve, such as estimate type or
+            valuation model variant.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Historical AVM valuation data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvmHistoricalDataResponse'
+  /api/home/details/neighborhoodStats/statsInfo:
+    get:
+      operationId: getNeighborhoodStats
+      summary: Get neighborhood statistics
+      description: >-
+        Retrieves statistical data about the neighborhood surrounding a
+        property, including demographics, walkability, transit scores,
+        school ratings, and nearby amenities information.
+      tags:
+        - Neighborhood
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/listingId'
+        - $ref: '#/components/parameters/accessLevel'
+      responses:
+        '200':
+          description: Neighborhood statistics data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NeighborhoodStatsResponse'
+  /api/home/details/commute/commuteInfo:
+    get:
+      operationId: getCommuteInfo
+      summary: Get commute information
+      description: >-
+        Retrieves commute time and transportation information for a
+        property, including estimated drive, transit, bike, and walk
+        times to common destinations.
+      tags:
+        - Neighborhood
+      parameters:
+        - $ref: '#/components/parameters/propertyId'
+        - $ref: '#/components/parameters/accessLevel'
+      responses:
+        '200':
+          description: Commute information data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommuteInfoResponse'
+  /api/region/{regionType}/{regionId}/{code}/trends:
+    get:
+      operationId: getRegionTrends
+      summary: Get regional market trends
+      description: >-
+        Retrieves market trend data for a specific region, including
+        median sale prices, homes sold, new listings, and days on market
+        over time.
+      tags:
+        - Market Trends
+      parameters:
+        - name: regionType
+          in: path
+          required: true
+          description: >-
+            The type of region (e.g., neighborhood, zipcode, city, county).
+          schema:
+            type: string
+        - name: regionId
+          in: path
+          required: true
+          description: >-
+            The unique identifier for the region.
+          schema:
+            type: integer
+        - name: code
+          in: path
+          required: true
+          description: >-
+            The region code.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Regional market trend data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionTrendsResponse'
+  /api/region/{regionType}/{regionId}/{code}/aggregate-trends:
+    get:
+      operationId: getRegionAggregateTrends
+      summary: Get aggregated regional market trends
+      description: >-
+        Retrieves aggregated market trend data for a specific region,
+        providing summarized statistics and trend indicators over
+        configurable time periods.
+      tags:
+        - Market Trends
+      parameters:
+        - name: regionType
+          in: path
+          required: true
+          description: >-
+            The type of region (e.g., neighborhood, zipcode, city, county).
+          schema:
+            type: string
+        - name: regionId
+          in: path
+          required: true
+          description: >-
+            The unique identifier for the region.
+          schema:
+            type: integer
+        - name: code
+          in: path
+          required: true
+          description: >-
+            The region code.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Aggregated regional market trend data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionAggregateTrendsResponse'
+components:
+  parameters:
+    regionId:
+      name: region_id
+      in: query
+      description: >-
+        The unique identifier for a Redfin region.
+      schema:
+        type: integer
+    regionType:
+      name: region_type
+      in: query
+      description: >-
+        The type of region to search. Values include 1 (neighborhood),
+        2 (ZIP code), 5 (county), 6 (city).
+      schema:
+        type: integer
+        enum:
+          - 1
+          - 2
+          - 5
+          - 6
+    uipt:
+      name: uipt
+      in: query
+      description: >-
+        Property type filter. Values include 1 (house), 2 (condo),
+        3 (townhouse), 4 (multi-family), 5 (land), 6 (other).
+        Multiple values can be comma-separated.
+      schema:
+        type: string
+    status:
+      name: status
+      in: query
+      description: >-
+        Listing status filter. Values include 1 (active), 130 (pending),
+        131 (active and pending).
+      schema:
+        type: integer
+        enum:
+          - 1
+          - 130
+          - 131
+    minPrice:
+      name: min_price
+      in: query
+      description: >-
+        Minimum listing price filter in USD.
+      schema:
+        type: integer
+    maxPrice:
+      name: max_price
+      in: query
+      description: >-
+        Maximum listing price filter in USD.
+      schema:
+        type: integer
+    numBeds:
+      name: num_beds
+      in: query
+      description: >-
+        Minimum number of bedrooms filter.
+      schema:
+        type: integer
+    maxNumBeds:
+      name: max_num_beds
+      in: query
+      description: >-
+        Maximum number of bedrooms filter.
+      schema:
+        type: integer
+    numBaths:
+      name: num_baths
+      in: query
+      description: >-
+        Minimum number of bathrooms filter.
+      schema:
+        type: integer
+    maxNumBaths:
+      name: max_num_baths
+      in: query
+      description: >-
+        Maximum number of bathrooms filter.
+      schema:
+        type: integer
+    minYearBuilt:
+      name: min_year_built
+      in: query
+      description: >-
+        Minimum year built filter.
+      schema:
+        type: integer
+    maxYearBuilt:
+      name: max_year_built
+      in: query
+      description: >-
+        Maximum year built filter.
+      schema:
+        type: integer
+    minListingApproxSize:
+      name: min_listing_approx_size
+      in: query
+      description: >-
+        Minimum approximate square footage filter.
+      schema:
+        type: integer
+    maxListingApproxSize:
+      name: max_listing_approx_size
+      in: query
+      description: >-
+        Maximum approximate square footage filter.
+      schema:
+        type: integer
+    minParcelSize:
+      name: min_parcel_size
+      in: query
+      description: >-
+        Minimum lot/parcel size filter.
+      schema:
+        type: integer
+    maxParcelSize:
+      name: max_parcel_size
+      in: query
+      description: >-
+        Maximum lot/parcel size filter.
+      schema:
+        type: integer
+    numHomes:
+      name: num_homes
+      in: query
+      description: >-
+        Maximum number of results to return per request.
+      schema:
+        type: integer
+    pageNumber:
+      name: page_number
+      in: query
+      description: >-
+        Page number for paginated results.
+      schema:
+        type: integer
+    propertyId:
+      name: propertyId
+      in: query
+      required: true
+      description: >-
+        The unique Redfin property identifier.
+      schema:
+        type: integer
+    listingId:
+      name: listingId
+      in: query
+      description: >-
+        The unique Redfin listing identifier.
+      schema:
+        type: integer
+    accessLevel:
+      name: accessLevel
+      in: query
+      description: >-
+        The access level for the request, controlling the detail of
+        data returned. Common value is 1.
+      schema:
+        type: integer
+        default: 1
+  schemas:
+    PropertySummary:
+      type: object
+      description: >-
+        Summary information for a property listing.
+      properties:
+        propertyId:
+          type: integer
+          description: >-
+            Unique Redfin property identifier.
+        listingId:
+          type: integer
+          description: >-
+            Unique Redfin listing identifier.
+        mlsId:
+          type: string
+          description: >-
+            MLS listing identifier.
+        price:
+          type: object
+          description: >-
+            Price information for the listing.
+          properties:
+            value:
+              type: number
+              description: >-
+                Listing price in USD.
+        address:
+          $ref: '#/components/schemas/Address'
+        beds:
+          type: integer
+          description: >-
+            Number of bedrooms.
+        baths:
+          type: number
+          description: >-
+            Number of bathrooms.
+        sqFt:
+          type: object
+          description: >-
+            Square footage information.
+          properties:
+            value:
+              type: integer
+              description: >-
+                Approximate living area in square feet.
+        lotSize:
+          type: object
+          description: >-
+            Lot size information.
+          properties:
+            value:
+              type: integer
+              description: >-
+                Lot size in square feet.
+        yearBuilt:
+          type: object
+          description: >-
+            Year the property was built.
+          properties:
+            value:
+              type: integer
+              description: >-
+                Year of construction.
+        daysOnMarket:
+          type: integer
+          description: >-
+            Number of days the property has been listed.
+        propertyType:
+          type: integer
+          description: >-
+            Property type code (1=house, 2=condo, 3=townhouse,
+            4=multi-family, 5=land, 6=other).
+        listingType:
+          type: string
+          description: >-
+            Type of listing (e.g., MLS, FSBO).
+        url:
+          type: string
+          description: >-
+            Relative URL path to the property listing on Redfin.
+        latitude:
+          type: number
+          description: >-
+            Property latitude coordinate.
+        longitude:
+          type: number
+          description: >-
+            Property longitude coordinate.
+    Address:
+      type: object
+      description: >-
+        Property address information.
+      properties:
+        streetAddress:
+          type: string
+          description: >-
+            Street address of the property.
+        city:
+          type: string
+          description: >-
+            City name.
+        state:
+          type: string
+          description: >-
+            Two-letter state abbreviation.
+        zip:
+          type: string
+          description: >-
+            ZIP code.
+    GisSearchResponse:
+      type: object
+      description: >-
+        Response from a GIS-based property search.
+      properties:
+        resultCode:
+          type: integer
+          description: >-
+            API result code indicating success or failure.
+        errorMessage:
+          type: string
+          description: >-
+            Error message if the request failed.
+        payload:
+          type: object
+          description: >-
+            Response payload containing search results.
+          properties:
+            homes:
+              type: array
+              description: >-
+                List of property summaries matching the search criteria.
+              items:
+                $ref: '#/components/schemas/PropertySummary'
+            totalResultCount:
+              type: integer
+              description: >-
+                Total number of properties matching the search criteria.
+    InitialInfoResponse:
+      type: object
+      description: >-
+        Response from the initial info endpoint providing property identifiers.
+      properties:
+        resultCode:
+          type: integer
+          description: >-
+            API result code indicating success or failure.
+        payload:
+          type: object
+          description: >-
+            Response payload containing property identifiers.
+          properties:
+            propertyId:
+              type: integer
+              description: >-
+                Unique Redfin property identifier.
+            listingId:
+              type: integer
+              description: >-
+                Unique Redfin listing identifier.
+    AboveTheFoldResponse:
+      type: object
+      description: >-
+        Response containing primary property details shown above the fold.
+      properties:
+        resultCode:
+          type: integer
+          description: >-
+            API result code indicating success or failure.
+        payload:
+          type: object
+          description: >-
+            Response payload containing property details.
+          properties:
+            addressInfo:
+              $ref: '#/components/schemas/Address'
+            price:
+              type: number
+              description: >-
+                Current listing or sale price.
+            listingStatus:
+              type: string
+              description: >-
+                Current listing status.
+            beds:
+              type: integer
+              description: >-
+                Number of bedrooms.
+            baths:
+              type: number
+              description: >-
+                Number of bathrooms.
+            sqFt:
+              type: integer
+              description: >-
+                Approximate living area in square feet.
+    BelowTheFoldResponse:
+      type: object
+      description: >-
+        Response containing detailed MLS data and extended property information.
+      properties:
+        resultCode:
+          type: integer
+          description: >-
+            API result code indicating success or failure.
+        payload:
+          type: object
+          description: >-
+            Response payload containing MLS and extended property data.
+          properties:
+            propertyHistoryInfo:
+              type: object
+              description: >-
+                Property history events including sales, price changes,
+                and listing status changes. May not always be available.
+              properties:
+                events:
+                  type: array
+                  description: >-
+                    List of historical property events.
+                  items:
+                    $ref: '#/components/schemas/PropertyHistoryEvent'
+            publicRecordsInfo:
+              type: object
+              description: >-
+                Public records data for the property.
+            schoolsInfo:
+              type: object
+              description: >-
+                Nearby schools information.
+            similarHomesInfo:
+              type: object
+              description: >-
+                Similar properties in the area.
+    MainHouseInfoPanelResponse:
+      type: object
+      description: >-
+        Response containing main house info panel data.
+      properties:
+        resultCode:
+          type: integer
+          description: >-
+            API result code indicating success or failure.
+        payload:
+          type: object
+          description: >-
+            Response payload with structured property attributes.
+    AvmHistoricalDataResponse:
+      type: object
+      description: >-
+        Response containing historical AVM (Automated Valuation Model) data.
+      properties:
+        resultCode:
+          type: integer
+          description: >-
+            API result code indicating success or failure.
+        payload:
+          type: object
+          description: >-
+            Response payload containing historical valuation data.
+          properties:
+            dataPoints:
+              type: array
+              description: >-
+                Time-series valuation data points.
+              items:
+                type: object
+                properties:
+                  timestamp:
+                    type: integer
+                    description: >-
+                      Unix timestamp for the data point.
+                  value:
+                    type: number
+                    description: >-
+                      Estimated property value at this point in time.
+    NeighborhoodStatsResponse:
+      type: object
+      description: >-
+        Response containing neighborhood statistical data.
+      properties:
+        resultCode:
+          type: integer
+          description: >-
+            API result code indicating success or failure.
+        payload:
+          type: object
+          description: >-
+            Response payload with neighborhood statistics.
+    CommuteInfoResponse:
+      type: object
+      description: >-
+        Response containing commute and transportation information.
+      properties:
+        resultCode:
+          type: integer
+          description: >-
+            API result code indicating success or failure.
+        payload:
+          type: object
+          description: >-
+            Response payload with commute time estimates.
+    RegionTrendsResponse:
+      type: object
+      description: >-
+        Response containing market trend data for a region.
+      properties:
+        resultCode:
+          type: integer
+          description: >-
+            API result code indicating success or failure.
+        payload:
+          type: object
+          description: >-
+            Response payload with trend data.
+    RegionAggregateTrendsResponse:
+      type: object
+      description: >-
+        Response containing aggregated market trend data for a region.
+      properties:
+        resultCode:
+          type: integer
+          description: >-
+            API result code indicating success or failure.
+        payload:
+          type: object
+          description: >-
+            Response payload with aggregated trend data.
+    PropertyHistoryEvent:
+      type: object
+      description: >-
+        A historical event in a property's listing or sale history.
+      properties:
+        eventDate:
+          type: string
+          description: >-
+            Date of the event.
+        eventType:
+          type: string
+          description: >-
+            Type of event (e.g., Listed, Sold, PriceChange).
+        price:
+          type: number
+          description: >-
+            Price associated with the event.
+        source:
+          type: string
+          description: >-
+            Data source for the event record.

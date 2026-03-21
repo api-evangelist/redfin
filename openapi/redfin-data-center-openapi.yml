@@ -1,0 +1,285 @@
+openapi: 3.1.0
+info:
+  title: Redfin Data Center
+  description: >-
+    The Redfin Data Center provides downloadable housing market data for
+    metropolitan areas, cities, neighborhoods, and zip codes across the
+    United States. Data is available at national, metro, state, county,
+    city, zip code, and neighborhood levels. Weekly data is updated every
+    Wednesday with new data for the prior week, computed as rolling 1, 4,
+    or 12-week windows. Monthly data is released during the Friday of the
+    third full week of each month. Datasets cover median sale prices,
+    homes sold, new listings, days on market, inventory levels, and
+    price drops. Data is provided in compressed TSV format hosted on
+    Amazon S3.
+  version: '1.0.0'
+  contact:
+    name: Redfin Economics Team
+    url: https://www.redfin.com/news/data-center/
+  termsOfService: https://www.redfin.com/about/terms-of-use
+externalDocs:
+  description: Redfin Data Center Documentation
+  url: https://www.redfin.com/news/data-center/
+servers:
+  - url: https://redfin-public-data.s3.us-west-2.amazonaws.com
+    description: Redfin Public Data S3 Bucket
+tags:
+  - name: Market Tracker
+    description: >-
+      Downloadable housing market tracker datasets segmented by region level.
+paths:
+  /redfin_market_tracker/us_national_market_tracker.tsv000.gz:
+    get:
+      operationId: downloadNationalMarketTracker
+      summary: Download national market tracker data
+      description: >-
+        Downloads the national-level housing market tracker dataset in
+        compressed TSV format. Contains aggregate housing metrics across
+        the entire United States including median sale price, homes sold,
+        new listings, days on market, inventory, and price drops.
+      tags:
+        - Market Tracker
+      responses:
+        '200':
+          description: Compressed TSV file with national market data
+          content:
+            application/gzip:
+              schema:
+                type: string
+                format: binary
+                description: >-
+                  Gzipped TSV file containing national housing market data.
+  /redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz:
+    get:
+      operationId: downloadMetroMarketTracker
+      summary: Download metro-level market tracker data
+      description: >-
+        Downloads the metro-level housing market tracker dataset in
+        compressed TSV format. Contains housing metrics segmented by
+        metropolitan statistical areas across the United States.
+      tags:
+        - Market Tracker
+      responses:
+        '200':
+          description: Compressed TSV file with metro market data
+          content:
+            application/gzip:
+              schema:
+                type: string
+                format: binary
+                description: >-
+                  Gzipped TSV file containing metro-level housing market data.
+  /redfin_market_tracker/state_market_tracker.tsv000.gz:
+    get:
+      operationId: downloadStateMarketTracker
+      summary: Download state-level market tracker data
+      description: >-
+        Downloads the state-level housing market tracker dataset in
+        compressed TSV format. Contains housing metrics aggregated at
+        the state level for all US states and territories.
+      tags:
+        - Market Tracker
+      responses:
+        '200':
+          description: Compressed TSV file with state market data
+          content:
+            application/gzip:
+              schema:
+                type: string
+                format: binary
+                description: >-
+                  Gzipped TSV file containing state-level housing market data.
+  /redfin_market_tracker/county_market_tracker.tsv000.gz:
+    get:
+      operationId: downloadCountyMarketTracker
+      summary: Download county-level market tracker data
+      description: >-
+        Downloads the county-level housing market tracker dataset in
+        compressed TSV format. Contains housing metrics segmented by
+        county across the United States.
+      tags:
+        - Market Tracker
+      responses:
+        '200':
+          description: Compressed TSV file with county market data
+          content:
+            application/gzip:
+              schema:
+                type: string
+                format: binary
+                description: >-
+                  Gzipped TSV file containing county-level housing market data.
+  /redfin_market_tracker/city_market_tracker.tsv000.gz:
+    get:
+      operationId: downloadCityMarketTracker
+      summary: Download city-level market tracker data
+      description: >-
+        Downloads the city-level housing market tracker dataset in
+        compressed TSV format. Contains housing metrics segmented by
+        city across the United States.
+      tags:
+        - Market Tracker
+      responses:
+        '200':
+          description: Compressed TSV file with city market data
+          content:
+            application/gzip:
+              schema:
+                type: string
+                format: binary
+                description: >-
+                  Gzipped TSV file containing city-level housing market data.
+  /redfin_market_tracker/zip_code_market_tracker.tsv000.gz:
+    get:
+      operationId: downloadZipCodeMarketTracker
+      summary: Download ZIP code-level market tracker data
+      description: >-
+        Downloads the ZIP code-level housing market tracker dataset in
+        compressed TSV format. Contains housing metrics segmented by
+        ZIP code across the United States. This is the most granular
+        widely available dataset.
+      tags:
+        - Market Tracker
+      responses:
+        '200':
+          description: Compressed TSV file with ZIP code market data
+          content:
+            application/gzip:
+              schema:
+                type: string
+                format: binary
+                description: >-
+                  Gzipped TSV file containing ZIP code-level housing market data.
+  /redfin_market_tracker/neighborhood_market_tracker.tsv000.gz:
+    get:
+      operationId: downloadNeighborhoodMarketTracker
+      summary: Download neighborhood-level market tracker data
+      description: >-
+        Downloads the neighborhood-level housing market tracker dataset
+        in compressed TSV format. Contains housing metrics segmented by
+        Redfin-defined neighborhood boundaries.
+      tags:
+        - Market Tracker
+      responses:
+        '200':
+          description: Compressed TSV file with neighborhood market data
+          content:
+            application/gzip:
+              schema:
+                type: string
+                format: binary
+                description: >-
+                  Gzipped TSV file containing neighborhood-level housing
+                  market data.
+components:
+  schemas:
+    MarketTrackerRecord:
+      type: object
+      description: >-
+        A single record from a Redfin market tracker dataset representing
+        housing market metrics for a specific region and time period.
+      properties:
+        period_begin:
+          type: string
+          format: date
+          description: >-
+            Start date of the measurement period.
+        period_end:
+          type: string
+          format: date
+          description: >-
+            End date of the measurement period.
+        period_duration:
+          type: string
+          description: >-
+            Duration type of the period (e.g., weekly, monthly).
+        region_type:
+          type: string
+          description: >-
+            Type of region (national, metro, state, county, city,
+            zip_code, neighborhood).
+        region_type_id:
+          type: integer
+          description: >-
+            Numeric identifier for the region type.
+        table_id:
+          type: integer
+          description: >-
+            Numeric identifier for the data table.
+        is_seasonally_adjusted:
+          type: boolean
+          description: >-
+            Whether the data is seasonally adjusted.
+        region:
+          type: string
+          description: >-
+            Name of the region.
+        city:
+          type: string
+          description: >-
+            City name if applicable.
+        state:
+          type: string
+          description: >-
+            State name or abbreviation.
+        state_code:
+          type: string
+          description: >-
+            Two-letter state code.
+        property_type:
+          type: string
+          description: >-
+            Property type (All Residential, Single Family Residential,
+            Condo/Co-op, Townhouse, Multi-Family).
+        median_sale_price:
+          type: number
+          description: >-
+            Median sale price for the period and region in USD.
+        median_list_price:
+          type: number
+          description: >-
+            Median list price for the period and region in USD.
+        median_ppsf:
+          type: number
+          description: >-
+            Median price per square foot in USD.
+        homes_sold:
+          type: integer
+          description: >-
+            Number of homes sold during the period.
+        pending_sales:
+          type: integer
+          description: >-
+            Number of pending sales during the period.
+        new_listings:
+          type: integer
+          description: >-
+            Number of new listings added during the period.
+        inventory:
+          type: integer
+          description: >-
+            Total active inventory at the end of the period.
+        months_of_supply:
+          type: number
+          description: >-
+            Months of supply based on current sales pace.
+        median_dom:
+          type: integer
+          description: >-
+            Median days on market.
+        avg_sale_to_list:
+          type: number
+          description: >-
+            Average sale-to-list price ratio.
+        sold_above_list:
+          type: number
+          description: >-
+            Percentage of homes sold above list price.
+        price_drops:
+          type: number
+          description: >-
+            Percentage of listings with price drops.
+        off_market_in_two_weeks:
+          type: number
+          description: >-
+            Percentage of listings that went off market within two weeks.

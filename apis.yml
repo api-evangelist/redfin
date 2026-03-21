@@ -1,0 +1,95 @@
+aid: redfin
+url: https://raw.githubusercontent.com/api-evangelist/redfin/refs/heads/main/apis.yml
+apis:
+  - aid: redfin:stingray-api
+    name: Redfin Stingray API
+    tags:
+      - Real Estate
+      - Property Search
+      - Listings
+      - Home Values
+      - Property Data
+      - GIS
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://www.redfin.com/stingray
+    humanURL: https://www.redfin.com
+    properties:
+      - url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
+        type: Documentation
+      - url: openapi/redfin-stingray-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The Redfin Stingray API is the internal REST API that powers the Redfin
+      website and mobile applications. It provides endpoints for property
+      search, listing details, home value estimates (Redfin Estimates),
+      neighborhood statistics, commute information, and GIS-based map data.
+      The API supports searching by region, price range, property type, and
+      various filters, returning structured JSON responses with property
+      details including address, price, beds, baths, square footage, lot
+      size, and days on market. While not officially documented by Redfin,
+      this API has been reverse-engineered by the developer community and
+      is accessible at redfin.com/stingray endpoints.
+  - aid: redfin:gis-csv-api
+    name: Redfin GIS CSV Export API
+    tags:
+      - Real Estate
+      - Property Data
+      - CSV
+      - Bulk Data
+      - GIS
+      - Export
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://www.redfin.com/stingray/api/gis-csv
+    humanURL: https://www.redfin.com
+    properties:
+      - url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
+        type: Documentation
+      - url: openapi/redfin-gis-csv-api-openapi.yml
+        type: OpenAPI
+    description: >-
+      The Redfin GIS CSV Export API provides bulk property data downloads in
+      CSV format. This endpoint returns up to 350 property records per
+      request in tabular format, making it suitable for data analysis and
+      spreadsheet workflows. It accepts parameters for market selection,
+      price ranges, bedroom and bathroom counts, region identifiers, and
+      property status filters. The CSV output includes fields such as
+      address, list price, property type, square footage, lot size, and
+      listing status, enabling developers and analysts to aggregate
+      property data for research and comparison purposes.
+  - aid: redfin:data-center
+    name: Redfin Data Center
+    tags:
+      - Real Estate
+      - Housing Market
+      - Market Data
+      - Statistics
+      - Analytics
+      - CSV
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://api.example.com
+    humanURL: https://www.redfin.com/news/data-center/
+    properties:
+      - url: https://www.redfin.com/news/data-center/
+        type: Documentation
+      - url: https://support.redfin.com/hc/en-us/articles/360016476931-Downloading-Data
+        type: Documentation
+      - url: openapi/redfin-data-center-openapi.yml
+        type: OpenAPI
+    description: >-
+      The Redfin Data Center provides downloadable housing market data for
+      metropolitan areas, cities, neighborhoods, and zip codes across the
+      United States. Data is available at national, metro, state, county,
+      city, zip code, and neighborhood levels. Weekly data is updated every
+      Wednesday with new data for the prior week, computed as rolling 1, 4,
+      or 12-week windows. Monthly data is released during the Friday of the
+      third full week of each month. The platform enables users to visualize
+      trends and download datasets covering median sale prices, homes sold,
+      new listings, days on market, inventory levels, and price drops.
+common:
+  - type: JSON-LD
+    url: json-ld/redfin-context.jsonld
+  - type: JSONSchema
+    url: json-schema/redfin-property-schema.json
+  - type: JSONSchema
+    url: json-schema/redfin-market-tracker-schema.json
+modified: '2026-03-20'

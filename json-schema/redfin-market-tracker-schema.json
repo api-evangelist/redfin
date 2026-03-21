@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://redfin.com/schemas/redfin/market-tracker.json",
+  "title": "Redfin Market Tracker Record",
+  "description": "A single record from a Redfin Data Center market tracker dataset, representing housing market metrics for a specific region, property type, and time period.",
+  "type": "object",
+  "required": ["period_begin", "period_end", "region_type", "region"],
+  "properties": {
+    "period_begin": {
+      "type": "string",
+      "format": "date",
+      "description": "Start date of the measurement period."
+    },
+    "period_end": {
+      "type": "string",
+      "format": "date",
+      "description": "End date of the measurement period."
+    },
+    "period_duration": {
+      "type": "string",
+      "enum": ["weekly", "monthly"],
+      "description": "Duration type of the period."
+    },
+    "region_type": {
+      "type": "string",
+      "enum": ["national", "metro", "state", "county", "city", "zip_code", "neighborhood"],
+      "description": "Geographic level of the region."
+    },
+    "region_type_id": {
+      "type": "integer",
+      "description": "Numeric identifier for the region type."
+    },
+    "table_id": {
+      "type": "integer",
+      "description": "Numeric identifier for the data table."
+    },
+    "is_seasonally_adjusted": {
+      "type": "boolean",
+      "description": "Whether the data has been seasonally adjusted."
+    },
+    "region": {
+      "type": "string",
+      "description": "Name of the geographic region."
+    },
+    "city": {
+      "type": "string",
+      "description": "City name, if applicable to the region level."
+    },
+    "state": {
+      "type": "string",
+      "description": "State name."
+    },
+    "state_code": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 2,
+      "pattern": "^[A-Z]{2}$",
+      "description": "Two-letter US state code."
+    },
+    "property_type": {
+      "type": "string",
+      "enum": ["All Residential", "Single Family Residential", "Condo/Co-op", "Townhouse", "Multi-Family"],
+      "description": "Property type segment for the metrics."
+    },
+    "median_sale_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Median sale price for the period and region in USD."
+    },
+    "median_sale_price_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in median sale price as a decimal (e.g., 0.05 for 5% increase)."
+    },
+    "median_list_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Median list price for the period and region in USD."
+    },
+    "median_list_price_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in median list price as a decimal."
+    },
+    "median_ppsf": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Median price per square foot in USD."
+    },
+    "median_ppsf_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in median price per square foot as a decimal."
+    },
+    "homes_sold": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of homes sold during the period."
+    },
+    "homes_sold_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in homes sold as a decimal."
+    },
+    "pending_sales": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of pending sales during the period."
+    },
+    "pending_sales_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in pending sales as a decimal."
+    },
+    "new_listings": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of new listings added during the period."
+    },
+    "new_listings_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in new listings as a decimal."
+    },
+    "inventory": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total active inventory at the end of the period."
+    },
+    "inventory_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in inventory as a decimal."
+    },
+    "months_of_supply": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Months of supply based on current sales pace."
+    },
+    "months_of_supply_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in months of supply as a decimal."
+    },
+    "median_dom": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Median days on market."
+    },
+    "median_dom_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in median days on market as a decimal."
+    },
+    "avg_sale_to_list": {
+      "type": "number",
+      "description": "Average sale-to-list price ratio (e.g., 1.02 means 2% above list)."
+    },
+    "avg_sale_to_list_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in average sale-to-list ratio."
+    },
+    "sold_above_list": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Proportion of homes sold above list price (0 to 1)."
+    },
+    "sold_above_list_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in proportion sold above list."
+    },
+    "price_drops": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Proportion of listings with price drops (0 to 1)."
+    },
+    "price_drops_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in proportion of price drops."
+    },
+    "off_market_in_two_weeks": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Proportion of listings that went off market within two weeks (0 to 1)."
+    },
+    "off_market_in_two_weeks_yoy": {
+      "type": "number",
+      "description": "Year-over-year change in proportion going off market in two weeks."
+    }
+  }
+}
