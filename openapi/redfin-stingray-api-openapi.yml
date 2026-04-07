@@ -24,21 +24,21 @@ servers:
   - url: https://www.redfin.com/stingray
     description: Redfin Stingray Production Server
 tags:
-  - name: Search
-    description: >-
-      Endpoints for searching properties by location, region, and filters.
-  - name: Property Details
-    description: >-
-      Endpoints for retrieving detailed information about a specific property.
-  - name: Valuation
-    description: >-
-      Endpoints for automated valuation model (AVM) data and estimates.
-  - name: Neighborhood
-    description: >-
-      Endpoints for neighborhood statistics, commute data, and area info.
   - name: Market Trends
     description: >-
       Endpoints for regional aggregate and historical market trends.
+  - name: Neighborhood
+    description: >-
+      Endpoints for neighborhood statistics, commute data, and area info.
+  - name: Property Details
+    description: >-
+      Endpoints for retrieving detailed information about a specific property.
+  - name: Search
+    description: >-
+      Endpoints for searching properties by location, region, and filters.
+  - name: Valuation
+    description: >-
+      Endpoints for automated valuation model (AVM) data and estimates.
 paths:
   /do/gis-search:
     get:
