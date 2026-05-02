@@ -1,0 +1,210 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Redfin Property Research"
+  description: >-
+    Unified capability for researching individual properties on Redfin.
+    Combines property search, listing details, AVM estimates, neighborhood
+    statistics, and commute data to support buyers, investors, and agents
+    researching specific properties or locations.
+  tags:
+    - Redfin
+    - Property Research
+    - Real Estate
+    - Home Values
+    - Neighborhoods
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      REDFIN_API_KEY: REDFIN_API_KEY
+
+capability:
+  consumes:
+    - import: redfin-stingray
+      location: ./shared/stingray-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: redfin-property-research-api
+      description: "Unified REST API for researching Redfin property listings."
+      resources:
+        - path: /v1/properties
+          name: properties
+          description: "Search and browse property listings."
+          operations:
+            - method: GET
+              name: search-properties
+              description: "Search properties by region, price range, property type, and filters."
+              call: "redfin-stingray.gis-search"
+              with:
+                region_id: "rest.region_id"
+                region_type: "rest.region_type"
+                uipt: "rest.uipt"
+                status: "rest.status"
+                min_price: "rest.min_price"
+                max_price: "rest.max_price"
+                num_beds: "rest.num_beds"
+                num_baths: "rest.num_baths"
+                num_homes: "rest.num_homes"
+                page_number: "rest.page_number"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/properties/{propertyId}/summary
+          name: property-summary
+          description: "Primary listing details for a property."
+          operations:
+            - method: GET
+              name: get-property-summary
+              description: "Get above-the-fold details: price, beds, baths, address, and status."
+              call: "redfin-stingray.get-above-the-fold"
+              with:
+                propertyId: "rest.propertyId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/properties/{propertyId}/details
+          name: property-details
+          description: "Detailed MLS data, history, schools, and similar homes."
+          operations:
+            - method: GET
+              name: get-property-details
+              description: "Get below-the-fold property details with MLS data, history, and school info."
+              call: "redfin-stingray.get-below-the-fold"
+              with:
+                propertyId: "rest.propertyId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/properties/{propertyId}/estimate
+          name: property-estimate
+          description: "Historical Redfin Estimate (AVM) valuations."
+          operations:
+            - method: GET
+              name: get-property-estimate
+              description: "Get historical Redfin Estimate data showing value trends over time."
+              call: "redfin-stingray.get-avm-historical-data"
+              with:
+                propertyId: "rest.propertyId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/properties/{propertyId}/neighborhood
+          name: property-neighborhood
+          description: "Neighborhood statistics and location context."
+          operations:
+            - method: GET
+              name: get-neighborhood-stats
+              description: "Get neighborhood demographics, walkability, and school ratings."
+              call: "redfin-stingray.get-neighborhood-stats"
+              with:
+                propertyId: "rest.propertyId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/properties/{propertyId}/commute
+          name: property-commute
+          description: "Commute time estimates for the property."
+          operations:
+            - method: GET
+              name: get-commute-info
+              description: "Get drive, transit, bike, and walk commute estimates."
+              call: "redfin-stingray.get-commute-info"
+              with:
+                propertyId: "rest.propertyId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: redfin-property-research-mcp
+      transport: http
+      description: "MCP server for AI-assisted Redfin property research."
+      tools:
+        - name: search-properties
+          description: "Search Redfin property listings by region, price range, and property type filters."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.gis-search"
+          with:
+            region_id: "tools.region_id"
+            region_type: "tools.region_type"
+            uipt: "tools.uipt"
+            min_price: "tools.min_price"
+            max_price: "tools.max_price"
+            num_beds: "tools.num_beds"
+            num_baths: "tools.num_baths"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-property-summary
+          description: "Get core listing details for a property: price, beds, baths, square footage, and status."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.get-above-the-fold"
+          with:
+            propertyId: "tools.propertyId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-property-history
+          description: "Get MLS data, sales history, tax records, and schools for a property."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.get-below-the-fold"
+          with:
+            propertyId: "tools.propertyId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-redfin-estimate
+          description: "Get historical Redfin Estimate (AVM) showing property value trends over time."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.get-avm-historical-data"
+          with:
+            propertyId: "tools.propertyId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-neighborhood-stats
+          description: "Get neighborhood statistics including walkability, transit, and school ratings."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.get-neighborhood-stats"
+          with:
+            propertyId: "tools.propertyId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-commute-info
+          description: "Get commute time estimates (drive, transit, bike, walk) for a property."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.get-commute-info"
+          with:
+            propertyId: "tools.propertyId"
+          outputParameters:
+            - type: object
+              mapping: "$."

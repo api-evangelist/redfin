@@ -1,0 +1,212 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Redfin Market Analytics"
+  description: >-
+    Unified capability for housing market analytics and data access on Redfin.
+    Combines regional market trend data from the Stingray API and bulk
+    market tracker datasets from the Data Center. Supports analysts, data
+    scientists, and market researchers tracking housing trends at all geographic
+    levels from national to neighborhood.
+  tags:
+    - Redfin
+    - Housing Market
+    - Market Analytics
+    - Real Estate
+    - Statistics
+    - Data Science
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+capability:
+  consumes:
+    - import: redfin-stingray
+      location: ./shared/stingray-api.yaml
+    - import: redfin-data-center
+      location: ./shared/data-center.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: redfin-market-analytics-api
+      description: "Unified REST API for Redfin housing market analytics and data downloads."
+      resources:
+        - path: /v1/trends/{regionType}/{regionId}/{code}
+          name: regional-trends
+          description: "Regional market trends from Stingray API."
+          operations:
+            - method: GET
+              name: get-region-trends
+              description: "Get market trend data for a region including prices, volume, and days on market."
+              call: "redfin-stingray.get-region-trends"
+              with:
+                regionType: "rest.regionType"
+                regionId: "rest.regionId"
+                code: "rest.code"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/national
+          name: national-market-data
+          description: "National housing market tracker download."
+          operations:
+            - method: GET
+              name: get-national-market-data
+              description: "Download national housing market tracker dataset (compressed TSV)."
+              call: "redfin-data-center.download-national-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/metro
+          name: metro-market-data
+          description: "Metro-level housing market tracker download."
+          operations:
+            - method: GET
+              name: get-metro-market-data
+              description: "Download metro MSA housing market tracker dataset (compressed TSV)."
+              call: "redfin-data-center.download-metro-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/state
+          name: state-market-data
+          description: "State-level housing market tracker download."
+          operations:
+            - method: GET
+              name: get-state-market-data
+              description: "Download state-level housing market tracker dataset (compressed TSV)."
+              call: "redfin-data-center.download-state-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/county
+          name: county-market-data
+          description: "County-level housing market tracker download."
+          operations:
+            - method: GET
+              name: get-county-market-data
+              description: "Download county-level housing market tracker dataset (compressed TSV)."
+              call: "redfin-data-center.download-county-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/city
+          name: city-market-data
+          description: "City-level housing market tracker download."
+          operations:
+            - method: GET
+              name: get-city-market-data
+              description: "Download city-level housing market tracker dataset (compressed TSV)."
+              call: "redfin-data-center.download-city-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/zip-code
+          name: zip-code-market-data
+          description: "ZIP code-level housing market tracker download."
+          operations:
+            - method: GET
+              name: get-zip-code-market-data
+              description: "Download ZIP code housing market tracker dataset (compressed TSV)."
+              call: "redfin-data-center.download-zip-code-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/neighborhood
+          name: neighborhood-market-data
+          description: "Neighborhood-level housing market tracker download."
+          operations:
+            - method: GET
+              name: get-neighborhood-market-data
+              description: "Download neighborhood housing market tracker dataset (compressed TSV)."
+              call: "redfin-data-center.download-neighborhood-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9081
+      namespace: redfin-market-analytics-mcp
+      transport: http
+      description: "MCP server for AI-assisted Redfin housing market analytics."
+      tools:
+        - name: get-region-trends
+          description: "Get housing market trends for a specific region: prices, volume, days on market, inventory."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.get-region-trends"
+          with:
+            regionType: "tools.regionType"
+            regionId: "tools.regionId"
+            code: "tools.code"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-national-market-data
+          description: "Download Redfin national housing market tracker dataset with all key metrics."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "redfin-data-center.download-national-market-tracker"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-metro-market-data
+          description: "Download Redfin metro MSA housing market tracker dataset."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "redfin-data-center.download-metro-market-tracker"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-state-market-data
+          description: "Download Redfin state-level housing market tracker dataset."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "redfin-data-center.download-state-market-tracker"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-city-market-data
+          description: "Download Redfin city-level housing market tracker dataset."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "redfin-data-center.download-city-market-tracker"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-zip-code-market-data
+          description: "Download Redfin ZIP code housing market tracker dataset (most granular)."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "redfin-data-center.download-zip-code-market-tracker"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-neighborhood-market-data
+          description: "Download Redfin neighborhood-level housing market tracker dataset."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "redfin-data-center.download-neighborhood-market-tracker"
+          outputParameters:
+            - type: object
+              mapping: "$."

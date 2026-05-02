@@ -1,0 +1,93 @@
+rules:
+  redfin-operation-ids-camel-case:
+    description: All operationIds must use camelCase naming convention consistent with Redfin API style.
+    message: "OperationId '{{value}}' should use camelCase."
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  redfin-tags-title-case:
+    description: All tags must use Title Case.
+    message: "Tag '{{value}}' must use Title Case."
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 /-]*$"
+
+  redfin-path-tags-title-case:
+    description: Operation tags must use Title Case.
+    message: "Tag '{{value}}' must use Title Case."
+    severity: warn
+    given: "$.paths[*][*].tags[*]"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 /-]*$"
+
+  redfin-operations-have-summaries:
+    description: All operations must have a summary.
+    message: "Operation at {{path}} is missing a summary."
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: summary
+      function: truthy
+
+  redfin-operations-have-descriptions:
+    description: All operations must have a description.
+    message: "Operation at {{path}} is missing a description."
+    severity: info
+    given: "$.paths[*][*]"
+    then:
+      field: description
+      function: truthy
+
+  redfin-operations-have-operation-ids:
+    description: All operations must have an operationId for SDK generation.
+    message: "Operation at {{path}} is missing an operationId."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+
+  redfin-responses-have-descriptions:
+    description: All response objects must have a description.
+    message: "Response at {{path}} is missing a description."
+    severity: warn
+    given: "$.paths[*][*].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  redfin-parameters-have-descriptions:
+    description: All parameters should have descriptions.
+    message: "Parameter at {{path}} is missing a description."
+    severity: info
+    given: "$.paths[*][*].parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  redfin-info-contact:
+    description: API info must include contact information.
+    message: "API info is missing a contact block."
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  redfin-servers-defined:
+    description: API must have at least one server defined.
+    message: "API is missing a servers block."
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy

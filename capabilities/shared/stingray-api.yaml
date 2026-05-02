@@ -1,0 +1,394 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Redfin Stingray API"
+  description: >-
+    The internal Redfin REST API powering property search, listing details,
+    home value estimates, neighborhood statistics, and commute data. Accessible
+    at redfin.com/stingray endpoints.
+  tags:
+    - Redfin
+    - Real Estate
+    - Property Search
+    - Listings
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      REDFIN_API_KEY: REDFIN_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: redfin-stingray
+      baseUri: https://www.redfin.com/stingray
+      description: "Redfin Stingray REST API for property search and details."
+      resources:
+        - name: property-search
+          path: /do/gis-search
+          description: "GIS-based property search with filters."
+          operations:
+            - name: gis-search
+              method: GET
+              description: "Search properties via GIS with region, price, and property type filters."
+              inputParameters:
+                - name: region_id
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Unique identifier for a Redfin region."
+                - name: region_type
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Region type code (1=neighborhood, 2=zip, 5=county, 6=city)."
+                - name: uipt
+                  in: query
+                  type: string
+                  required: false
+                  description: "Property type filter (comma-separated: 1=house, 2=condo, 3=townhouse)."
+                - name: status
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Listing status filter (1=active, 130=pending)."
+                - name: min_price
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Minimum listing price in USD."
+                - name: max_price
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum listing price in USD."
+                - name: num_beds
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Minimum number of bedrooms."
+                - name: num_baths
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Minimum number of bathrooms."
+                - name: num_homes
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum results to return."
+                - name: page_number
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number for pagination."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: property-search-api
+          path: /api/gis
+          description: "Alternative GIS property search endpoint."
+          operations:
+            - name: gis-api-search
+              method: GET
+              description: "Alternative GIS-based property search returning JSON results."
+              inputParameters:
+                - name: region_id
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Region identifier."
+                - name: region_type
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Region type code."
+                - name: num_homes
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Number of results to return."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: property-initial-info
+          path: /api/home/details/initialInfo
+          description: "Initial property info returning propertyId and listingId."
+          operations:
+            - name: get-initial-info
+              method: GET
+              description: "Retrieve initial property identifiers from a Redfin URL path."
+              inputParameters:
+                - name: path
+                  in: query
+                  type: string
+                  required: true
+                  description: "Redfin property URL path."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: property-above-fold
+          path: /api/home/details/aboveTheFold
+          description: "Primary property details: price, address, photos, and listing status."
+          operations:
+            - name: get-above-the-fold
+              method: GET
+              description: "Get above-the-fold property details including price, beds, baths, and sq ft."
+              inputParameters:
+                - name: propertyId
+                  in: query
+                  type: integer
+                  required: true
+                  description: "Redfin property identifier."
+                - name: listingId
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Redfin listing identifier."
+                - name: accessLevel
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Access level controlling data detail."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: property-below-fold
+          path: /api/home/details/belowTheFold
+          description: "Detailed MLS data, tax info, schools, and property history."
+          operations:
+            - name: get-below-the-fold
+              method: GET
+              description: "Get below-the-fold property details with MLS data, history, and schools."
+              inputParameters:
+                - name: propertyId
+                  in: query
+                  type: integer
+                  required: true
+                  description: "Redfin property identifier."
+                - name: listingId
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Redfin listing identifier."
+                - name: accessLevel
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Access level."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: property-avm
+          path: /api/home/details/avmHistoricalData
+          description: "Historical AVM (Redfin Estimate) time-series data."
+          operations:
+            - name: get-avm-historical-data
+              method: GET
+              description: "Retrieve historical Redfin Estimate valuations for a property."
+              inputParameters:
+                - name: propertyId
+                  in: query
+                  type: integer
+                  required: true
+                  description: "Redfin property identifier."
+                - name: accessLevel
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Access level."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: neighborhood-stats
+          path: /api/home/details/neighborhoodStats/statsInfo
+          description: "Neighborhood statistics including demographics, walk/transit scores."
+          operations:
+            - name: get-neighborhood-stats
+              method: GET
+              description: "Get neighborhood statistics for a property location."
+              inputParameters:
+                - name: propertyId
+                  in: query
+                  type: integer
+                  required: true
+                  description: "Redfin property identifier."
+                - name: accessLevel
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Access level."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: commute-info
+          path: /api/home/details/commute/commuteInfo
+          description: "Commute time estimates for drive, transit, bike, and walk."
+          operations:
+            - name: get-commute-info
+              method: GET
+              description: "Get commute information including transit and drive times."
+              inputParameters:
+                - name: propertyId
+                  in: query
+                  type: integer
+                  required: true
+                  description: "Redfin property identifier."
+                - name: accessLevel
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Access level."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: region-trends
+          path: /api/region/{regionType}/{regionId}/{code}/trends
+          description: "Market trend data for a region."
+          operations:
+            - name: get-region-trends
+              method: GET
+              description: "Get market trend data for a region including prices and sales volume."
+              inputParameters:
+                - name: regionType
+                  in: path
+                  type: string
+                  required: true
+                  description: "Region type (neighborhood, zipcode, city, county)."
+                - name: regionId
+                  in: path
+                  type: integer
+                  required: true
+                  description: "Region identifier."
+                - name: code
+                  in: path
+                  type: string
+                  required: true
+                  description: "Region code."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: redfin-stingray-rest
+      resources:
+        - path: /v1/properties
+          name: properties
+          description: "Property search and listing operations."
+          operations:
+            - method: GET
+              name: search-properties
+              description: "Search properties by region, price, and filters."
+              call: "redfin-stingray.gis-search"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/properties/{propertyId}
+          name: property-detail
+          description: "Individual property detail operations."
+          operations:
+            - method: GET
+              name: get-property
+              description: "Get above-the-fold details for a property."
+              call: "redfin-stingray.get-above-the-fold"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-trends/{regionType}/{regionId}/{code}
+          name: market-trends
+          description: "Regional market trend data."
+          operations:
+            - method: GET
+              name: get-market-trends
+              description: "Get market trends for a region."
+              call: "redfin-stingray.get-region-trends"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: redfin-stingray-mcp
+      transport: http
+      tools:
+        - name: search-properties
+          description: "Search Redfin properties by region, price range, and property type."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.gis-search"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-property-details
+          description: "Get primary details for a specific Redfin property."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.get-above-the-fold"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-property-history
+          description: "Get MLS data, property history, and schools for a property."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.get-below-the-fold"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-avm-estimate
+          description: "Get historical Redfin Estimate (AVM) valuations for a property."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.get-avm-historical-data"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-market-trends
+          description: "Get housing market trends for a region."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "redfin-stingray.get-region-trends"
+          outputParameters:
+            - type: object
+              mapping: "$."

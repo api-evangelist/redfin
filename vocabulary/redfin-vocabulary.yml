@@ -1,0 +1,184 @@
+vocabulary:
+  name: Redfin API Vocabulary
+  description: >-
+    Domain vocabulary for the Redfin real estate platform covering property
+    listings, housing market data, geographic regions, valuation concepts,
+    and transaction terminology.
+  version: "1.0.0"
+  created: "2026-05-02"
+  tags:
+    - Real Estate
+    - Housing Market
+    - Property Data
+    - GIS
+
+terms:
+  - term: AVM
+    label: Automated Valuation Model
+    definition: >-
+      A statistical model that estimates property value based on comparable
+      sales, property characteristics, and market trends. Redfin's AVM
+      product is called the Redfin Estimate.
+    synonyms:
+      - Redfin Estimate
+      - Home Value Estimate
+
+  - term: Days On Market
+    label: Days On Market (DOM)
+    definition: >-
+      The number of calendar days a property has been actively listed for
+      sale. Properties that are relisted after a cancellation may reset
+      the DOM counter.
+    abbreviation: DOM
+
+  - term: GIS Search
+    label: GIS-Based Property Search
+    definition: >-
+      Geographic Information System search that uses region boundaries,
+      polygons, or map extents to filter and return property listings
+      within a geographic area.
+
+  - term: HOA Fee
+    label: Homeowners Association Fee
+    definition: >-
+      A recurring monthly fee charged by a homeowners association to cover
+      shared amenity maintenance, insurance, and management costs. Common
+      in condo, townhouse, and planned community developments.
+    abbreviation: HOA
+
+  - term: Inventory
+    label: Active Housing Inventory
+    definition: >-
+      The total count of properties actively listed for sale in a market
+      at a given time. Higher inventory generally indicates a buyer's market;
+      lower inventory indicates a seller's market.
+
+  - term: Listing Status
+    label: Listing Status
+    definition: >-
+      The current transactional state of a property listing. Redfin
+      statuses include Active, Pending, Sold, Contingent, and Off-Market.
+    values:
+      - active: Currently available for sale.
+      - pending: Under contract, sale not yet completed.
+      - sold: Transaction completed.
+      - contingent: Under contract with contingencies.
+      - off-market: Not currently listed for sale.
+
+  - term: Market Tracker
+    label: Redfin Market Tracker Dataset
+    definition: >-
+      A downloadable dataset from the Redfin Data Center containing
+      aggregated housing market metrics for a geographic level and time
+      period. Metrics include median sale price, homes sold, new listings,
+      inventory, days on market, sale-to-list ratio, and price drops.
+
+  - term: MLS
+    label: Multiple Listing Service
+    definition: >-
+      A cooperative database used by real estate brokers to share information
+      about properties for sale. Each local MLS assigns a unique MLS ID to
+      each listing.
+    abbreviation: MLS
+
+  - term: Months of Supply
+    label: Months of Supply
+    definition: >-
+      A measure of housing market balance calculated by dividing current
+      active inventory by the monthly sales pace. Values below 3 typically
+      indicate a seller's market; above 6 indicate a buyer's market.
+
+  - term: MSA
+    label: Metropolitan Statistical Area
+    definition: >-
+      A US Census Bureau designation for a core urban area with a population
+      of at least 50,000, plus surrounding communities with high degrees of
+      economic and social integration. Used by Redfin for metro-level data.
+    abbreviation: MSA
+    synonyms:
+      - metro
+      - metropolitan area
+
+  - term: Off Market In Two Weeks
+    label: Percent Off Market In Two Weeks
+    definition: >-
+      The proportion of listings that received an accepted offer and went
+      off market (active to pending or sold) within 14 days of listing.
+      A high value indicates strong buyer demand and competitive conditions.
+
+  - term: Pending
+    label: Pending Sale
+    definition: >-
+      A property that has an accepted offer and is under contract but has
+      not yet closed. Also called "under contract."
+
+  - term: Price Drop
+    label: Listing Price Reduction
+    definition: >-
+      A reduction in the asking price of an active listing. The Redfin
+      price_drops metric reports the proportion of active listings that
+      have had at least one price reduction.
+
+  - term: Property Type
+    label: Property Type Classification
+    definition: >-
+      Classification of a property by its physical structure. Redfin
+      recognizes: house (single-family), condo, townhouse, multi-family,
+      land, and other.
+    values:
+      - "1": House (Single Family)
+      - "2": Condo / Co-op
+      - "3": Townhouse
+      - "4": Multi-Family
+      - "5": Land
+      - "6": Other
+
+  - term: Redfin Estimate
+    label: Redfin Estimate (AVM)
+    definition: >-
+      Redfin's automated property valuation computed using a machine learning
+      model trained on public records, MLS data, and user-submitted
+      information. Updated daily for active listings and weekly for
+      off-market properties.
+
+  - term: Region ID
+    label: Redfin Region Identifier
+    definition: >-
+      A numeric identifier assigned by Redfin to a geographic region
+      such as a city, ZIP code, county, or neighborhood used for filtering
+      search results and retrieving market data.
+
+  - term: Region Type
+    label: Redfin Region Type
+    definition: >-
+      The geographic classification of a Redfin region. Values include
+      1 (neighborhood), 2 (ZIP code), 5 (county), and 6 (city).
+    values:
+      - "1": Neighborhood
+      - "2": ZIP Code
+      - "5": County
+      - "6": City
+
+  - term: Sale To List Ratio
+    label: Sale-to-List Price Ratio
+    definition: >-
+      The ratio of the final sale price to the last list price. A ratio
+      above 1.0 means the home sold above asking price; below 1.0 means
+      it sold below asking price. Tracked as an average across all sales
+      in the Redfin market tracker.
+
+  - term: Stingray API
+    label: Redfin Stingray API
+    definition: >-
+      The internal REST API that powers Redfin.com and the Redfin mobile
+      applications. Accessed at redfin.com/stingray endpoints. Not
+      officially documented by Redfin but reverse-engineered by the
+      developer community.
+
+  - term: TSV
+    label: Tab-Separated Values
+    definition: >-
+      A plain-text data format where fields are separated by tab characters.
+      Redfin Data Center files are distributed as compressed TSV (.tsv.gz)
+      to minimize download size.
+    abbreviation: TSV

@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.redfin.com/stingray/api/home/details/aboveTheFold",
+    "parameters": {
+      "propertyId": 12345678,
+      "listingId": 87654321,
+      "accessLevel": 1
+    }
+  },
+  "response": {
+    "resultCode": 0,
+    "payload": {
+      "addressInfo": {
+        "streetAddress": "123 Market St",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94105"
+      },
+      "price": 749000,
+      "listingStatus": "Active",
+      "beds": 2,
+      "baths": 2.0,
+      "sqFt": 1100
+    }
+  }
+}

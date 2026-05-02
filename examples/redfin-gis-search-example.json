@@ -1,0 +1,58 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://www.redfin.com/stingray/do/gis-search",
+    "parameters": {
+      "region_id": 13171,
+      "region_type": 6,
+      "uipt": "1,2,3",
+      "status": 1,
+      "min_price": 500000,
+      "max_price": 1000000,
+      "num_beds": 2,
+      "num_baths": 1,
+      "num_homes": 25,
+      "page_number": 1
+    }
+  },
+  "response": {
+    "resultCode": 0,
+    "errorMessage": "",
+    "payload": {
+      "homes": [
+        {
+          "propertyId": 12345678,
+          "listingId": 87654321,
+          "mlsId": "MLS-2024-001",
+          "price": {
+            "value": 749000
+          },
+          "address": {
+            "streetAddress": "123 Market St",
+            "city": "San Francisco",
+            "state": "CA",
+            "zip": "94105"
+          },
+          "beds": 2,
+          "baths": 2,
+          "sqFt": {
+            "value": 1100
+          },
+          "lotSize": {
+            "value": 0
+          },
+          "yearBuilt": {
+            "value": 1985
+          },
+          "daysOnMarket": 7,
+          "propertyType": 2,
+          "listingType": "MLS",
+          "url": "/CA/San-Francisco/123-Market-St-94105/home/12345678",
+          "latitude": 37.7937,
+          "longitude": -122.3965
+        }
+      ],
+      "totalResultCount": 342
+    }
+  }
+}

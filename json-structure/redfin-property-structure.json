@@ -1,0 +1,50 @@
+{
+  "title": "Redfin Property Structure",
+  "description": "JSON structure documentation for the Redfin property entity returned by the Stingray API.",
+  "type": "object",
+  "fields": [
+    { "name": "propertyId", "type": "integer", "required": true, "description": "Unique Redfin property identifier." },
+    { "name": "listingId", "type": "integer", "required": false, "description": "Unique Redfin listing identifier." },
+    { "name": "mlsId", "type": "string", "required": false, "description": "MLS listing identifier." },
+    {
+      "name": "address",
+      "type": "object",
+      "required": true,
+      "description": "Property address.",
+      "fields": [
+        { "name": "streetAddress", "type": "string", "required": true, "description": "Street number and name." },
+        { "name": "city", "type": "string", "required": true, "description": "City name." },
+        { "name": "state", "type": "string", "required": true, "description": "Two-letter state abbreviation." },
+        { "name": "zip", "type": "string", "required": true, "description": "5-digit ZIP code." }
+      ]
+    },
+    { "name": "price", "type": "number", "required": false, "description": "Current listing price in USD." },
+    { "name": "beds", "type": "integer", "required": false, "description": "Number of bedrooms." },
+    { "name": "baths", "type": "number", "required": false, "description": "Number of bathrooms." },
+    { "name": "sqFt", "type": "integer", "required": false, "description": "Living area in square feet." },
+    { "name": "lotSize", "type": "integer", "required": false, "description": "Lot size in square feet." },
+    { "name": "yearBuilt", "type": "integer", "required": false, "description": "Year constructed." },
+    { "name": "propertyType", "type": "string", "required": false, "description": "Property type (house, condo, townhouse, multi-family, land, other).", "enum": ["house", "condo", "townhouse", "multi-family", "land", "other"] },
+    { "name": "listingStatus", "type": "string", "required": false, "description": "Current status (active, pending, sold, off-market, contingent).", "enum": ["active", "pending", "sold", "off-market", "contingent"] },
+    { "name": "daysOnMarket", "type": "integer", "required": false, "description": "Days since listing went active." },
+    { "name": "latitude", "type": "number", "required": false, "description": "Latitude coordinate." },
+    { "name": "longitude", "type": "number", "required": false, "description": "Longitude coordinate." },
+    { "name": "url", "type": "string", "required": false, "description": "Relative Redfin URL for the listing." },
+    { "name": "redfinEstimate", "type": "number", "required": false, "description": "Redfin AVM estimate in USD." },
+    {
+      "name": "history",
+      "type": "array",
+      "required": false,
+      "description": "Property event history.",
+      "items": {
+        "type": "object",
+        "fields": [
+          { "name": "eventDate", "type": "string", "format": "date", "description": "Date of the event." },
+          { "name": "eventType", "type": "string", "description": "Event type (Listed, Sold, PriceChange, Pending, Delisted, Relisted)." },
+          { "name": "price", "type": "number", "description": "Price associated with the event." },
+          { "name": "source", "type": "string", "description": "MLS or data source." }
+        ]
+      }
+    }
+  ]
+}

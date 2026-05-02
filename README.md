@@ -1,70 +1,109 @@
 # Redfin (redfin)
-Redfin is a technology-powered real estate brokerage that provides property search, home value estimates, and housing market data across the United States. Their platform offers APIs for property listings, GIS-based map data, and downloadable market statistics at national, metro, city, and neighborhood levels.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/redfin/refs/heads/main/apis.yml)
+Redfin is a technology-powered real estate brokerage that provides property search, home value estimates (Redfin Estimate), listing details, neighborhood statistics, commute data, and downloadable housing market data across the United States. Their platform exposes a Stingray REST API used internally by Redfin.com and mobile apps, a GIS CSV Export endpoint for bulk property downloads, and the Redfin Data Center for time-series housing market statistics at national, metro, state, county, city, ZIP code, and neighborhood levels.
+
+**URL:** [https://raw.githubusercontent.com/api-evangelist/redfin/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/redfin/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Contract
-- **Position:** Consuming
+- **Type:** Index
+- **Position:** Consumer
 - **Access:** 3rd-Party
 
-## Tags:
+## Tags
 
- - Real Estate, Property Data, Home Values, Housing Market, GIS, Listings
+Real Estate, Property Data, Home Values, Housing Market, GIS, Listings, CSV Export
 
 ## Timestamps
 
 - **Created:** 2026-03-20
-- **Modified:** 2026-03-20
+- **Modified:** 2026-05-02
 
 ## APIs
 
 ### Redfin Stingray API
-The Redfin Stingray API is the internal REST API that powers the Redfin website and mobile applications. It provides endpoints for property search, listing details, home value estimates (Redfin Estimates), neighborhood statistics, commute information, and GIS-based map data. The API supports searching by region, price range, property type, and various filters, returning structured JSON responses with property details including address, price, beds, baths, square footage, lot size, and days on market. While not officially documented by Redfin, this API has been reverse-engineered by the developer community and is accessible at redfin.com/stingray endpoints.
+
+The internal Redfin REST API powering the Redfin website and mobile applications. Provides endpoints for property search, listing details, home value estimates (Redfin Estimate), neighborhood statistics, commute information, and GIS-based map data. Accessible at redfin.com/stingray endpoints.
 
 **Human URL:** [https://www.redfin.com](https://www.redfin.com)
 
+#### Tags
 
-#### Tags:
-
- - Real Estate, Property Search, Listings, Home Values, Property Data, GIS
+GIS, Home Values, Listings, Property Data, Property Search, Real Estate
 
 #### Properties
 
 - [Documentation](https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md)
 - [OpenAPI](openapi/redfin-stingray-api-openapi.yml)
+- [SpectralRules](rules/redfin-rules.yml)
+- [NaftikoCapeability](capabilities/shared/stingray-api.yaml)
+
+---
 
 ### Redfin GIS CSV Export API
-The Redfin GIS CSV Export API provides bulk property data downloads in CSV format. This endpoint returns up to 350 property records per request in tabular format, making it suitable for data analysis and spreadsheet workflows. It accepts parameters for market selection, price ranges, bedroom and bathroom counts, region identifiers, and property status filters. The CSV output includes fields such as address, list price, property type, square footage, lot size, and listing status, enabling developers and analysts to aggregate property data for research and comparison purposes.
+
+Provides bulk property data downloads in CSV format. Returns up to 350 property records per request including address, price, beds, baths, square footage, lot size, year built, days on market, property type, and listing status.
 
 **Human URL:** [https://www.redfin.com](https://www.redfin.com)
 
+#### Tags
 
-#### Tags:
-
- - Real Estate, Property Data, CSV, Bulk Data, GIS, Export
+Bulk Data, CSV, Export, GIS, Property Data, Real Estate
 
 #### Properties
 
 - [Documentation](https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md)
 - [OpenAPI](openapi/redfin-gis-csv-api-openapi.yml)
 
+---
+
 ### Redfin Data Center
-The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. The platform enables users to visualize trends and download datasets covering median sale prices, homes sold, new listings, days on market, inventory levels, and price drops.
+
+Downloadable housing market data at national, metro, state, county, city, ZIP code, and neighborhood levels. Datasets cover median sale prices, homes sold, new listings, days on market, inventory, and price drops. Distributed as compressed TSV files from Amazon S3, updated weekly and monthly.
 
 **Human URL:** [https://www.redfin.com/news/data-center/](https://www.redfin.com/news/data-center/)
 
+#### Tags
 
-#### Tags:
-
- - Real Estate, Housing Market, Market Data, Statistics, Analytics, CSV
+Analytics, CSV, Housing Market, Market Data, Real Estate, Statistics
 
 #### Properties
 
 - [Documentation](https://www.redfin.com/news/data-center/)
-- [Documentation](https://support.redfin.com/hc/en-us/articles/360016476931-Downloading-Data)
 - [OpenAPI](openapi/redfin-data-center-openapi.yml)
+- [JSONSchema](json-schema/redfin-market-tracker-schema.json)
+- [JSONSchema](json-schema/redfin-property-schema.json)
+- [JSON-LD](json-ld/redfin-context.jsonld)
+- [JSONStructure](json-structure/redfin-property-structure.json)
+- [JSONStructure](json-structure/redfin-market-tracker-structure.json)
+- [NaftikoCapeability](capabilities/shared/data-center.yaml)
+- [Vocabulary](vocabulary/redfin-vocabulary.yml)
+
+---
+
+## Capabilities
+
+### Shared Definitions
+
+| File | Description |
+|---|---|
+| [capabilities/shared/stingray-api.yaml](capabilities/shared/stingray-api.yaml) | Stingray API — property search, details, AVM, neighborhood, commute |
+| [capabilities/shared/data-center.yaml](capabilities/shared/data-center.yaml) | Data Center — market tracker dataset downloads at all geographic levels |
+
+### Workflow Capabilities
+
+| File | Description |
+|---|---|
+| [capabilities/property-research.yaml](capabilities/property-research.yaml) | Property Research — search, listing details, AVM, neighborhood stats, commute |
+| [capabilities/market-analytics.yaml](capabilities/market-analytics.yaml) | Market Analytics — regional trends and bulk market data downloads |
+
+## Examples
+
+| File | Description |
+|---|---|
+| [examples/redfin-gis-search-example.json](examples/redfin-gis-search-example.json) | GIS property search request and response |
+| [examples/redfin-property-details-example.json](examples/redfin-property-details-example.json) | Above-the-fold property detail request and response |
+| [examples/redfin-market-tracker-example.json](examples/redfin-market-tracker-example.json) | Market tracker TSV sample record |
 
 ## Common Properties
 
@@ -74,9 +113,13 @@ The Redfin Data Center provides downloadable housing market data for metropolita
 - [PrivacyPolicy](https://www.redfin.com/about/privacy-policy)
 - [TermsOfService](https://www.redfin.com/about/terms-of-use)
 - [Login](https://www.redfin.com/login)
+- [DataCenter](https://www.redfin.com/news/data-center/)
+- [LinkedIn](https://www.linkedin.com/company/redfin)
+- [X](https://twitter.com/redfin)
+- [InvestorRelations](https://investors.redfin.com/)
+- [GitHubOrg](https://github.com/redfin)
 
 ## Maintainers
 
-**FN:** API Evangelist
-
-**Email:** info@apievangelist.com
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com

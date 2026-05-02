@@ -1,0 +1,233 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Redfin Data Center"
+  description: >-
+    The Redfin Data Center provides downloadable housing market data at
+    national, metro, state, county, city, ZIP code, and neighborhood levels.
+    Datasets are served as compressed TSV files from Amazon S3 and cover
+    median sale prices, homes sold, new listings, days on market, inventory,
+    and price drops.
+  tags:
+    - Redfin
+    - Housing Market
+    - Market Data
+    - Statistics
+    - Analytics
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+capability:
+  consumes:
+    - type: http
+      namespace: redfin-data-center
+      baseUri: https://redfin-public-data.s3.us-west-2.amazonaws.com
+      description: "Redfin Data Center S3 bucket for housing market datasets."
+      resources:
+        - name: national-market-tracker
+          path: /redfin_market_tracker/us_national_market_tracker.tsv000.gz
+          description: "National-level housing market tracker dataset."
+          operations:
+            - name: download-national-market-tracker
+              method: GET
+              description: "Download national aggregate housing market data in compressed TSV format."
+              outputRawFormat: binary
+              outputParameters:
+                - name: result
+                  type: string
+                  value: "$."
+
+        - name: metro-market-tracker
+          path: /redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz
+          description: "Metro-level housing market tracker dataset."
+          operations:
+            - name: download-metro-market-tracker
+              method: GET
+              description: "Download metro MSA housing market data in compressed TSV format."
+              outputRawFormat: binary
+              outputParameters:
+                - name: result
+                  type: string
+                  value: "$."
+
+        - name: state-market-tracker
+          path: /redfin_market_tracker/state_market_tracker.tsv000.gz
+          description: "State-level housing market tracker dataset."
+          operations:
+            - name: download-state-market-tracker
+              method: GET
+              description: "Download state-level housing market data in compressed TSV format."
+              outputRawFormat: binary
+              outputParameters:
+                - name: result
+                  type: string
+                  value: "$."
+
+        - name: county-market-tracker
+          path: /redfin_market_tracker/county_market_tracker.tsv000.gz
+          description: "County-level housing market tracker dataset."
+          operations:
+            - name: download-county-market-tracker
+              method: GET
+              description: "Download county-level housing market data in compressed TSV format."
+              outputRawFormat: binary
+              outputParameters:
+                - name: result
+                  type: string
+                  value: "$."
+
+        - name: city-market-tracker
+          path: /redfin_market_tracker/city_market_tracker.tsv000.gz
+          description: "City-level housing market tracker dataset."
+          operations:
+            - name: download-city-market-tracker
+              method: GET
+              description: "Download city-level housing market data in compressed TSV format."
+              outputRawFormat: binary
+              outputParameters:
+                - name: result
+                  type: string
+                  value: "$."
+
+        - name: zip-code-market-tracker
+          path: /redfin_market_tracker/zip_code_market_tracker.tsv000.gz
+          description: "ZIP code-level housing market tracker dataset."
+          operations:
+            - name: download-zip-code-market-tracker
+              method: GET
+              description: "Download ZIP code housing market data in compressed TSV format."
+              outputRawFormat: binary
+              outputParameters:
+                - name: result
+                  type: string
+                  value: "$."
+
+        - name: neighborhood-market-tracker
+          path: /redfin_market_tracker/neighborhood_market_tracker.tsv000.gz
+          description: "Neighborhood-level housing market tracker dataset."
+          operations:
+            - name: download-neighborhood-market-tracker
+              method: GET
+              description: "Download neighborhood housing market data in compressed TSV format."
+              outputRawFormat: binary
+              outputParameters:
+                - name: result
+                  type: string
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: redfin-data-center-rest
+      resources:
+        - path: /v1/market-data/national
+          name: national-data
+          operations:
+            - method: GET
+              name: get-national-market-data
+              description: "Download national housing market tracker dataset."
+              call: "redfin-data-center.download-national-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/metro
+          name: metro-data
+          operations:
+            - method: GET
+              name: get-metro-market-data
+              description: "Download metro-level housing market tracker dataset."
+              call: "redfin-data-center.download-metro-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/state
+          name: state-data
+          operations:
+            - method: GET
+              name: get-state-market-data
+              description: "Download state-level housing market tracker dataset."
+              call: "redfin-data-center.download-state-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/county
+          name: county-data
+          operations:
+            - method: GET
+              name: get-county-market-data
+              description: "Download county-level housing market tracker dataset."
+              call: "redfin-data-center.download-county-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/city
+          name: city-data
+          operations:
+            - method: GET
+              name: get-city-market-data
+              description: "Download city-level housing market tracker dataset."
+              call: "redfin-data-center.download-city-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/zip-code
+          name: zip-code-data
+          operations:
+            - method: GET
+              name: get-zip-code-market-data
+              description: "Download ZIP code housing market tracker dataset."
+              call: "redfin-data-center.download-zip-code-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/market-data/neighborhood
+          name: neighborhood-data
+          operations:
+            - method: GET
+              name: get-neighborhood-market-data
+              description: "Download neighborhood housing market tracker dataset."
+              call: "redfin-data-center.download-neighborhood-market-tracker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: redfin-data-center-mcp
+      transport: http
+      tools:
+        - name: get-national-market-data
+          description: "Download Redfin national housing market tracker dataset."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "redfin-data-center.download-national-market-tracker"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-metro-market-data
+          description: "Download Redfin metro-level housing market tracker dataset."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "redfin-data-center.download-metro-market-tracker"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-state-market-data
+          description: "Download Redfin state-level housing market data."
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "redfin-data-center.download-state-market-tracker"
+          outputParameters:
+            - type: object
+              mapping: "$."

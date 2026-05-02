@@ -1,0 +1,38 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz"
+  },
+  "response_description": "Compressed TSV file. Sample decoded record:",
+  "sample_record": {
+    "period_begin": "2024-01-01",
+    "period_end": "2024-01-31",
+    "period_duration": "monthly",
+    "region_type": "metro",
+    "region_type_id": 6,
+    "table_id": 1,
+    "is_seasonally_adjusted": false,
+    "region": "San Francisco, CA",
+    "city": "San Francisco",
+    "state": "California",
+    "state_code": "CA",
+    "property_type": "All Residential",
+    "median_sale_price": 1350000,
+    "median_sale_price_yoy": -0.03,
+    "median_list_price": 1449000,
+    "median_list_price_yoy": -0.01,
+    "median_ppsf": 820,
+    "median_ppsf_yoy": -0.02,
+    "homes_sold": 412,
+    "homes_sold_yoy": -0.08,
+    "pending_sales": 389,
+    "new_listings": 621,
+    "inventory": 1450,
+    "months_of_supply": 3.5,
+    "median_dom": 24,
+    "avg_sale_to_list": 0.98,
+    "sold_above_list": 0.32,
+    "price_drops": 0.28,
+    "off_market_in_two_weeks": 0.41
+  }
+}
