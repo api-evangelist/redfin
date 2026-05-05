@@ -1,0 +1,13 @@
+{
+  "repo": "redfin",
+  "feeds": [
+    {
+      "source": "https://www.redfin.com/news/",
+      "feed_url": "https://www.redfin.com/news/feed/",
+      "saved": 6,
+      "title": "Redfin Real Estate News"
+    }
+  ],
+  "post_count": 6,
+  "fetched": "2026-05-03T23:34:35Z"
+}
