@@ -4,98 +4,30 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Redfin
 providerId: redfin
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - CSV Export
-  - GIS
-  - Home Values
-  - Housing Market
-  - Listings
-  - Property Data
-  - Real Estate
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Redfin API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  - Real Estate
+  - Property Data
+description: Redfin publishes no public API rate-limit documentation. Internal Stingray and GIS endpoints
+  power Redfin.com but are not offered as a documented public API; partner access is negotiated directly
+  and any throttling terms are contractual.
+sources:
+  - https://www.redfin.com/news/data-center-metrics-definitions/
+notes: No public rate-limit documentation exists. Limits and headers are not published; consumers must
+  obtain terms via a Redfin data partnership.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Redfin Stingray API
-      - Redfin GIS CSV Export API
-      - Redfin Data Center
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Redfin Stingray API
-      - Redfin GIS CSV Export API
-      - Redfin Data Center
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Redfin Stingray API
-      - Redfin GIS CSV Export API
-      - Redfin Data Center
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Redfin Stingray API
-      - Redfin GIS CSV Export API
-      - Redfin Data Center
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
+  - name: Partner-negotiated limit
     scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Redfin Stingray API
-      - Redfin GIS CSV Export API
-      - Redfin Data Center
+    metric: varies
+    limit: 'see Redfin partnership agreement'
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Contractual Throttling
+    description: Any rate limits, quotas, or throttling for Redfin programmatic access are defined in
+      the partnership contract rather than a published developer policy.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
