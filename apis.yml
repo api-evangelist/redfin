@@ -156,6 +156,13 @@ common:
     url: capabilities/market-analytics.yaml
     type: NaftikoCapeability
 
+  - type: Integrations
+    url: https://www.redfin.com/partners
+integrations:
+  - name: Redfin partner agent meeting with customers
+  - name: US flag
+  - name: Canadian flag
+  - name: Equal Housing Opportunity
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
