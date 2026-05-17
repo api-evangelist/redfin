@@ -101,7 +101,7 @@ apis:
         url: json-schema/redfin-market-tracker-schema.json
       - type: JSONSchema
         url: json-schema/redfin-property-schema.json
-      - type: JSONLd
+      - type: JSONLD
         url: json-ld/redfin-context.jsonld
       - type: JSONStructure
         url: json-structure/redfin-property-structure.json
