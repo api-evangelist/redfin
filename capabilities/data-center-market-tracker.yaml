@@ -1,0 +1,259 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Redfin Data Center — Market Tracker
+  description: 'Redfin Data Center — Market Tracker. 7 operations. Lead operation: Download city-level market tracker data.
+    Self-contained Naftiko capability covering one Redfin business surface.'
+  tags:
+  - Redfin
+  - Market Tracker
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REDFIN_API_KEY: REDFIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: data-center-market-tracker
+    baseUri: https://redfin-public-data.s3.us-west-2.amazonaws.com
+    description: Redfin Data Center — Market Tracker business capability. Self-contained, no shared references.
+    resources:
+    - name: redfin_market_tracker-city_market_tracker.tsv000.gz
+      path: /redfin_market_tracker/city_market_tracker.tsv000.gz
+      operations:
+      - name: downloadcitymarkettracker
+        method: GET
+        description: Download city-level market tracker data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: redfin_market_tracker-county_market_tracker.tsv000.gz
+      path: /redfin_market_tracker/county_market_tracker.tsv000.gz
+      operations:
+      - name: downloadcountymarkettracker
+        method: GET
+        description: Download county-level market tracker data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: redfin_market_tracker-neighborhood_market_tracker.tsv000.gz
+      path: /redfin_market_tracker/neighborhood_market_tracker.tsv000.gz
+      operations:
+      - name: downloadneighborhoodmarkettracker
+        method: GET
+        description: Download neighborhood-level market tracker data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: redfin_market_tracker-redfin_metro_market_tracker.tsv000.gz
+      path: /redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz
+      operations:
+      - name: downloadmetromarkettracker
+        method: GET
+        description: Download metro-level market tracker data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: redfin_market_tracker-state_market_tracker.tsv000.gz
+      path: /redfin_market_tracker/state_market_tracker.tsv000.gz
+      operations:
+      - name: downloadstatemarkettracker
+        method: GET
+        description: Download state-level market tracker data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: redfin_market_tracker-us_national_market_tracker.tsv000.gz
+      path: /redfin_market_tracker/us_national_market_tracker.tsv000.gz
+      operations:
+      - name: downloadnationalmarkettracker
+        method: GET
+        description: Download national market tracker data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: redfin_market_tracker-zip_code_market_tracker.tsv000.gz
+      path: /redfin_market_tracker/zip_code_market_tracker.tsv000.gz
+      operations:
+      - name: downloadzipcodemarkettracker
+        method: GET
+        description: Download ZIP code-level market tracker data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: data-center-market-tracker-rest
+    port: 8080
+    description: REST adapter for Redfin Data Center — Market Tracker. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/redfin-market-tracker/city-market-tracker-tsv000-gz
+      name: redfin-market-tracker-city-market-tracker-tsv000-gz
+      description: REST surface for redfin_market_tracker-city_market_tracker.tsv000.gz.
+      operations:
+      - method: GET
+        name: downloadcitymarkettracker
+        description: Download city-level market tracker data
+        call: data-center-market-tracker.downloadcitymarkettracker
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/redfin-market-tracker/county-market-tracker-tsv000-gz
+      name: redfin-market-tracker-county-market-tracker-tsv000-gz
+      description: REST surface for redfin_market_tracker-county_market_tracker.tsv000.gz.
+      operations:
+      - method: GET
+        name: downloadcountymarkettracker
+        description: Download county-level market tracker data
+        call: data-center-market-tracker.downloadcountymarkettracker
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/redfin-market-tracker/neighborhood-market-tracker-tsv000-gz
+      name: redfin-market-tracker-neighborhood-market-tracker-tsv000-gz
+      description: REST surface for redfin_market_tracker-neighborhood_market_tracker.tsv000.gz.
+      operations:
+      - method: GET
+        name: downloadneighborhoodmarkettracker
+        description: Download neighborhood-level market tracker data
+        call: data-center-market-tracker.downloadneighborhoodmarkettracker
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/redfin-market-tracker/redfin-metro-market-tracker-tsv000-gz
+      name: redfin-market-tracker-redfin-metro-market-tracker-tsv000-gz
+      description: REST surface for redfin_market_tracker-redfin_metro_market_tracker.tsv000.gz.
+      operations:
+      - method: GET
+        name: downloadmetromarkettracker
+        description: Download metro-level market tracker data
+        call: data-center-market-tracker.downloadmetromarkettracker
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/redfin-market-tracker/state-market-tracker-tsv000-gz
+      name: redfin-market-tracker-state-market-tracker-tsv000-gz
+      description: REST surface for redfin_market_tracker-state_market_tracker.tsv000.gz.
+      operations:
+      - method: GET
+        name: downloadstatemarkettracker
+        description: Download state-level market tracker data
+        call: data-center-market-tracker.downloadstatemarkettracker
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/redfin-market-tracker/us-national-market-tracker-tsv000-gz
+      name: redfin-market-tracker-us-national-market-tracker-tsv000-gz
+      description: REST surface for redfin_market_tracker-us_national_market_tracker.tsv000.gz.
+      operations:
+      - method: GET
+        name: downloadnationalmarkettracker
+        description: Download national market tracker data
+        call: data-center-market-tracker.downloadnationalmarkettracker
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/redfin-market-tracker/zip-code-market-tracker-tsv000-gz
+      name: redfin-market-tracker-zip-code-market-tracker-tsv000-gz
+      description: REST surface for redfin_market_tracker-zip_code_market_tracker.tsv000.gz.
+      operations:
+      - method: GET
+        name: downloadzipcodemarkettracker
+        description: Download ZIP code-level market tracker data
+        call: data-center-market-tracker.downloadzipcodemarkettracker
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: data-center-market-tracker-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Redfin Data Center — Market Tracker. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: download-city-level-market-tracker
+      description: Download city-level market tracker data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-center-market-tracker.downloadcitymarkettracker
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-county-level-market-tracker
+      description: Download county-level market tracker data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-center-market-tracker.downloadcountymarkettracker
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-neighborhood-level-market-tracker
+      description: Download neighborhood-level market tracker data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-center-market-tracker.downloadneighborhoodmarkettracker
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-metro-level-market-tracker
+      description: Download metro-level market tracker data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-center-market-tracker.downloadmetromarkettracker
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-state-level-market-tracker
+      description: Download state-level market tracker data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-center-market-tracker.downloadstatemarkettracker
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-national-market-tracker-data
+      description: Download national market tracker data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-center-market-tracker.downloadnationalmarkettracker
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: download-zip-code-level-market
+      description: Download ZIP code-level market tracker data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: data-center-market-tracker.downloadzipcodemarkettracker
+      outputParameters:
+      - type: object
+        mapping: $.

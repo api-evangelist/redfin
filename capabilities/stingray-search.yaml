@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Redfin Stingray API — Search
+  description: 'Redfin Stingray API — Search. 2 operations. Lead operation: Search properties via GIS API. Self-contained
+    Naftiko capability covering one Redfin business surface.'
+  tags:
+  - Redfin
+  - Search
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REDFIN_API_KEY: REDFIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: stingray-search
+    baseUri: https://www.redfin.com/stingray
+    description: Redfin Stingray API — Search business capability. Self-contained, no shared references.
+    resources:
+    - name: api-gis
+      path: /api/gis
+      operations:
+      - name: gisapisearch
+        method: GET
+        description: Search properties via GIS API
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: al
+          in: query
+          type: integer
+          description: Access level for the request, controlling the detail of data returned.
+        - name: sp
+          in: query
+          type: string
+          description: Sort parameter controlling the ordering of search results.
+        - name: v
+          in: query
+          type: integer
+          description: API version parameter.
+    - name: do-gis-search
+      path: /do/gis-search
+      operations:
+      - name: gissearch
+        method: GET
+        description: Search properties via GIS
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: user_poly
+          in: query
+          type: string
+          description: Custom polygon coordinates defining a geographic search boundary.
+  exposes:
+  - type: rest
+    namespace: stingray-search-rest
+    port: 8080
+    description: REST adapter for Redfin Stingray API — Search. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/gis
+      name: api-gis
+      description: REST surface for api-gis.
+      operations:
+      - method: GET
+        name: gisapisearch
+        description: Search properties via GIS API
+        call: stingray-search.gisapisearch
+        with:
+          al: rest.al
+          sp: rest.sp
+          v: rest.v
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/do/gis-search
+      name: do-gis-search
+      description: REST surface for do-gis-search.
+      operations:
+      - method: GET
+        name: gissearch
+        description: Search properties via GIS
+        call: stingray-search.gissearch
+        with:
+          user_poly: rest.user_poly
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: stingray-search-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Redfin Stingray API — Search. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: search-properties-gis-api
+      description: Search properties via GIS API
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stingray-search.gisapisearch
+      with:
+        al: tools.al
+        sp: tools.sp
+        v: tools.v
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: search-properties-gis
+      description: Search properties via GIS
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stingray-search.gissearch
+      with:
+        user_poly: tools.user_poly
+      outputParameters:
+      - type: object
+        mapping: $.

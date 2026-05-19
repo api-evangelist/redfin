@@ -1,0 +1,173 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Redfin Stingray API — Property Details
+  description: 'Redfin Stingray API — Property Details. 4 operations. Lead operation: Get above-the-fold property details.
+    Self-contained Naftiko capability covering one Redfin business surface.'
+  tags:
+  - Redfin
+  - Property Details
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REDFIN_API_KEY: REDFIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: stingray-property-details
+    baseUri: https://www.redfin.com/stingray
+    description: Redfin Stingray API — Property Details business capability. Self-contained, no shared references.
+    resources:
+    - name: api-home-details-aboveTheFold
+      path: /api/home/details/aboveTheFold
+      operations:
+      - name: getabovethefold
+        method: GET
+        description: Get above-the-fold property details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-home-details-belowTheFold
+      path: /api/home/details/belowTheFold
+      operations:
+      - name: getbelowthefold
+        method: GET
+        description: Get below-the-fold property details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-home-details-initialInfo
+      path: /api/home/details/initialInfo
+      operations:
+      - name: getinitialinfo
+        method: GET
+        description: Get initial property information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: The URL path of the property listing page on Redfin, such as /CA/San-Francisco/123-Main-St-94105/home/12345678.
+          required: true
+    - name: api-home-details-mainHouseInfoPanelInfo
+      path: /api/home/details/mainHouseInfoPanelInfo
+      operations:
+      - name: getmainhouseinfopanelinfo
+        method: GET
+        description: Get main house info panel data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: stingray-property-details-rest
+    port: 8080
+    description: REST adapter for Redfin Stingray API — Property Details. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/home/details/abovethefold
+      name: api-home-details-abovethefold
+      description: REST surface for api-home-details-aboveTheFold.
+      operations:
+      - method: GET
+        name: getabovethefold
+        description: Get above-the-fold property details
+        call: stingray-property-details.getabovethefold
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/home/details/belowthefold
+      name: api-home-details-belowthefold
+      description: REST surface for api-home-details-belowTheFold.
+      operations:
+      - method: GET
+        name: getbelowthefold
+        description: Get below-the-fold property details
+        call: stingray-property-details.getbelowthefold
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/home/details/initialinfo
+      name: api-home-details-initialinfo
+      description: REST surface for api-home-details-initialInfo.
+      operations:
+      - method: GET
+        name: getinitialinfo
+        description: Get initial property information
+        call: stingray-property-details.getinitialinfo
+        with:
+          path: rest.path
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/home/details/mainhouseinfopanelinfo
+      name: api-home-details-mainhouseinfopanelinfo
+      description: REST surface for api-home-details-mainHouseInfoPanelInfo.
+      operations:
+      - method: GET
+        name: getmainhouseinfopanelinfo
+        description: Get main house info panel data
+        call: stingray-property-details.getmainhouseinfopanelinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: stingray-property-details-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Redfin Stingray API — Property Details. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-above-fold-property-details
+      description: Get above-the-fold property details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stingray-property-details.getabovethefold
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-below-fold-property-details
+      description: Get below-the-fold property details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stingray-property-details.getbelowthefold
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-initial-property-information
+      description: Get initial property information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stingray-property-details.getinitialinfo
+      with:
+        path: tools.path
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-main-house-info-panel
+      description: Get main house info panel data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: stingray-property-details.getmainhouseinfopanelinfo
+      outputParameters:
+      - type: object
+        mapping: $.

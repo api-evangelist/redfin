@@ -1,0 +1,209 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Redfin GIS CSV Export API — CSV Export
+  description: 'Redfin GIS CSV Export API — CSV Export. 1 operations. Lead operation: Export property search results as CSV.
+    Self-contained Naftiko capability covering one Redfin business surface.'
+  tags:
+  - Redfin
+  - CSV Export
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    REDFIN_API_KEY: REDFIN_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gis-csv-csv-export
+    baseUri: https://www.redfin.com/stingray
+    description: Redfin GIS CSV Export API — CSV Export business capability. Self-contained, no shared references.
+    resources:
+    - name: api-gis-csv
+      path: /api/gis-csv
+      operations:
+      - name: exportgiscsv
+        method: GET
+        description: Export property search results as CSV
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: region_id
+          in: query
+          type: integer
+          description: The unique identifier for a Redfin region.
+        - name: region_type
+          in: query
+          type: integer
+          description: The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city).
+        - name: uipt
+          in: query
+          type: string
+          description: Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land),
+            6 (other). Multiple values can be comma-separated.
+        - name: status
+          in: query
+          type: integer
+          description: Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending).
+        - name: min_price
+          in: query
+          type: integer
+          description: Minimum listing price filter in USD.
+        - name: max_price
+          in: query
+          type: integer
+          description: Maximum listing price filter in USD.
+        - name: num_beds
+          in: query
+          type: integer
+          description: Minimum number of bedrooms filter.
+        - name: max_num_beds
+          in: query
+          type: integer
+          description: Maximum number of bedrooms filter.
+        - name: num_baths
+          in: query
+          type: integer
+          description: Minimum number of bathrooms filter.
+        - name: max_num_baths
+          in: query
+          type: integer
+          description: Maximum number of bathrooms filter.
+        - name: min_year_built
+          in: query
+          type: integer
+          description: Minimum year built filter.
+        - name: max_year_built
+          in: query
+          type: integer
+          description: Maximum year built filter.
+        - name: min_listing_approx_size
+          in: query
+          type: integer
+          description: Minimum approximate square footage filter.
+        - name: max_listing_approx_size
+          in: query
+          type: integer
+          description: Maximum approximate square footage filter.
+        - name: min_parcel_size
+          in: query
+          type: integer
+          description: Minimum lot/parcel size filter.
+        - name: max_parcel_size
+          in: query
+          type: integer
+          description: Maximum lot/parcel size filter.
+        - name: min_stories
+          in: query
+          type: integer
+          description: Minimum number of stories filter.
+        - name: max_stories
+          in: query
+          type: integer
+          description: Maximum number of stories filter.
+        - name: gar
+          in: query
+          type: boolean
+          description: Garage availability filter.
+        - name: hoa
+          in: query
+          type: integer
+          description: HOA filter. Value of 0 means no HOA.
+        - name: num_homes
+          in: query
+          type: integer
+          description: Maximum number of results to return per request. The API caps at approximately 350 records.
+        - name: sf
+          in: query
+          type: string
+          description: Listing type sub-filters for refining results.
+        - name: time_on_market_range
+          in: query
+          type: string
+          description: Days on market range filter. Uses reverse range format.
+  exposes:
+  - type: rest
+    namespace: gis-csv-csv-export-rest
+    port: 8080
+    description: REST adapter for Redfin GIS CSV Export API — CSV Export. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/gis-csv
+      name: api-gis-csv
+      description: REST surface for api-gis-csv.
+      operations:
+      - method: GET
+        name: exportgiscsv
+        description: Export property search results as CSV
+        call: gis-csv-csv-export.exportgiscsv
+        with:
+          region_id: rest.region_id
+          region_type: rest.region_type
+          uipt: rest.uipt
+          status: rest.status
+          min_price: rest.min_price
+          max_price: rest.max_price
+          num_beds: rest.num_beds
+          max_num_beds: rest.max_num_beds
+          num_baths: rest.num_baths
+          max_num_baths: rest.max_num_baths
+          min_year_built: rest.min_year_built
+          max_year_built: rest.max_year_built
+          min_listing_approx_size: rest.min_listing_approx_size
+          max_listing_approx_size: rest.max_listing_approx_size
+          min_parcel_size: rest.min_parcel_size
+          max_parcel_size: rest.max_parcel_size
+          min_stories: rest.min_stories
+          max_stories: rest.max_stories
+          gar: rest.gar
+          hoa: rest.hoa
+          num_homes: rest.num_homes
+          sf: rest.sf
+          time_on_market_range: rest.time_on_market_range
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gis-csv-csv-export-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Redfin GIS CSV Export API — CSV Export. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: export-property-search-results-csv
+      description: Export property search results as CSV
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gis-csv-csv-export.exportgiscsv
+      with:
+        region_id: tools.region_id
+        region_type: tools.region_type
+        uipt: tools.uipt
+        status: tools.status
+        min_price: tools.min_price
+        max_price: tools.max_price
+        num_beds: tools.num_beds
+        max_num_beds: tools.max_num_beds
+        num_baths: tools.num_baths
+        max_num_baths: tools.max_num_baths
+        min_year_built: tools.min_year_built
+        max_year_built: tools.max_year_built
+        min_listing_approx_size: tools.min_listing_approx_size
+        max_listing_approx_size: tools.max_listing_approx_size
+        min_parcel_size: tools.min_parcel_size
+        max_parcel_size: tools.max_parcel_size
+        min_stories: tools.min_stories
+        max_stories: tools.max_stories
+        gar: tools.gar
+        hoa: tools.hoa
+        num_homes: tools.num_homes
+        sf: tools.sf
+        time_on_market_range: tools.time_on_market_range
+      outputParameters:
+      - type: object
+        mapping: $.
