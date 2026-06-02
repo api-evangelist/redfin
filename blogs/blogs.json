@@ -2,12 +2,20 @@
   "repo": "redfin",
   "feeds": [
     {
+      "source": "https://www.redfin.com/news/feed/",
+      "feed_url": "https://www.redfin.com/news/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
       "source": "https://www.redfin.com/news/",
       "feed_url": "https://www.redfin.com/news/feed/",
-      "title": "Redfin Real Estate News",
-      "saved": 6
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
     }
   ],
-  "post_count": 18,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 24,
+  "fetched": "2026-06-01T23:35:02Z"
 }
