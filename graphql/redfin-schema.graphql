@@ -1,0 +1,817 @@
+"""
+Redfin GraphQL Schema
+Conceptual schema derived from the Redfin Stingray API, GIS CSV Export API,
+and Redfin Data Center public data. Redfin does not publish an official GraphQL
+endpoint; this schema represents the domain model inferred from their REST
+endpoints, CSV exports, and public documentation.
+"""
+
+scalar DateTime
+scalar Date
+scalar JSON
+scalar URL
+scalar Money
+scalar GeoJSON
+
+# ─── Core Property & Listing ───────────────────────────────────────────────
+
+type Property {
+  propertyId: ID!
+  address: Address!
+  location: Location!
+  neighborhood: Neighborhood
+  propertyType: PropertyType!
+  beds: Int
+  baths: Float
+  squareFeet: Int
+  lotSizeSqFt: Int
+  yearBuilt: Int
+  stories: Int
+  parking: String
+  heatingCooling: String
+  hoaFee: Money
+  photos: [Photo!]
+  currentListing: Listing
+  listingHistory: [Listing!]
+  estimate: PriceEstimate
+  valueHistory: [ValueHistory!]
+  taxRecord: TaxRecord
+  permitRecords: [PermitRecord!]
+  compSales: [CompSale!]
+  nearbySchools: [School!]
+  openHouses: [OpenHouse!]
+  homeReport: HomeReport
+}
+
+enum PropertyType {
+  SINGLE_FAMILY
+  CONDO
+  TOWNHOUSE
+  MULTI_FAMILY
+  LAND
+  MOBILE_HOME
+  FARM
+  OTHER
+}
+
+type Listing {
+  listingId: ID!
+  property: Property!
+  status: ListingStatus!
+  listPrice: ListPrice!
+  salePrice: SalePrice
+  daysOnMarket: DaysOnMarket
+  listedAt: DateTime
+  soldAt: DateTime
+  closedAt: DateTime
+  agent: Agent
+  office: Office
+  mls: String
+  mlsId: String
+  description: String
+  photos: [Photo!]
+  openHouses: [OpenHouse!]
+  priceChanges: [PriceChange!]
+  contractStatus: ContractStatus
+  offer: Offer
+  escrow: Escrow
+  timeline: Timeline
+  showingSchedule: ShowingSchedule
+}
+
+type ListingStatus {
+  code: String!
+  label: String!
+  active: Boolean!
+  contingent: Boolean!
+  pending: Boolean!
+  sold: Boolean!
+  offMarket: Boolean!
+}
+
+# ─── Address & Location ────────────────────────────────────────────────────
+
+type Address {
+  street: String!
+  unit: String
+  city: String!
+  state: String!
+  zip: String!
+  country: String!
+  formatted: String!
+}
+
+type Location {
+  latLng: LatLng!
+  county: String
+  fips: String
+  censusBlockGroup: String
+  timezone: String
+  walkscore: Int
+  transitscore: Int
+  bikescore: Int
+  floodZone: String
+}
+
+type LatLng {
+  latitude: Float!
+  longitude: Float!
+}
+
+# ─── Neighborhood ──────────────────────────────────────────────────────────
+
+type Neighborhood {
+  neighborhoodId: ID!
+  name: String!
+  city: String!
+  state: String!
+  latLng: LatLng!
+  boundary: GeoJSON
+  medianPrice: Money
+  medianRent: Money
+  population: Int
+  medianAge: Float
+  medianIncome: Money
+  schools: [School!]
+  marketData: MarketData
+  marketTrends: [MarketTrend!]
+  trendData: TrendData
+}
+
+# ─── Schools ───────────────────────────────────────────────────────────────
+
+type School {
+  schoolId: ID!
+  name: String!
+  type: SchoolType!
+  level: SchoolLevel!
+  address: Address!
+  latLng: LatLng!
+  district: String
+  enrollment: Int
+  rating: SchoolScore
+  phone: String
+  website: URL
+  distance: Float
+}
+
+enum SchoolType {
+  PUBLIC
+  PRIVATE
+  CHARTER
+  MAGNET
+}
+
+enum SchoolLevel {
+  ELEMENTARY
+  MIDDLE
+  HIGH
+  K_12
+}
+
+type SchoolScore {
+  score: Int!
+  maxScore: Int!
+  source: String!
+  year: Int!
+  testScoreRating: Int
+  progressRating: Int
+  equityRating: Int
+}
+
+# ─── Agents, Teams & Offices ───────────────────────────────────────────────
+
+type Agent {
+  agentId: ID!
+  firstName: String!
+  lastName: String!
+  fullName: String!
+  photo: URL
+  phone: String
+  email: String
+  license: String
+  licenseState: String
+  office: Office
+  team: Team
+  broker: Broker
+  rating: AgentRating
+  reviewCount: ReviewCount
+  transactionsCount: Int
+  yearsExperience: Int
+  specialties: [String!]
+  serviceAreas: [String!]
+  buyerRebate: BuyerRebate
+  agentService: AgentService
+  activeListings: [Listing!]
+  recentSales: [Listing!]
+}
+
+type Team {
+  teamId: ID!
+  name: String!
+  agents: [Agent!]!
+  office: Office
+  serviceAreas: [String!]
+  activeListings: [Listing!]
+}
+
+type Office {
+  officeId: ID!
+  name: String!
+  address: Address!
+  phone: String
+  broker: Broker
+  agents: [Agent!]
+  activeListings: [Listing!]
+}
+
+type Broker {
+  brokerId: ID!
+  name: String!
+  licenseNumber: String!
+  licenseState: String!
+  offices: [Office!]
+}
+
+type AgentRating {
+  overall: Float!
+  totalReviews: Int!
+  responsiveness: Float
+  negotiation: Float
+  marketKnowledge: Float
+  communication: Float
+}
+
+type ReviewCount {
+  total: Int!
+  lastYear: Int!
+  fiveStar: Int!
+  fourStar: Int!
+  threeStar: Int!
+  twoStar: Int!
+  oneStar: Int!
+}
+
+type AgentService {
+  serviceType: String!
+  listingFeePercent: Float
+  buyerRebatePercent: Float
+  fullService: Boolean!
+  features: [String!]
+}
+
+type BuyerRebate {
+  estimatedAmount: Money
+  percentOfPrice: Float
+  conditions: String
+}
+
+# ─── Pricing & Estimates ───────────────────────────────────────────────────
+
+type ListPrice {
+  amount: Money!
+  currency: String!
+  pricePerSqFt: Money
+  date: DateTime!
+}
+
+type SalePrice {
+  amount: Money!
+  currency: String!
+  pricePerSqFt: Money
+  date: DateTime!
+  overAskingPercent: Float
+}
+
+type PriceChange {
+  previousPrice: Money!
+  newPrice: Money!
+  changeAmount: Money!
+  changePercent: Float!
+  changedAt: DateTime!
+}
+
+type PriceEstimate {
+  estimatedValue: Money!
+  lowEstimate: Money!
+  highEstimate: Money!
+  confidenceScore: Float
+  updatedAt: DateTime!
+  source: String!
+}
+
+type Estimate {
+  property: Property!
+  priceEstimate: PriceEstimate!
+  rentEstimate: Money
+  calculatedAt: DateTime!
+}
+
+type ValueHistory {
+  date: Date!
+  value: Money!
+  source: String!
+  changeFromPrior: Money
+  changeFromPriorPercent: Float
+}
+
+# ─── Tax, Comps & Permits ─────────────────────────────────────────────────
+
+type TaxRecord {
+  year: Int!
+  assessedValue: Money
+  taxAmount: Money
+  taxRate: Float
+  exemptions: [String!]
+  parcelNumber: String
+  lastUpdated: Date
+}
+
+type CompSale {
+  property: Property!
+  salePrice: Money!
+  soldAt: DateTime!
+  squareFeet: Int
+  pricePerSqFt: Money
+  beds: Int
+  baths: Float
+  distance: Float
+  similarity: Float
+}
+
+type PermitRecord {
+  permitNumber: String!
+  type: String!
+  description: String!
+  status: String!
+  issuedAt: Date
+  finalizedAt: Date
+  value: Money
+  contractor: String
+}
+
+# ─── Photos & Media ────────────────────────────────────────────────────────
+
+type Photo {
+  photoId: ID!
+  url: URL!
+  thumbnailUrl: URL
+  width: Int
+  height: Int
+  caption: String
+  isPrimary: Boolean!
+  order: Int!
+}
+
+# ─── Showings & Open Houses ───────────────────────────────────────────────
+
+type OpenHouse {
+  openHouseId: ID!
+  listing: Listing!
+  startsAt: DateTime!
+  endsAt: DateTime!
+  type: OpenHouseType!
+  virtualUrl: URL
+  notes: String
+}
+
+enum OpenHouseType {
+  IN_PERSON
+  VIRTUAL
+  BROKER_OPEN
+}
+
+type ShowingSchedule {
+  listing: Listing!
+  availableSlots: [ShowingSlot!]!
+  requiresApproval: Boolean!
+  contactAgent: Agent
+}
+
+type ShowingSlot {
+  startsAt: DateTime!
+  endsAt: DateTime!
+  available: Boolean!
+}
+
+# ─── Offers, Contract & Escrow ────────────────────────────────────────────
+
+type Offer {
+  offerId: ID!
+  listing: Listing!
+  offerPrice: Money!
+  earnestMoney: Money
+  downPayment: Money
+  financed: Boolean!
+  contingencies: [String!]
+  submittedAt: DateTime!
+  status: OfferStatus!
+  expiresAt: DateTime
+}
+
+type OfferStatus {
+  code: String!
+  label: String!
+  accepted: Boolean!
+  rejected: Boolean!
+  countered: Boolean!
+  pending: Boolean!
+}
+
+type ContractStatus {
+  stage: String!
+  contingencyDeadlines: [ContingencyDeadline!]
+  closingDate: Date
+  updatedAt: DateTime!
+}
+
+type ContingencyDeadline {
+  name: String!
+  dueDate: Date!
+  completed: Boolean!
+}
+
+type Escrow {
+  escrowId: ID!
+  company: String
+  officerName: String
+  phone: String
+  openedAt: DateTime
+  expectedCloseAt: Date
+  status: String!
+}
+
+type Timeline {
+  listing: Listing!
+  events: [TimelineEvent!]!
+}
+
+type TimelineEvent {
+  date: DateTime!
+  type: String!
+  description: String!
+  amount: Money
+}
+
+# ─── Mortgage & Finance ───────────────────────────────────────────────────
+
+type MortgageRate {
+  loanType: String!
+  termYears: Int!
+  rate: Float!
+  apr: Float!
+  points: Float
+  updatedAt: DateTime!
+  lenderName: String
+}
+
+type BuyingPower {
+  maxPurchasePrice: Money!
+  downPayment: Money!
+  monthlyPayment: Money!
+  loanAmount: Money!
+  interestRate: Float!
+  termYears: Int!
+  assumptions: BuyingPowerAssumptions!
+}
+
+type BuyingPowerAssumptions {
+  creditScore: Int
+  annualIncome: Money
+  monthlyDebts: Money
+  downPaymentPercent: Float
+}
+
+type StatedIncome {
+  annualGross: Money!
+  monthlyGross: Money!
+  employmentType: String!
+  verified: Boolean!
+}
+
+# ─── Closing & Inspection ─────────────────────────────────────────────────
+
+type Closing {
+  closingId: ID!
+  listing: Listing!
+  date: Date!
+  escrow: Escrow
+  title: Title
+  closingCosts: Money
+  netProceeds: Money
+  status: String!
+}
+
+type Inspection {
+  inspectionId: ID!
+  property: Property!
+  inspector: String
+  scheduledAt: DateTime
+  completedAt: DateTime
+  reportUrl: URL
+  findings: [InspectionFinding!]
+}
+
+type InspectionFinding {
+  category: String!
+  severity: String!
+  description: String!
+  estimatedRepairCost: Money
+}
+
+type Title {
+  titleCompany: String!
+  titleOfficer: String
+  phone: String
+  titleInsuranceAmount: Money
+  clearedAt: DateTime
+  status: String!
+}
+
+type HomeReport {
+  property: Property!
+  estimate: PriceEstimate!
+  valueHistory: [ValueHistory!]!
+  taxRecord: TaxRecord
+  compSales: [CompSale!]!
+  permitRecords: [PermitRecord!]!
+  nearbySchools: [School!]!
+  generatedAt: DateTime!
+}
+
+# ─── Search ────────────────────────────────────────────────────────────────
+
+type Search {
+  query: String
+  filters: FilterCriteria
+  sort: SortOption
+  results: SearchResult!
+  savedSearch: SavedSearch
+}
+
+type SearchResult {
+  totalCount: Int!
+  page: Int!
+  pageSize: Int!
+  listings: [Listing!]!
+  mapBounds: MapBounds
+  clusterGroups: [ClusterGroup!]
+}
+
+type MapBounds {
+  north: Float!
+  south: Float!
+  east: Float!
+  west: Float!
+}
+
+type ClusterGroup {
+  latLng: LatLng!
+  count: Int!
+  minPrice: Money
+  maxPrice: Money
+}
+
+type FilterCriteria {
+  minPrice: Money
+  maxPrice: Money
+  minBeds: Int
+  maxBeds: Int
+  minBaths: Float
+  maxBaths: Float
+  minSqFt: Int
+  maxSqFt: Int
+  minYearBuilt: Int
+  maxYearBuilt: Int
+  propertyTypes: [PropertyType!]
+  listingStatuses: [String!]
+  maxDaysOnMarket: Int
+  hasOpenHouse: Boolean
+  hasPhotos: Boolean
+  isNewConstruction: Boolean
+  hasPriceReduction: Boolean
+  parkingSpots: Int
+  maxHoaFee: Money
+  keywords: [String!]
+}
+
+type SortOption {
+  field: SortField!
+  direction: SortDirection!
+}
+
+enum SortField {
+  LIST_DATE
+  PRICE
+  PRICE_PER_SQFT
+  SQFT
+  BEDS
+  DAYS_ON_MARKET
+  OPEN_HOUSE_DATE
+  RECOMMENDED
+}
+
+enum SortDirection {
+  ASC
+  DESC
+}
+
+type SavedSearch {
+  savedSearchId: ID!
+  name: String!
+  filters: FilterCriteria!
+  sort: SortOption
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  alerts: [HomeAlert!]
+  user: User
+}
+
+type HomeAlert {
+  alertId: ID!
+  savedSearch: SavedSearch!
+  frequency: AlertFrequency!
+  channel: AlertChannel!
+  enabled: Boolean!
+  lastSentAt: DateTime
+}
+
+enum AlertFrequency {
+  INSTANT
+  DAILY
+  WEEKLY
+}
+
+enum AlertChannel {
+  EMAIL
+  PUSH
+  SMS
+}
+
+# ─── Market Data ───────────────────────────────────────────────────────────
+
+type MarketData {
+  regionId: ID!
+  regionName: String!
+  regionType: RegionType!
+  period: Date!
+  medianSalePrice: Money
+  medianListPrice: Money
+  medianPricePerSqFt: Money
+  homesSold: Int
+  newListings: Int
+  activeInventory: Int
+  daysOnMarket: DaysOnMarket
+  saleToListRatio: Float
+  percentOverAskingPrice: Float
+  priceDrop: Float
+}
+
+enum RegionType {
+  NATIONAL
+  STATE
+  METRO
+  COUNTY
+  CITY
+  ZIP
+  NEIGHBORHOOD
+}
+
+type MarketTrend {
+  regionId: ID!
+  metric: String!
+  period: String!
+  value: Float
+  changeFromPrior: Float
+  changePercent: Float
+  direction: TrendDirection!
+}
+
+enum TrendDirection {
+  UP
+  DOWN
+  FLAT
+}
+
+type DaysOnMarket {
+  median: Int!
+  average: Int
+  off_market_in_two_weeks_percent: Float
+  listing: Listing
+}
+
+type TrendData {
+  region: Neighborhood
+  months: [MarketData!]!
+  yearOverYear: MarketTrend
+  momentum: Float
+}
+
+# ─── User ──────────────────────────────────────────────────────────────────
+
+type User {
+  userId: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  savedSearches: [SavedSearch!]
+  savedHomes: [Property!]
+  homeAlerts: [HomeAlert!]
+  buyingPower: BuyingPower
+  agent: Agent
+}
+
+# ─── Root Operations ───────────────────────────────────────────────────────
+
+type Query {
+  property(propertyId: ID!): Property
+  propertyByAddress(address: String!, city: String!, state: String!, zip: String!): Property
+  listing(listingId: ID!): Listing
+  search(filters: FilterCriteriaInput, sort: SortOptionInput, page: Int, pageSize: Int): SearchResult!
+  neighborhood(neighborhoodId: ID!): Neighborhood
+  neighborhoodByName(name: String!, city: String!, state: String!): Neighborhood
+  agent(agentId: ID!): Agent
+  agentsByArea(city: String!, state: String!, specialty: String): [Agent!]!
+  office(officeId: ID!): Office
+  school(schoolId: ID!): School
+  schoolsByLocation(lat: Float!, lng: Float!, radiusMiles: Float): [School!]!
+  mortgageRates(loanType: String, termYears: Int): [MortgageRate!]!
+  marketData(regionId: ID!, period: Date): MarketData
+  marketTrends(regionId: ID!, months: Int): [MarketTrend!]!
+  estimate(propertyId: ID!): Estimate
+  homeReport(propertyId: ID!): HomeReport
+  savedSearch(savedSearchId: ID!): SavedSearch
+  mySavedSearches: [SavedSearch!]!
+  myHomeAlerts: [HomeAlert!]!
+  myBuyingPower: BuyingPower
+}
+
+type Mutation {
+  saveSearch(input: SaveSearchInput!): SavedSearch!
+  deleteSearch(savedSearchId: ID!): Boolean!
+  saveHome(propertyId: ID!): Property!
+  unsaveHome(propertyId: ID!): Boolean!
+  createHomeAlert(input: CreateHomeAlertInput!): HomeAlert!
+  updateHomeAlert(alertId: ID!, input: UpdateHomeAlertInput!): HomeAlert!
+  deleteHomeAlert(alertId: ID!): Boolean!
+  scheduleShowing(listingId: ID!, slotStartsAt: DateTime!): ShowingSlot!
+  submitOffer(input: SubmitOfferInput!): Offer!
+  requestHomeReport(propertyId: ID!): HomeReport!
+  contactAgent(agentId: ID!, message: String!, propertyId: ID): Boolean!
+}
+
+input FilterCriteriaInput {
+  minPrice: Float
+  maxPrice: Float
+  minBeds: Int
+  maxBeds: Int
+  minBaths: Float
+  maxBaths: Float
+  minSqFt: Int
+  maxSqFt: Int
+  minYearBuilt: Int
+  maxYearBuilt: Int
+  propertyTypes: [PropertyType!]
+  listingStatuses: [String!]
+  maxDaysOnMarket: Int
+  hasOpenHouse: Boolean
+  hasPhotos: Boolean
+  isNewConstruction: Boolean
+  hasPriceReduction: Boolean
+  parkingSpots: Int
+  maxHoaFee: Float
+  keywords: [String!]
+}
+
+input SortOptionInput {
+  field: SortField!
+  direction: SortDirection!
+}
+
+input SaveSearchInput {
+  name: String!
+  filters: FilterCriteriaInput!
+  sort: SortOptionInput
+}
+
+input CreateHomeAlertInput {
+  savedSearchId: ID!
+  frequency: AlertFrequency!
+  channel: AlertChannel!
+}
+
+input UpdateHomeAlertInput {
+  frequency: AlertFrequency
+  channel: AlertChannel
+  enabled: Boolean
+}
+
+input SubmitOfferInput {
+  listingId: ID!
+  offerPrice: Float!
+  earnestMoney: Float
+  downPayment: Float
+  financed: Boolean!
+  contingencies: [String!]
+  expiresAt: DateTime
+}
