@@ -1,0 +1,1522 @@
+{
+  "item": [
+    {
+      "id": "b749cf81-8892-4ed2-80c8-1fa4feb68676",
+      "name": "Market Trends",
+      "description": {
+        "content": "Endpoints for regional aggregate and historical market trends.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f2c41d69-362e-4c94-8d73-0126d2acb5a8",
+          "name": "Get regional market trends",
+          "request": {
+            "name": "Get regional market trends",
+            "description": {
+              "content": "Retrieves market trend data for a specific region, including median sale prices, homes sold, new listings, and days on market over time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "region",
+                ":regionType",
+                ":regionId",
+                ":code",
+                "trends"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "regionType",
+                  "description": "(Required) The type of region (e.g., neighborhood, zipcode, city, county)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "regionId",
+                  "description": "(Required) The unique identifier for the region."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) The region code."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8d9ba46-90ba-4c00-8a4d-f1975f419822",
+              "name": "Regional market trend data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "region",
+                    ":regionType",
+                    ":regionId",
+                    ":code",
+                    "trends"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "regionType",
+                      "description": "(Required) The type of region (e.g., neighborhood, zipcode, city, county)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "regionId",
+                      "description": "(Required) The unique identifier for the region."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) The region code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 3583,\n  \"payload\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0312517b-dc87-4c19-9eb1-49cebfea4265",
+          "name": "Get aggregated regional market trends",
+          "request": {
+            "name": "Get aggregated regional market trends",
+            "description": {
+              "content": "Retrieves aggregated market trend data for a specific region, providing summarized statistics and trend indicators over configurable time periods.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "region",
+                ":regionType",
+                ":regionId",
+                ":code",
+                "aggregate-trends"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "regionType",
+                  "description": "(Required) The type of region (e.g., neighborhood, zipcode, city, county)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "regionId",
+                  "description": "(Required) The unique identifier for the region."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) The region code."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6713bced-579c-4edc-94f3-5f5cc86f6697",
+              "name": "Aggregated regional market trend data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "region",
+                    ":regionType",
+                    ":regionId",
+                    ":code",
+                    "aggregate-trends"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "regionType",
+                      "description": "(Required) The type of region (e.g., neighborhood, zipcode, city, county)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "regionId",
+                      "description": "(Required) The unique identifier for the region."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) The region code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 4625,\n  \"payload\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "753e0502-4638-4d60-8289-17bfa74c940b",
+      "name": "Neighborhood",
+      "description": {
+        "content": "Endpoints for neighborhood statistics, commute data, and area info.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "95b72fab-8274-4288-b686-91e3bbefbd60",
+          "name": "Get neighborhood statistics",
+          "request": {
+            "name": "Get neighborhood statistics",
+            "description": {
+              "content": "Retrieves statistical data about the neighborhood surrounding a property, including demographics, walkability, transit scores, school ratings, and nearby amenities information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "neighborhoodStats",
+                "statsInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingId",
+                  "value": "<integer>",
+                  "description": "The unique Redfin listing identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "72b3df11-64a5-4598-b363-317841f7377c",
+              "name": "Neighborhood statistics data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "neighborhoodStats",
+                    "statsInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 847,\n  \"payload\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "637ec580-1dd5-4831-9371-4917f619021e",
+          "name": "Get commute information",
+          "request": {
+            "name": "Get commute information",
+            "description": {
+              "content": "Retrieves commute time and transportation information for a property, including estimated drive, transit, bike, and walk times to common destinations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "commute",
+                "commuteInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8101c0df-3045-4d36-8bb4-6afb255d37f3",
+              "name": "Commute information data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "commute",
+                    "commuteInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 7404,\n  \"payload\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2346a998-a4ee-49f7-a162-9f35fab1b341",
+      "name": "Property Details",
+      "description": {
+        "content": "Endpoints for retrieving detailed information about a specific property.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "969dac33-3ed6-4263-80bb-4e723327b01d",
+          "name": "Get initial property information",
+          "request": {
+            "name": "Get initial property information",
+            "description": {
+              "content": "Retrieves the initial information for a property, including the propertyId and listingId needed for subsequent detail requests. Takes a property URL path as input and returns identifiers and basic property metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "initialInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) The URL path of the property listing page on Redfin, such as /CA/San-Francisco/123-Main-St-94105/home/12345678."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c296b3d4-1125-41be-ac63-1a0bd78513bb",
+              "name": "Initial property information with identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "initialInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 627,\n  \"payload\": {\n    \"propertyId\": 2442,\n    \"listingId\": 6980\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db64ce46-9513-4f20-9bce-ebd4e16da182",
+          "name": "Get above-the-fold property details",
+          "request": {
+            "name": "Get above-the-fold property details",
+            "description": {
+              "content": "Retrieves the primary property details displayed above the fold on the listing page, including price, address, photos, key facts, and listing status information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "aboveTheFold"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingId",
+                  "value": "<integer>",
+                  "description": "The unique Redfin listing identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f8af608-3a89-43e3-89b8-54a390b3b6bc",
+              "name": "Above-the-fold property details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "aboveTheFold"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 4525,\n  \"payload\": {\n    \"addressInfo\": {\n      \"streetAddress\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\"\n    },\n    \"price\": 4359.7113085940255,\n    \"listingStatus\": \"string\",\n    \"beds\": 4847,\n    \"baths\": 8512.511399365687,\n    \"sqFt\": 7218\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ee6049b-157f-4f4c-9745-5d9a2329549a",
+          "name": "Get below-the-fold property details",
+          "request": {
+            "name": "Get below-the-fold property details",
+            "description": {
+              "content": "Retrieves detailed MLS data for a property, including property history, tax information, schools, similar homes, and extended property characteristics. This endpoint provides the most comprehensive data for a single property listing. Note that propertyHistoryInfo may not always be available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "belowTheFold"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingId",
+                  "value": "<integer>",
+                  "description": "The unique Redfin listing identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be31c173-15da-4ab9-9739-9f41bac3a73c",
+              "name": "Below-the-fold property details with MLS data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "belowTheFold"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 6028,\n  \"payload\": {\n    \"propertyHistoryInfo\": {\n      \"events\": [\n        {\n          \"eventDate\": \"string\",\n          \"eventType\": \"string\",\n          \"price\": 8509.466563720038,\n          \"source\": \"string\"\n        },\n        {\n          \"eventDate\": \"string\",\n          \"eventType\": \"string\",\n          \"price\": 5716.456324899292,\n          \"source\": \"string\"\n        }\n      ]\n    },\n    \"publicRecordsInfo\": {},\n    \"schoolsInfo\": {},\n    \"similarHomesInfo\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d8b7523-476f-45d6-8e2c-f7fef0dc3a07",
+          "name": "Get main house info panel data",
+          "request": {
+            "name": "Get main house info panel data",
+            "description": {
+              "content": "Retrieves the structured property information typically shown in the main info panel, including beds, baths, square footage, lot size, year built, property type, and other key property attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "mainHouseInfoPanelInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingId",
+                  "value": "<integer>",
+                  "description": "The unique Redfin listing identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "77e5c4bc-98b5-46cd-874f-f60ad712a1cf",
+              "name": "Main house information panel data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "mainHouseInfoPanelInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 3200,\n  \"payload\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f641a505-0d9d-49b0-b834-0d491fec64f2",
+      "name": "Search",
+      "description": {
+        "content": "Endpoints for searching properties by location, region, and filters.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e678dce2-1dda-4e3b-bc88-1a4f994fc007",
+          "name": "Search properties via GIS",
+          "request": {
+            "name": "Search properties via GIS",
+            "description": {
+              "content": "Performs a geographic information system search for properties within a specified region. Returns property listings matching the provided filters including price range, property type, bedroom and bathroom counts, and geographic boundaries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "do",
+                "gis-search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region_id",
+                  "value": "<integer>",
+                  "description": "The unique identifier for a Redfin region."
+                },
+                {
+                  "disabled": false,
+                  "key": "region_type",
+                  "value": "<integer>",
+                  "description": "The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city)."
+                },
+                {
+                  "disabled": false,
+                  "key": "uipt",
+                  "value": "<string>",
+                  "description": "Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<integer>",
+                  "description": "Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending)."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_price",
+                  "value": "<integer>",
+                  "description": "Minimum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_price",
+                  "value": "<integer>",
+                  "description": "Maximum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_beds",
+                  "value": "<integer>",
+                  "description": "Minimum number of bedrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_num_beds",
+                  "value": "<integer>",
+                  "description": "Maximum number of bedrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_baths",
+                  "value": "<integer>",
+                  "description": "Minimum number of bathrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_num_baths",
+                  "value": "<integer>",
+                  "description": "Maximum number of bathrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_year_built",
+                  "value": "<integer>",
+                  "description": "Minimum year built filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_year_built",
+                  "value": "<integer>",
+                  "description": "Maximum year built filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_listing_approx_size",
+                  "value": "<integer>",
+                  "description": "Minimum approximate square footage filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_listing_approx_size",
+                  "value": "<integer>",
+                  "description": "Maximum approximate square footage filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_parcel_size",
+                  "value": "<integer>",
+                  "description": "Minimum lot/parcel size filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_parcel_size",
+                  "value": "<integer>",
+                  "description": "Maximum lot/parcel size filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_homes",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_number",
+                  "value": "<integer>",
+                  "description": "Page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_poly",
+                  "value": "<string>",
+                  "description": "Custom polygon coordinates defining a geographic search boundary."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f03e1c85-c89d-414a-89a0-54544d5360ae",
+              "name": "Successful property search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "do",
+                    "gis-search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "region_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "uipt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_beds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_num_beds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_baths",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_num_baths",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_year_built",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_year_built",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_listing_approx_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_listing_approx_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_parcel_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_parcel_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_homes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "user_poly",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 2953,\n  \"errorMessage\": \"string\",\n  \"payload\": {\n    \"homes\": [\n      {\n        \"propertyId\": 378,\n        \"listingId\": 8430,\n        \"mlsId\": \"string\",\n        \"price\": {\n          \"value\": 6492.431070170465\n        },\n        \"address\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"beds\": 9982,\n        \"baths\": 7638.438567756768,\n        \"sqFt\": {\n          \"value\": 9504\n        },\n        \"lotSize\": {\n          \"value\": 6984\n        },\n        \"yearBuilt\": {\n          \"value\": 7663\n        },\n        \"daysOnMarket\": 6550,\n        \"propertyType\": 6207,\n        \"listingType\": \"string\",\n        \"url\": \"string\",\n        \"latitude\": 2250.3390732700113,\n        \"longitude\": 1411.1752427655556\n      },\n      {\n        \"propertyId\": 3385,\n        \"listingId\": 9894,\n        \"mlsId\": \"string\",\n        \"price\": {\n          \"value\": 9762.535018035613\n        },\n        \"address\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"beds\": 6572,\n        \"baths\": 4403.249165925285,\n        \"sqFt\": {\n          \"value\": 9950\n        },\n        \"lotSize\": {\n          \"value\": 7320\n        },\n        \"yearBuilt\": {\n          \"value\": 7841\n        },\n        \"daysOnMarket\": 1615,\n        \"propertyType\": 3179,\n        \"listingType\": \"string\",\n        \"url\": \"string\",\n        \"latitude\": 4496.183644015873,\n        \"longitude\": 5452.137482114938\n      }\n    ],\n    \"totalResultCount\": 5123\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "602e336a-5070-491f-a6db-7e6cb647c3e9",
+          "name": "Search properties via GIS API",
+          "request": {
+            "name": "Search properties via GIS API",
+            "description": {
+              "content": "Alternative GIS-based property search endpoint. Returns property data in JSON format matching the specified region and filter criteria. Supports polygon-based geographic boundaries and all standard property filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "gis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region_id",
+                  "value": "<integer>",
+                  "description": "The unique identifier for a Redfin region."
+                },
+                {
+                  "disabled": false,
+                  "key": "region_type",
+                  "value": "<integer>",
+                  "description": "The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city)."
+                },
+                {
+                  "disabled": false,
+                  "key": "uipt",
+                  "value": "<string>",
+                  "description": "Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<integer>",
+                  "description": "Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending)."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_price",
+                  "value": "<integer>",
+                  "description": "Minimum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_price",
+                  "value": "<integer>",
+                  "description": "Maximum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_beds",
+                  "value": "<integer>",
+                  "description": "Minimum number of bedrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_baths",
+                  "value": "<integer>",
+                  "description": "Minimum number of bathrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_homes",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_number",
+                  "value": "<integer>",
+                  "description": "Page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "al",
+                  "value": "<integer>",
+                  "description": "Access level for the request, controlling the detail of data returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "sp",
+                  "value": "<string>",
+                  "description": "Sort parameter controlling the ordering of search results."
+                },
+                {
+                  "disabled": false,
+                  "key": "v",
+                  "value": "<integer>",
+                  "description": "API version parameter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0c7ec844-e2d1-4f3f-9e83-a0f359f6953e",
+              "name": "Successful property search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "gis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "region_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "uipt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_beds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_baths",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_homes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "al",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "v",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 2953,\n  \"errorMessage\": \"string\",\n  \"payload\": {\n    \"homes\": [\n      {\n        \"propertyId\": 378,\n        \"listingId\": 8430,\n        \"mlsId\": \"string\",\n        \"price\": {\n          \"value\": 6492.431070170465\n        },\n        \"address\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"beds\": 9982,\n        \"baths\": 7638.438567756768,\n        \"sqFt\": {\n          \"value\": 9504\n        },\n        \"lotSize\": {\n          \"value\": 6984\n        },\n        \"yearBuilt\": {\n          \"value\": 7663\n        },\n        \"daysOnMarket\": 6550,\n        \"propertyType\": 6207,\n        \"listingType\": \"string\",\n        \"url\": \"string\",\n        \"latitude\": 2250.3390732700113,\n        \"longitude\": 1411.1752427655556\n      },\n      {\n        \"propertyId\": 3385,\n        \"listingId\": 9894,\n        \"mlsId\": \"string\",\n        \"price\": {\n          \"value\": 9762.535018035613\n        },\n        \"address\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"beds\": 6572,\n        \"baths\": 4403.249165925285,\n        \"sqFt\": {\n          \"value\": 9950\n        },\n        \"lotSize\": {\n          \"value\": 7320\n        },\n        \"yearBuilt\": {\n          \"value\": 7841\n        },\n        \"daysOnMarket\": 1615,\n        \"propertyType\": 3179,\n        \"listingType\": \"string\",\n        \"url\": \"string\",\n        \"latitude\": 4496.183644015873,\n        \"longitude\": 5452.137482114938\n      }\n    ],\n    \"totalResultCount\": 5123\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f08de6c1-9436-4cd1-be14-672ea545ea85",
+      "name": "Valuation",
+      "description": {
+        "content": "Endpoints for automated valuation model (AVM) data and estimates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43c88330-4f0d-4474-8392-d3797a101eb7",
+          "name": "Get AVM historical valuation data",
+          "request": {
+            "name": "Get AVM historical valuation data",
+            "description": {
+              "content": "Retrieves historical automated valuation model (AVM) data for a property, including Redfin Estimate history over time. Returns time-series data showing estimated property values at various points in history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "avmHistoricalData"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "The type of AVM data to retrieve, such as estimate type or valuation model variant."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7389bddb-1636-48b6-a01a-cc4a5afcb44d",
+              "name": "Historical AVM valuation data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "avmHistoricalData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 4753,\n  \"payload\": {\n    \"dataPoints\": [\n      {\n        \"timestamp\": 2626,\n        \"value\": 7291.421809258812\n      },\n      {\n        \"timestamp\": 513,\n        \"value\": 8138.432254455017\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.redfin.com/stingray",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b079d79a-872b-45e8-965d-ec4c29499b6e",
+    "name": "Redfin Stingray API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Redfin Stingray API is the internal REST API that powers the Redfin website and mobile applications. It provides endpoints for property search, listing details, home value estimates (Redfin Estimates), neighborhood statistics, commute information, and GIS-based map data. The API supports searching by region, price range, property type, and various filters, returning structured JSON responses with property details including address, price, beds, baths, square footage, lot size, and days on market. While not officially documented by Redfin, this API has been reverse-engineered by the developer community and is accessible at redfin.com/stingray endpoints.\n\nContact Support:\n Name: Redfin",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,536 @@
+{
+  "item": [
+    {
+      "id": "bfdd407d-3c5c-417c-95ab-9742ee0aad29",
+      "name": "Market Tracker",
+      "description": {
+        "content": "Downloadable housing market tracker datasets segmented by region level.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "75688362-7c32-4118-a2d1-cb40da9105bd",
+          "name": "Download national market tracker data",
+          "request": {
+            "name": "Download national market tracker data",
+            "description": {
+              "content": "Downloads the national-level housing market tracker dataset in compressed TSV format. Contains aggregate housing metrics across the entire United States including median sale price, homes sold, new listings, days on market, inventory, and price drops.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redfin_market_tracker",
+                "us_national_market_tracker.tsv000.gz"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/gzip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aaf30adb-627e-4007-b46e-37fea08844e6",
+              "name": "Compressed TSV file with national market data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redfin_market_tracker",
+                    "us_national_market_tracker.tsv000.gz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/gzip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/gzip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "36aac85f-6087-45d9-8832-f48522f50580",
+          "name": "Download metro-level market tracker data",
+          "request": {
+            "name": "Download metro-level market tracker data",
+            "description": {
+              "content": "Downloads the metro-level housing market tracker dataset in compressed TSV format. Contains housing metrics segmented by metropolitan statistical areas across the United States.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redfin_market_tracker",
+                "redfin_metro_market_tracker.tsv000.gz"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/gzip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4950165-2631-431c-9bcd-6792c0609a99",
+              "name": "Compressed TSV file with metro market data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redfin_market_tracker",
+                    "redfin_metro_market_tracker.tsv000.gz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/gzip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/gzip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8fffa21-5077-4ca2-809a-fd8aaa7a7c79",
+          "name": "Download state-level market tracker data",
+          "request": {
+            "name": "Download state-level market tracker data",
+            "description": {
+              "content": "Downloads the state-level housing market tracker dataset in compressed TSV format. Contains housing metrics aggregated at the state level for all US states and territories.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redfin_market_tracker",
+                "state_market_tracker.tsv000.gz"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/gzip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b315f8b-938a-4543-85b5-936f1203ea1d",
+              "name": "Compressed TSV file with state market data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redfin_market_tracker",
+                    "state_market_tracker.tsv000.gz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/gzip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/gzip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "94991de6-1f69-41e9-9974-6645c764218d",
+          "name": "Download county-level market tracker data",
+          "request": {
+            "name": "Download county-level market tracker data",
+            "description": {
+              "content": "Downloads the county-level housing market tracker dataset in compressed TSV format. Contains housing metrics segmented by county across the United States.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redfin_market_tracker",
+                "county_market_tracker.tsv000.gz"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/gzip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "befb02e3-1521-4598-9f45-f8ba315a6458",
+              "name": "Compressed TSV file with county market data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redfin_market_tracker",
+                    "county_market_tracker.tsv000.gz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/gzip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/gzip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5970675b-9804-4e72-85ee-071ee5b281d4",
+          "name": "Download city-level market tracker data",
+          "request": {
+            "name": "Download city-level market tracker data",
+            "description": {
+              "content": "Downloads the city-level housing market tracker dataset in compressed TSV format. Contains housing metrics segmented by city across the United States.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redfin_market_tracker",
+                "city_market_tracker.tsv000.gz"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/gzip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d51e777-9d08-4f95-8f6c-a9c478aa1654",
+              "name": "Compressed TSV file with city market data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redfin_market_tracker",
+                    "city_market_tracker.tsv000.gz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/gzip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/gzip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2fee83c-e389-4352-a4a6-d3b940181cde",
+          "name": "Download ZIP code-level market tracker data",
+          "request": {
+            "name": "Download ZIP code-level market tracker data",
+            "description": {
+              "content": "Downloads the ZIP code-level housing market tracker dataset in compressed TSV format. Contains housing metrics segmented by ZIP code across the United States. This is the most granular widely available dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redfin_market_tracker",
+                "zip_code_market_tracker.tsv000.gz"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/gzip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3b61f57-5e40-4dbf-bad6-bdc7ea6a7cf7",
+              "name": "Compressed TSV file with ZIP code market data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redfin_market_tracker",
+                    "zip_code_market_tracker.tsv000.gz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/gzip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/gzip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "134ad984-0caa-433b-a6b7-bcecd1d3a42c",
+          "name": "Download neighborhood-level market tracker data",
+          "request": {
+            "name": "Download neighborhood-level market tracker data",
+            "description": {
+              "content": "Downloads the neighborhood-level housing market tracker dataset in compressed TSV format. Contains housing metrics segmented by Redfin-defined neighborhood boundaries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "redfin_market_tracker",
+                "neighborhood_market_tracker.tsv000.gz"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/gzip"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "daca2983-36e4-4a49-9782-fc0b98345477",
+              "name": "Compressed TSV file with neighborhood market data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "redfin_market_tracker",
+                    "neighborhood_market_tracker.tsv000.gz"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/gzip"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/gzip"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://redfin-public-data.s3.us-west-2.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e6576ac3-97e5-4761-be21-864ecbcda6cb",
+    "name": "Redfin Data Center",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.\n\nContact Support:\n Name: Redfin Economics Team",
+      "type": "text/plain"
+    }
+  }
+}

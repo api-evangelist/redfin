@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Redfin GIS CSV Export API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CSV Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export property search results as CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/gis-csv",
+            "params": [
+              {
+                "name": "region_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier for a Redfin region."
+              },
+              {
+                "name": "region_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city)."
+              },
+              {
+                "name": "uipt",
+                "value": "",
+                "type": "query",
+                "description": "Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending)."
+              },
+              {
+                "name": "min_price",
+                "value": "",
+                "type": "query",
+                "description": "Minimum listing price filter in USD."
+              },
+              {
+                "name": "max_price",
+                "value": "",
+                "type": "query",
+                "description": "Maximum listing price filter in USD."
+              },
+              {
+                "name": "num_beds",
+                "value": "",
+                "type": "query",
+                "description": "Minimum number of bedrooms filter."
+              },
+              {
+                "name": "max_num_beds",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of bedrooms filter."
+              },
+              {
+                "name": "num_baths",
+                "value": "",
+                "type": "query",
+                "description": "Minimum number of bathrooms filter."
+              },
+              {
+                "name": "max_num_baths",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of bathrooms filter."
+              },
+              {
+                "name": "min_year_built",
+                "value": "",
+                "type": "query",
+                "description": "Minimum year built filter."
+              },
+              {
+                "name": "max_year_built",
+                "value": "",
+                "type": "query",
+                "description": "Maximum year built filter."
+              },
+              {
+                "name": "min_listing_approx_size",
+                "value": "",
+                "type": "query",
+                "description": "Minimum approximate square footage filter."
+              },
+              {
+                "name": "max_listing_approx_size",
+                "value": "",
+                "type": "query",
+                "description": "Maximum approximate square footage filter."
+              },
+              {
+                "name": "min_parcel_size",
+                "value": "",
+                "type": "query",
+                "description": "Minimum lot/parcel size filter."
+              },
+              {
+                "name": "max_parcel_size",
+                "value": "",
+                "type": "query",
+                "description": "Maximum lot/parcel size filter."
+              },
+              {
+                "name": "min_stories",
+                "value": "",
+                "type": "query",
+                "description": "Minimum number of stories filter."
+              },
+              {
+                "name": "max_stories",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of stories filter."
+              },
+              {
+                "name": "gar",
+                "value": "",
+                "type": "query",
+                "description": "Garage availability filter."
+              },
+              {
+                "name": "hoa",
+                "value": "",
+                "type": "query",
+                "description": "HOA filter. Value of 0 means no HOA."
+              },
+              {
+                "name": "num_homes",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per request. The API caps at approximately 350 records."
+              },
+              {
+                "name": "sf",
+                "value": "",
+                "type": "query",
+                "description": "Listing type sub-filters for refining results."
+              },
+              {
+                "name": "time_on_market_range",
+                "value": "",
+                "type": "query",
+                "description": "Days on market range filter. Uses reverse range format."
+              }
+            ]
+          },
+          "docs": "Exports property search results in CSV format based on the specified region, property type, status, and filter parameters. Returns up to 350 property records per request. The CSV output includes columns for address, city, state, ZIP code, list price, beds, baths, square footage, lot size, year built, days on market, property type, listing status, and other property attributes. This endpoint corresponds to the Download All link on Redfin search result pages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

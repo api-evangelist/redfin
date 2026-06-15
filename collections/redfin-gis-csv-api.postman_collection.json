@@ -1,0 +1,336 @@
+{
+  "item": [
+    {
+      "id": "cdffa9fd-00c3-40ae-864e-f877086a8f1a",
+      "name": "CSV Export",
+      "description": {
+        "content": "Endpoints for exporting property search results in CSV format.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7349efa5-e4fe-4df7-97d0-391fe0db159c",
+          "name": "Export property search results as CSV",
+          "request": {
+            "name": "Export property search results as CSV",
+            "description": {
+              "content": "Exports property search results in CSV format based on the specified region, property type, status, and filter parameters. Returns up to 350 property records per request. The CSV output includes columns for address, city, state, ZIP code, list price, beds, baths, square footage, lot size, year built, days on market, property type, listing status, and other property attributes. This endpoint corresponds to the Download All link on Redfin search result pages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "gis-csv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region_id",
+                  "value": "<integer>",
+                  "description": "The unique identifier for a Redfin region."
+                },
+                {
+                  "disabled": false,
+                  "key": "region_type",
+                  "value": "<integer>",
+                  "description": "The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city)."
+                },
+                {
+                  "disabled": false,
+                  "key": "uipt",
+                  "value": "<string>",
+                  "description": "Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<integer>",
+                  "description": "Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending)."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_price",
+                  "value": "<integer>",
+                  "description": "Minimum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_price",
+                  "value": "<integer>",
+                  "description": "Maximum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_beds",
+                  "value": "<integer>",
+                  "description": "Minimum number of bedrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_num_beds",
+                  "value": "<integer>",
+                  "description": "Maximum number of bedrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_baths",
+                  "value": "<integer>",
+                  "description": "Minimum number of bathrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_num_baths",
+                  "value": "<integer>",
+                  "description": "Maximum number of bathrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_year_built",
+                  "value": "<integer>",
+                  "description": "Minimum year built filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_year_built",
+                  "value": "<integer>",
+                  "description": "Maximum year built filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_listing_approx_size",
+                  "value": "<integer>",
+                  "description": "Minimum approximate square footage filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_listing_approx_size",
+                  "value": "<integer>",
+                  "description": "Maximum approximate square footage filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_parcel_size",
+                  "value": "<integer>",
+                  "description": "Minimum lot/parcel size filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_parcel_size",
+                  "value": "<integer>",
+                  "description": "Maximum lot/parcel size filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_stories",
+                  "value": "<integer>",
+                  "description": "Minimum number of stories filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_stories",
+                  "value": "<integer>",
+                  "description": "Maximum number of stories filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "gar",
+                  "value": "<boolean>",
+                  "description": "Garage availability filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "hoa",
+                  "value": "<integer>",
+                  "description": "HOA filter. Value of 0 means no HOA."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_homes",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per request. The API caps at approximately 350 records."
+                },
+                {
+                  "disabled": false,
+                  "key": "sf",
+                  "value": "<string>",
+                  "description": "Listing type sub-filters for refining results."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_on_market_range",
+                  "value": "<string>",
+                  "description": "Days on market range filter. Uses reverse range format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "657a154d-c09b-4453-904a-0223c60ecaa0",
+              "name": "CSV file containing property search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "gis-csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "region_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "uipt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_beds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_num_beds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_baths",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_num_baths",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_year_built",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_year_built",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_listing_approx_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_listing_approx_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_parcel_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_parcel_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_stories",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_stories",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "gar",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hoa",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_homes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_on_market_range",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.redfin.com/stingray",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9587b8a8-a483-475a-9ecf-8b01a1038218",
+    "name": "Redfin GIS CSV Export API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Redfin GIS CSV Export API provides bulk property data downloads in CSV format. This endpoint returns up to 350 property records per request in tabular format, making it suitable for data analysis and spreadsheet workflows. It accepts parameters for market selection, price ranges, bedroom and bathroom counts, region identifiers, and property status filters. The CSV output includes fields such as address, list price, property type, square footage, lot size, and listing status, enabling developers and analysts to aggregate property data for research and comparison purposes.\n\nContact Support:\n Name: Redfin",
+      "type": "text/plain"
+    }
+  }
+}

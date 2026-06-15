@@ -1,0 +1,529 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Redfin Stingray API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search properties via GIS",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/do/gis-search",
+            "params": [
+              {
+                "name": "region_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier for a Redfin region."
+              },
+              {
+                "name": "region_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city)."
+              },
+              {
+                "name": "uipt",
+                "value": "",
+                "type": "query",
+                "description": "Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending)."
+              },
+              {
+                "name": "min_price",
+                "value": "",
+                "type": "query",
+                "description": "Minimum listing price filter in USD."
+              },
+              {
+                "name": "max_price",
+                "value": "",
+                "type": "query",
+                "description": "Maximum listing price filter in USD."
+              },
+              {
+                "name": "num_beds",
+                "value": "",
+                "type": "query",
+                "description": "Minimum number of bedrooms filter."
+              },
+              {
+                "name": "max_num_beds",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of bedrooms filter."
+              },
+              {
+                "name": "num_baths",
+                "value": "",
+                "type": "query",
+                "description": "Minimum number of bathrooms filter."
+              },
+              {
+                "name": "max_num_baths",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of bathrooms filter."
+              },
+              {
+                "name": "min_year_built",
+                "value": "",
+                "type": "query",
+                "description": "Minimum year built filter."
+              },
+              {
+                "name": "max_year_built",
+                "value": "",
+                "type": "query",
+                "description": "Maximum year built filter."
+              },
+              {
+                "name": "min_listing_approx_size",
+                "value": "",
+                "type": "query",
+                "description": "Minimum approximate square footage filter."
+              },
+              {
+                "name": "max_listing_approx_size",
+                "value": "",
+                "type": "query",
+                "description": "Maximum approximate square footage filter."
+              },
+              {
+                "name": "min_parcel_size",
+                "value": "",
+                "type": "query",
+                "description": "Minimum lot/parcel size filter."
+              },
+              {
+                "name": "max_parcel_size",
+                "value": "",
+                "type": "query",
+                "description": "Maximum lot/parcel size filter."
+              },
+              {
+                "name": "num_homes",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per request."
+              },
+              {
+                "name": "page_number",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              },
+              {
+                "name": "user_poly",
+                "value": "",
+                "type": "query",
+                "description": "Custom polygon coordinates defining a geographic search boundary."
+              }
+            ]
+          },
+          "docs": "Performs a geographic information system search for properties within a specified region. Returns property listings matching the provided filters including price range, property type, bedroom and bathroom counts, and geographic boundaries."
+        },
+        {
+          "info": {
+            "name": "Search properties via GIS API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/gis",
+            "params": [
+              {
+                "name": "region_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier for a Redfin region."
+              },
+              {
+                "name": "region_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city)."
+              },
+              {
+                "name": "uipt",
+                "value": "",
+                "type": "query",
+                "description": "Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending)."
+              },
+              {
+                "name": "min_price",
+                "value": "",
+                "type": "query",
+                "description": "Minimum listing price filter in USD."
+              },
+              {
+                "name": "max_price",
+                "value": "",
+                "type": "query",
+                "description": "Maximum listing price filter in USD."
+              },
+              {
+                "name": "num_beds",
+                "value": "",
+                "type": "query",
+                "description": "Minimum number of bedrooms filter."
+              },
+              {
+                "name": "num_baths",
+                "value": "",
+                "type": "query",
+                "description": "Minimum number of bathrooms filter."
+              },
+              {
+                "name": "num_homes",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per request."
+              },
+              {
+                "name": "page_number",
+                "value": "",
+                "type": "query",
+                "description": "Page number for paginated results."
+              },
+              {
+                "name": "al",
+                "value": "",
+                "type": "query",
+                "description": "Access level for the request, controlling the detail of data returned."
+              },
+              {
+                "name": "sp",
+                "value": "",
+                "type": "query",
+                "description": "Sort parameter controlling the ordering of search results."
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query",
+                "description": "API version parameter."
+              }
+            ]
+          },
+          "docs": "Alternative GIS-based property search endpoint. Returns property data in JSON format matching the specified region and filter criteria. Supports polygon-based geographic boundaries and all standard property filters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Property Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get initial property information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/home/details/initialInfo",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "The URL path of the property listing page on Redfin, such as /CA/San-Francisco/123-Main-St-94105/home/12345678."
+              }
+            ]
+          },
+          "docs": "Retrieves the initial information for a property, including the propertyId and listingId needed for subsequent detail requests. Takes a property URL path as input and returns identifiers and basic property metadata."
+        },
+        {
+          "info": {
+            "name": "Get above-the-fold property details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/home/details/aboveTheFold",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin listing identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              }
+            ]
+          },
+          "docs": "Retrieves the primary property details displayed above the fold on the listing page, including price, address, photos, key facts, and listing status information."
+        },
+        {
+          "info": {
+            "name": "Get below-the-fold property details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/home/details/belowTheFold",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin listing identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              }
+            ]
+          },
+          "docs": "Retrieves detailed MLS data for a property, including property history, tax information, schools, similar homes, and extended property characteristics. This endpoint provides the most comprehensive data for a single property listing. Note that propertyHistoryInfo may not always be available."
+        },
+        {
+          "info": {
+            "name": "Get main house info panel data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/home/details/mainHouseInfoPanelInfo",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin listing identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              }
+            ]
+          },
+          "docs": "Retrieves the structured property information typically shown in the main info panel, including beds, baths, square footage, lot size, year built, property type, and other key property attributes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Valuation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get AVM historical valuation data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/home/details/avmHistoricalData",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of AVM data to retrieve, such as estimate type or valuation model variant."
+              }
+            ]
+          },
+          "docs": "Retrieves historical automated valuation model (AVM) data for a property, including Redfin Estimate history over time. Returns time-series data showing estimated property values at various points in history."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Neighborhood",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get neighborhood statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/home/details/neighborhoodStats/statsInfo",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin listing identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              }
+            ]
+          },
+          "docs": "Retrieves statistical data about the neighborhood surrounding a property, including demographics, walkability, transit scores, school ratings, and nearby amenities information."
+        },
+        {
+          "info": {
+            "name": "Get commute information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/home/details/commute/commuteInfo",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              }
+            ]
+          },
+          "docs": "Retrieves commute time and transportation information for a property, including estimated drive, transit, bike, and walk times to common destinations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Market Trends",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get regional market trends",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/region/:regionType/:regionId/:code/trends",
+            "params": [
+              {
+                "name": "regionType",
+                "value": "",
+                "type": "path",
+                "description": "The type of region (e.g., neighborhood, zipcode, city, county)."
+              },
+              {
+                "name": "regionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the region."
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "The region code."
+              }
+            ]
+          },
+          "docs": "Retrieves market trend data for a specific region, including median sale prices, homes sold, new listings, and days on market over time."
+        },
+        {
+          "info": {
+            "name": "Get aggregated regional market trends",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.redfin.com/stingray/api/region/:regionType/:regionId/:code/aggregate-trends",
+            "params": [
+              {
+                "name": "regionType",
+                "value": "",
+                "type": "path",
+                "description": "The type of region (e.g., neighborhood, zipcode, city, county)."
+              },
+              {
+                "name": "regionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the region."
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "The region code."
+              }
+            ]
+          },
+          "docs": "Retrieves aggregated market trend data for a specific region, providing summarized statistics and trend indicators over configurable time periods."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
