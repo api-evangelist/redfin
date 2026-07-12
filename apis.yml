@@ -106,6 +106,8 @@ apis:
   - type: Vocabulary
     url: vocabulary/redfin-vocabulary.yml
 common:
+- type: DomainSecurity
+  url: security/redfin-domain-security.yml
 - name: Redfin Website
   url: https://www.redfin.com
   type: Website
