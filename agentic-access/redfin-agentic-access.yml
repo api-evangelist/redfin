@@ -1,0 +1,204 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/redfin-data-center-openapi.yml, openapi/redfin-gis-csv-api-openapi.yml, openapi/redfin-stingray-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 19
+  by_action_class:
+    connected: 19
+  by_consequence:
+    read: 19
+  human_in_the_loop_required: 0
+operations:
+- path: /redfin_market_tracker/us_national_market_tracker.tsv000.gz
+  method: get
+  operationId: downloadNationalMarketTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz
+  method: get
+  operationId: downloadMetroMarketTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /redfin_market_tracker/state_market_tracker.tsv000.gz
+  method: get
+  operationId: downloadStateMarketTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /redfin_market_tracker/county_market_tracker.tsv000.gz
+  method: get
+  operationId: downloadCountyMarketTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /redfin_market_tracker/city_market_tracker.tsv000.gz
+  method: get
+  operationId: downloadCityMarketTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /redfin_market_tracker/zip_code_market_tracker.tsv000.gz
+  method: get
+  operationId: downloadZipCodeMarketTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /redfin_market_tracker/neighborhood_market_tracker.tsv000.gz
+  method: get
+  operationId: downloadNeighborhoodMarketTracker
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/gis-csv
+  method: get
+  operationId: exportGisCsv
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /do/gis-search
+  method: get
+  operationId: gisSearch
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/gis
+  method: get
+  operationId: gisApiSearch
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/home/details/initialInfo
+  method: get
+  operationId: getInitialInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/home/details/aboveTheFold
+  method: get
+  operationId: getAboveTheFold
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/home/details/belowTheFold
+  method: get
+  operationId: getBelowTheFold
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/home/details/mainHouseInfoPanelInfo
+  method: get
+  operationId: getMainHouseInfoPanelInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/home/details/avmHistoricalData
+  method: get
+  operationId: getAvmHistoricalData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/home/details/neighborhoodStats/statsInfo
+  method: get
+  operationId: getNeighborhoodStats
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/home/details/commute/commuteInfo
+  method: get
+  operationId: getCommuteInfo
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/region/{regionType}/{regionId}/{code}/trends
+  method: get
+  operationId: getRegionTrends
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/region/{regionType}/{regionId}/{code}/aggregate-trends
+  method: get
+  operationId: getRegionAggregateTrends
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
