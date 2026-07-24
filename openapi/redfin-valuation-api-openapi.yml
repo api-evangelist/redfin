@@ -1,0 +1,81 @@
+openapi: 3.1.0
+info:
+  title: Redfin Data Center CSV Export Valuation API
+  description: The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.
+  version: 1.0.0
+  contact:
+    name: Redfin Economics Team
+    url: https://www.redfin.com/news/data-center/
+  termsOfService: https://www.redfin.com/about/terms-of-use
+servers:
+- url: https://redfin-public-data.s3.us-west-2.amazonaws.com
+  description: Redfin Public Data S3 Bucket
+tags:
+- name: Valuation
+  description: Endpoints for automated valuation model (AVM) data and estimates.
+paths:
+  /api/home/details/avmHistoricalData:
+    get:
+      operationId: getAvmHistoricalData
+      summary: Get AVM historical valuation data
+      description: Retrieves historical automated valuation model (AVM) data for a property, including Redfin Estimate history over time. Returns time-series data showing estimated property values at various points in history.
+      tags:
+      - Valuation
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/accessLevel'
+      - name: type
+        in: query
+        description: The type of AVM data to retrieve, such as estimate type or valuation model variant.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Historical AVM valuation data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvmHistoricalDataResponse'
+components:
+  schemas:
+    AvmHistoricalDataResponse:
+      type: object
+      description: Response containing historical AVM (Automated Valuation Model) data.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload containing historical valuation data.
+          properties:
+            dataPoints:
+              type: array
+              description: Time-series valuation data points.
+              items:
+                type: object
+                properties:
+                  timestamp:
+                    type: integer
+                    description: Unix timestamp for the data point.
+                  value:
+                    type: number
+                    description: Estimated property value at this point in time.
+  parameters:
+    accessLevel:
+      name: accessLevel
+      in: query
+      description: The access level for the request, controlling the detail of data returned. Common value is 1.
+      schema:
+        type: integer
+        default: 1
+    propertyId:
+      name: propertyId
+      in: query
+      required: true
+      description: The unique Redfin property identifier.
+      schema:
+        type: integer
+externalDocs:
+  description: Redfin Data Center Documentation
+  url: https://www.redfin.com/news/data-center/

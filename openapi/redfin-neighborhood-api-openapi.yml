@@ -1,0 +1,97 @@
+openapi: 3.1.0
+info:
+  title: Redfin Data Center CSV Export Neighborhood API
+  description: The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.
+  version: 1.0.0
+  contact:
+    name: Redfin Economics Team
+    url: https://www.redfin.com/news/data-center/
+  termsOfService: https://www.redfin.com/about/terms-of-use
+servers:
+- url: https://redfin-public-data.s3.us-west-2.amazonaws.com
+  description: Redfin Public Data S3 Bucket
+tags:
+- name: Neighborhood
+  description: Endpoints for neighborhood statistics, commute data, and area info.
+paths:
+  /api/home/details/neighborhoodStats/statsInfo:
+    get:
+      operationId: getNeighborhoodStats
+      summary: Get neighborhood statistics
+      description: Retrieves statistical data about the neighborhood surrounding a property, including demographics, walkability, transit scores, school ratings, and nearby amenities information.
+      tags:
+      - Neighborhood
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/listingId'
+      - $ref: '#/components/parameters/accessLevel'
+      responses:
+        '200':
+          description: Neighborhood statistics data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NeighborhoodStatsResponse'
+  /api/home/details/commute/commuteInfo:
+    get:
+      operationId: getCommuteInfo
+      summary: Get commute information
+      description: Retrieves commute time and transportation information for a property, including estimated drive, transit, bike, and walk times to common destinations.
+      tags:
+      - Neighborhood
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/accessLevel'
+      responses:
+        '200':
+          description: Commute information data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommuteInfoResponse'
+components:
+  parameters:
+    propertyId:
+      name: propertyId
+      in: query
+      required: true
+      description: The unique Redfin property identifier.
+      schema:
+        type: integer
+    accessLevel:
+      name: accessLevel
+      in: query
+      description: The access level for the request, controlling the detail of data returned. Common value is 1.
+      schema:
+        type: integer
+        default: 1
+    listingId:
+      name: listingId
+      in: query
+      description: The unique Redfin listing identifier.
+      schema:
+        type: integer
+  schemas:
+    NeighborhoodStatsResponse:
+      type: object
+      description: Response containing neighborhood statistical data.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload with neighborhood statistics.
+    CommuteInfoResponse:
+      type: object
+      description: Response containing commute and transportation information.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload with commute time estimates.
+externalDocs:
+  description: Redfin Data Center Documentation
+  url: https://www.redfin.com/news/data-center/

@@ -1,0 +1,322 @@
+openapi: 3.1.0
+info:
+  title: Redfin Data Center CSV Export Search API
+  description: The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.
+  version: 1.0.0
+  contact:
+    name: Redfin Economics Team
+    url: https://www.redfin.com/news/data-center/
+  termsOfService: https://www.redfin.com/about/terms-of-use
+servers:
+- url: https://redfin-public-data.s3.us-west-2.amazonaws.com
+  description: Redfin Public Data S3 Bucket
+tags:
+- name: Search
+  description: Endpoints for searching properties by location, region, and filters.
+paths:
+  /do/gis-search:
+    get:
+      operationId: gisSearch
+      summary: Search properties via GIS
+      description: Performs a geographic information system search for properties within a specified region. Returns property listings matching the provided filters including price range, property type, bedroom and bathroom counts, and geographic boundaries.
+      tags:
+      - Search
+      parameters:
+      - $ref: '#/components/parameters/regionId'
+      - $ref: '#/components/parameters/regionType'
+      - $ref: '#/components/parameters/uipt'
+      - $ref: '#/components/parameters/status'
+      - $ref: '#/components/parameters/minPrice'
+      - $ref: '#/components/parameters/maxPrice'
+      - $ref: '#/components/parameters/numBeds'
+      - $ref: '#/components/parameters/maxNumBeds'
+      - $ref: '#/components/parameters/numBaths'
+      - $ref: '#/components/parameters/maxNumBaths'
+      - $ref: '#/components/parameters/minYearBuilt'
+      - $ref: '#/components/parameters/maxYearBuilt'
+      - $ref: '#/components/parameters/minListingApproxSize'
+      - $ref: '#/components/parameters/maxListingApproxSize'
+      - $ref: '#/components/parameters/minParcelSize'
+      - $ref: '#/components/parameters/maxParcelSize'
+      - $ref: '#/components/parameters/numHomes'
+      - $ref: '#/components/parameters/pageNumber'
+      - name: user_poly
+        in: query
+        description: Custom polygon coordinates defining a geographic search boundary.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful property search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GisSearchResponse'
+  /api/gis:
+    get:
+      operationId: gisApiSearch
+      summary: Search properties via GIS API
+      description: Alternative GIS-based property search endpoint. Returns property data in JSON format matching the specified region and filter criteria. Supports polygon-based geographic boundaries and all standard property filters.
+      tags:
+      - Search
+      parameters:
+      - $ref: '#/components/parameters/regionId'
+      - $ref: '#/components/parameters/regionType'
+      - $ref: '#/components/parameters/uipt'
+      - $ref: '#/components/parameters/status'
+      - $ref: '#/components/parameters/minPrice'
+      - $ref: '#/components/parameters/maxPrice'
+      - $ref: '#/components/parameters/numBeds'
+      - $ref: '#/components/parameters/numBaths'
+      - $ref: '#/components/parameters/numHomes'
+      - $ref: '#/components/parameters/pageNumber'
+      - name: al
+        in: query
+        description: Access level for the request, controlling the detail of data returned.
+        schema:
+          type: integer
+      - name: sp
+        in: query
+        description: Sort parameter controlling the ordering of search results.
+        schema:
+          type: string
+      - name: v
+        in: query
+        description: API version parameter.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful property search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GisSearchResponse'
+components:
+  schemas:
+    PropertySummary:
+      type: object
+      description: Summary information for a property listing.
+      properties:
+        propertyId:
+          type: integer
+          description: Unique Redfin property identifier.
+        listingId:
+          type: integer
+          description: Unique Redfin listing identifier.
+        mlsId:
+          type: string
+          description: MLS listing identifier.
+        price:
+          type: object
+          description: Price information for the listing.
+          properties:
+            value:
+              type: number
+              description: Listing price in USD.
+        address:
+          $ref: '#/components/schemas/Address'
+        beds:
+          type: integer
+          description: Number of bedrooms.
+        baths:
+          type: number
+          description: Number of bathrooms.
+        sqFt:
+          type: object
+          description: Square footage information.
+          properties:
+            value:
+              type: integer
+              description: Approximate living area in square feet.
+        lotSize:
+          type: object
+          description: Lot size information.
+          properties:
+            value:
+              type: integer
+              description: Lot size in square feet.
+        yearBuilt:
+          type: object
+          description: Year the property was built.
+          properties:
+            value:
+              type: integer
+              description: Year of construction.
+        daysOnMarket:
+          type: integer
+          description: Number of days the property has been listed.
+        propertyType:
+          type: integer
+          description: Property type code (1=house, 2=condo, 3=townhouse, 4=multi-family, 5=land, 6=other).
+        listingType:
+          type: string
+          description: Type of listing (e.g., MLS, FSBO).
+        url:
+          type: string
+          description: Relative URL path to the property listing on Redfin.
+        latitude:
+          type: number
+          description: Property latitude coordinate.
+        longitude:
+          type: number
+          description: Property longitude coordinate.
+    Address:
+      type: object
+      description: Property address information.
+      properties:
+        streetAddress:
+          type: string
+          description: Street address of the property.
+        city:
+          type: string
+          description: City name.
+        state:
+          type: string
+          description: Two-letter state abbreviation.
+        zip:
+          type: string
+          description: ZIP code.
+    GisSearchResponse:
+      type: object
+      description: Response from a GIS-based property search.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        errorMessage:
+          type: string
+          description: Error message if the request failed.
+        payload:
+          type: object
+          description: Response payload containing search results.
+          properties:
+            homes:
+              type: array
+              description: List of property summaries matching the search criteria.
+              items:
+                $ref: '#/components/schemas/PropertySummary'
+            totalResultCount:
+              type: integer
+              description: Total number of properties matching the search criteria.
+  parameters:
+    status:
+      name: status
+      in: query
+      description: Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending).
+      schema:
+        type: integer
+        enum:
+        - 1
+        - 130
+        - 131
+    numBeds:
+      name: num_beds
+      in: query
+      description: Minimum number of bedrooms filter.
+      schema:
+        type: integer
+    pageNumber:
+      name: page_number
+      in: query
+      description: Page number for paginated results.
+      schema:
+        type: integer
+    maxNumBeds:
+      name: max_num_beds
+      in: query
+      description: Maximum number of bedrooms filter.
+      schema:
+        type: integer
+    minPrice:
+      name: min_price
+      in: query
+      description: Minimum listing price filter in USD.
+      schema:
+        type: integer
+    maxNumBaths:
+      name: max_num_baths
+      in: query
+      description: Maximum number of bathrooms filter.
+      schema:
+        type: integer
+    maxParcelSize:
+      name: max_parcel_size
+      in: query
+      description: Maximum lot/parcel size filter.
+      schema:
+        type: integer
+    minYearBuilt:
+      name: min_year_built
+      in: query
+      description: Minimum year built filter.
+      schema:
+        type: integer
+    numHomes:
+      name: num_homes
+      in: query
+      description: Maximum number of results to return per request.
+      schema:
+        type: integer
+    uipt:
+      name: uipt
+      in: query
+      description: Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated.
+      schema:
+        type: string
+    maxPrice:
+      name: max_price
+      in: query
+      description: Maximum listing price filter in USD.
+      schema:
+        type: integer
+    maxListingApproxSize:
+      name: max_listing_approx_size
+      in: query
+      description: Maximum approximate square footage filter.
+      schema:
+        type: integer
+    maxYearBuilt:
+      name: max_year_built
+      in: query
+      description: Maximum year built filter.
+      schema:
+        type: integer
+    minListingApproxSize:
+      name: min_listing_approx_size
+      in: query
+      description: Minimum approximate square footage filter.
+      schema:
+        type: integer
+    numBaths:
+      name: num_baths
+      in: query
+      description: Minimum number of bathrooms filter.
+      schema:
+        type: integer
+    regionType:
+      name: region_type
+      in: query
+      description: The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city).
+      schema:
+        type: integer
+        enum:
+        - 1
+        - 2
+        - 5
+        - 6
+    regionId:
+      name: region_id
+      in: query
+      description: The unique identifier for a Redfin region.
+      schema:
+        type: integer
+    minParcelSize:
+      name: min_parcel_size
+      in: query
+      description: Minimum lot/parcel size filter.
+      schema:
+        type: integer
+externalDocs:
+  description: Redfin Data Center Documentation
+  url: https://www.redfin.com/news/data-center/

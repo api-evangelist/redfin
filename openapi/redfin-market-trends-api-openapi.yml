@@ -1,0 +1,107 @@
+openapi: 3.1.0
+info:
+  title: Redfin Data Center CSV Export Market Trends API
+  description: The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.
+  version: 1.0.0
+  contact:
+    name: Redfin Economics Team
+    url: https://www.redfin.com/news/data-center/
+  termsOfService: https://www.redfin.com/about/terms-of-use
+servers:
+- url: https://redfin-public-data.s3.us-west-2.amazonaws.com
+  description: Redfin Public Data S3 Bucket
+tags:
+- name: Market Trends
+  description: Endpoints for regional aggregate and historical market trends.
+paths:
+  /api/region/{regionType}/{regionId}/{code}/trends:
+    get:
+      operationId: getRegionTrends
+      summary: Get regional market trends
+      description: Retrieves market trend data for a specific region, including median sale prices, homes sold, new listings, and days on market over time.
+      tags:
+      - Market Trends
+      parameters:
+      - name: regionType
+        in: path
+        required: true
+        description: The type of region (e.g., neighborhood, zipcode, city, county).
+        schema:
+          type: string
+      - name: regionId
+        in: path
+        required: true
+        description: The unique identifier for the region.
+        schema:
+          type: integer
+      - name: code
+        in: path
+        required: true
+        description: The region code.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Regional market trend data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionTrendsResponse'
+  /api/region/{regionType}/{regionId}/{code}/aggregate-trends:
+    get:
+      operationId: getRegionAggregateTrends
+      summary: Get aggregated regional market trends
+      description: Retrieves aggregated market trend data for a specific region, providing summarized statistics and trend indicators over configurable time periods.
+      tags:
+      - Market Trends
+      parameters:
+      - name: regionType
+        in: path
+        required: true
+        description: The type of region (e.g., neighborhood, zipcode, city, county).
+        schema:
+          type: string
+      - name: regionId
+        in: path
+        required: true
+        description: The unique identifier for the region.
+        schema:
+          type: integer
+      - name: code
+        in: path
+        required: true
+        description: The region code.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Aggregated regional market trend data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegionAggregateTrendsResponse'
+components:
+  schemas:
+    RegionTrendsResponse:
+      type: object
+      description: Response containing market trend data for a region.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload with trend data.
+    RegionAggregateTrendsResponse:
+      type: object
+      description: Response containing aggregated market trend data for a region.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload with aggregated trend data.
+externalDocs:
+  description: Redfin Data Center Documentation
+  url: https://www.redfin.com/news/data-center/

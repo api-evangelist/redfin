@@ -1,0 +1,233 @@
+openapi: 3.1.0
+info:
+  title: Redfin Data Center CSV Export Property Details API
+  description: The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.
+  version: 1.0.0
+  contact:
+    name: Redfin Economics Team
+    url: https://www.redfin.com/news/data-center/
+  termsOfService: https://www.redfin.com/about/terms-of-use
+servers:
+- url: https://redfin-public-data.s3.us-west-2.amazonaws.com
+  description: Redfin Public Data S3 Bucket
+tags:
+- name: Property Details
+  description: Endpoints for retrieving detailed information about a specific property.
+paths:
+  /api/home/details/initialInfo:
+    get:
+      operationId: getInitialInfo
+      summary: Get initial property information
+      description: Retrieves the initial information for a property, including the propertyId and listingId needed for subsequent detail requests. Takes a property URL path as input and returns identifiers and basic property metadata.
+      tags:
+      - Property Details
+      parameters:
+      - name: path
+        in: query
+        required: true
+        description: The URL path of the property listing page on Redfin, such as /CA/San-Francisco/123-Main-St-94105/home/12345678.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Initial property information with identifiers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InitialInfoResponse'
+  /api/home/details/aboveTheFold:
+    get:
+      operationId: getAboveTheFold
+      summary: Get above-the-fold property details
+      description: Retrieves the primary property details displayed above the fold on the listing page, including price, address, photos, key facts, and listing status information.
+      tags:
+      - Property Details
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/listingId'
+      - $ref: '#/components/parameters/accessLevel'
+      responses:
+        '200':
+          description: Above-the-fold property details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AboveTheFoldResponse'
+  /api/home/details/belowTheFold:
+    get:
+      operationId: getBelowTheFold
+      summary: Get below-the-fold property details
+      description: Retrieves detailed MLS data for a property, including property history, tax information, schools, similar homes, and extended property characteristics. This endpoint provides the most comprehensive data for a single property listing. Note that propertyHistoryInfo may not always be available.
+      tags:
+      - Property Details
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/listingId'
+      - $ref: '#/components/parameters/accessLevel'
+      responses:
+        '200':
+          description: Below-the-fold property details with MLS data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BelowTheFoldResponse'
+  /api/home/details/mainHouseInfoPanelInfo:
+    get:
+      operationId: getMainHouseInfoPanelInfo
+      summary: Get main house info panel data
+      description: Retrieves the structured property information typically shown in the main info panel, including beds, baths, square footage, lot size, year built, property type, and other key property attributes.
+      tags:
+      - Property Details
+      parameters:
+      - $ref: '#/components/parameters/propertyId'
+      - $ref: '#/components/parameters/listingId'
+      - $ref: '#/components/parameters/accessLevel'
+      responses:
+        '200':
+          description: Main house information panel data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MainHouseInfoPanelResponse'
+components:
+  schemas:
+    BelowTheFoldResponse:
+      type: object
+      description: Response containing detailed MLS data and extended property information.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload containing MLS and extended property data.
+          properties:
+            propertyHistoryInfo:
+              type: object
+              description: Property history events including sales, price changes, and listing status changes. May not always be available.
+              properties:
+                events:
+                  type: array
+                  description: List of historical property events.
+                  items:
+                    $ref: '#/components/schemas/PropertyHistoryEvent'
+            publicRecordsInfo:
+              type: object
+              description: Public records data for the property.
+            schoolsInfo:
+              type: object
+              description: Nearby schools information.
+            similarHomesInfo:
+              type: object
+              description: Similar properties in the area.
+    PropertyHistoryEvent:
+      type: object
+      description: A historical event in a property's listing or sale history.
+      properties:
+        eventDate:
+          type: string
+          description: Date of the event.
+        eventType:
+          type: string
+          description: Type of event (e.g., Listed, Sold, PriceChange).
+        price:
+          type: number
+          description: Price associated with the event.
+        source:
+          type: string
+          description: Data source for the event record.
+    Address:
+      type: object
+      description: Property address information.
+      properties:
+        streetAddress:
+          type: string
+          description: Street address of the property.
+        city:
+          type: string
+          description: City name.
+        state:
+          type: string
+          description: Two-letter state abbreviation.
+        zip:
+          type: string
+          description: ZIP code.
+    InitialInfoResponse:
+      type: object
+      description: Response from the initial info endpoint providing property identifiers.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload containing property identifiers.
+          properties:
+            propertyId:
+              type: integer
+              description: Unique Redfin property identifier.
+            listingId:
+              type: integer
+              description: Unique Redfin listing identifier.
+    AboveTheFoldResponse:
+      type: object
+      description: Response containing primary property details shown above the fold.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload containing property details.
+          properties:
+            addressInfo:
+              $ref: '#/components/schemas/Address'
+            price:
+              type: number
+              description: Current listing or sale price.
+            listingStatus:
+              type: string
+              description: Current listing status.
+            beds:
+              type: integer
+              description: Number of bedrooms.
+            baths:
+              type: number
+              description: Number of bathrooms.
+            sqFt:
+              type: integer
+              description: Approximate living area in square feet.
+    MainHouseInfoPanelResponse:
+      type: object
+      description: Response containing main house info panel data.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload with structured property attributes.
+  parameters:
+    listingId:
+      name: listingId
+      in: query
+      description: The unique Redfin listing identifier.
+      schema:
+        type: integer
+    propertyId:
+      name: propertyId
+      in: query
+      required: true
+      description: The unique Redfin property identifier.
+      schema:
+        type: integer
+    accessLevel:
+      name: accessLevel
+      in: query
+      description: The access level for the request, controlling the detail of data returned. Common value is 1.
+      schema:
+        type: integer
+        default: 1
+externalDocs:
+  description: Redfin Data Center Documentation
+  url: https://www.redfin.com/news/data-center/
