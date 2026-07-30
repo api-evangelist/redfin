@@ -17,80 +17,256 @@ tags:
 - Property Data
 - Real Estate
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/redfin.png
 access: 3rd-Party
 created: '2026-03-20'
 modified: '2026-05-19'
 position: Consumer
 specificationVersion: '0.19'
 apis:
-- aid: redfin:redfin-stingray-api
-  name: Redfin Stingray API
-  description: The Redfin Stingray API is the internal REST API powering the Redfin
-    website and mobile applications. It provides endpoints for property search, listing
-    details, home value estimates (Redfin Estimate), neighborhood statistics, commute
-    information, and GIS-based map data. Accessible at redfin.com/stingray endpoints
-    and reverse-engineered by the developer community.
+- aid: redfin:redfin-csv-export-api
+  name: Redfin CSV Export API
+  description: Endpoints for exporting property search results in CSV format.
   humanURL: https://www.redfin.com
   tags:
-  - GIS
-  - Home Values
-  - Listings
-  - Property Data
-  - Property Search
-  - Real Estate
+  - CSV Export
   properties:
+  - type: OpenAPI
+    url: openapi/redfin-csv-export-api-openapi.yml
   - type: Documentation
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
-  - type: OpenAPI
-    url: openapi/redfin-stingray-api-openapi.yml
   - type: SpectralRules
     url: rules/redfin-rules.yml
   - type: X-NaftikoCapeability
     url: capabilities/shared/stingray-api.yaml
-  - url: graphql/redfin-graphql.md
-    type: GraphQL
-- aid: redfin:redfin-gis-csv-api
-  name: Redfin GIS CSV Export API
-  description: The Redfin GIS CSV Export API provides bulk property data downloads
-    in CSV format. Returns up to 350 property records per request including address,
-    price, beds, baths, square footage, lot size, year built, days on market, property
-    type, and listing status.
-  humanURL: https://www.redfin.com
-  tags:
-  - Bulk Data
-  - CSV
-  - Export
-  - GIS
-  - Property Data
-  - Real Estate
-  properties:
-  - type: Documentation
-    url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
-  - type: OpenAPI
-    url: openapi/redfin-gis-csv-api-openapi.yml
-- aid: redfin:redfin-data-center
-  name: Redfin Data Center
-  description: The Redfin Data Center provides downloadable housing market data for
-    metropolitan areas, cities, neighborhoods, and ZIP codes across the United States.
-    Data is available at national, metro, state, county, city, ZIP code, and neighborhood
-    levels. Datasets cover median sale prices, homes sold, new listings, days on market,
-    inventory, and price drops. Files are served as compressed TSV from Amazon S3.
-  humanURL: https://www.redfin.com/news/data-center/
-  tags:
-  - Analytics
-  - CSV
-  - Housing Market
-  - Market Data
-  - Real Estate
-  - Statistics
-  properties:
+  - type: GraphQL
+    url: graphql/redfin-graphql.md
   - type: Documentation
     url: https://www.redfin.com/news/data-center/
   - type: Documentation
     url: https://support.redfin.com/hc/en-us/articles/360016476931-Downloading-Data
+  - type: JSONSchema
+    url: json-schema/redfin-market-tracker-schema.json
+  - type: JSONSchema
+    url: json-schema/redfin-property-schema.json
+  - type: JSONLD
+    url: json-ld/redfin-context.jsonld
+  - type: JSONStructure
+    url: json-structure/redfin-property-structure.json
+  - type: JSONStructure
+    url: json-structure/redfin-market-tracker-structure.json
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/data-center.yaml
+  - type: Vocabulary
+    url: vocabulary/redfin-vocabulary.yml
+- aid: redfin:redfin-market-tracker-api
+  name: Redfin Market Tracker API
+  description: Downloadable housing market tracker datasets segmented by region level.
+  humanURL: https://www.redfin.com
+  tags:
+  - Market Tracker
+  properties:
   - type: OpenAPI
-    url: openapi/redfin-data-center-openapi.yml
+    url: openapi/redfin-market-tracker-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
+  - type: SpectralRules
+    url: rules/redfin-rules.yml
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/stingray-api.yaml
+  - type: GraphQL
+    url: graphql/redfin-graphql.md
+  - type: Documentation
+    url: https://www.redfin.com/news/data-center/
+  - type: Documentation
+    url: https://support.redfin.com/hc/en-us/articles/360016476931-Downloading-Data
+  - type: JSONSchema
+    url: json-schema/redfin-market-tracker-schema.json
+  - type: JSONSchema
+    url: json-schema/redfin-property-schema.json
+  - type: JSONLD
+    url: json-ld/redfin-context.jsonld
+  - type: JSONStructure
+    url: json-structure/redfin-property-structure.json
+  - type: JSONStructure
+    url: json-structure/redfin-market-tracker-structure.json
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/data-center.yaml
+  - type: Vocabulary
+    url: vocabulary/redfin-vocabulary.yml
+- aid: redfin:redfin-market-trends-api
+  name: Redfin Market Trends API
+  description: Endpoints for regional aggregate and historical market trends.
+  humanURL: https://www.redfin.com
+  tags:
+  - Market Trends
+  properties:
+  - type: OpenAPI
+    url: openapi/redfin-market-trends-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
+  - type: SpectralRules
+    url: rules/redfin-rules.yml
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/stingray-api.yaml
+  - type: GraphQL
+    url: graphql/redfin-graphql.md
+  - type: Documentation
+    url: https://www.redfin.com/news/data-center/
+  - type: Documentation
+    url: https://support.redfin.com/hc/en-us/articles/360016476931-Downloading-Data
+  - type: JSONSchema
+    url: json-schema/redfin-market-tracker-schema.json
+  - type: JSONSchema
+    url: json-schema/redfin-property-schema.json
+  - type: JSONLD
+    url: json-ld/redfin-context.jsonld
+  - type: JSONStructure
+    url: json-structure/redfin-property-structure.json
+  - type: JSONStructure
+    url: json-structure/redfin-market-tracker-structure.json
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/data-center.yaml
+  - type: Vocabulary
+    url: vocabulary/redfin-vocabulary.yml
+- aid: redfin:redfin-neighborhood-api
+  name: Redfin Neighborhood API
+  description: Endpoints for neighborhood statistics, commute data, and area info.
+  humanURL: https://www.redfin.com
+  tags:
+  - Neighborhood
+  properties:
+  - type: OpenAPI
+    url: openapi/redfin-neighborhood-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
+  - type: SpectralRules
+    url: rules/redfin-rules.yml
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/stingray-api.yaml
+  - type: GraphQL
+    url: graphql/redfin-graphql.md
+  - type: Documentation
+    url: https://www.redfin.com/news/data-center/
+  - type: Documentation
+    url: https://support.redfin.com/hc/en-us/articles/360016476931-Downloading-Data
+  - type: JSONSchema
+    url: json-schema/redfin-market-tracker-schema.json
+  - type: JSONSchema
+    url: json-schema/redfin-property-schema.json
+  - type: JSONLD
+    url: json-ld/redfin-context.jsonld
+  - type: JSONStructure
+    url: json-structure/redfin-property-structure.json
+  - type: JSONStructure
+    url: json-structure/redfin-market-tracker-structure.json
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/data-center.yaml
+  - type: Vocabulary
+    url: vocabulary/redfin-vocabulary.yml
+- aid: redfin:redfin-property-details-api
+  name: Redfin Property Details API
+  description: Endpoints for retrieving detailed information about a specific property.
+  humanURL: https://www.redfin.com
+  tags:
+  - Property Details
+  properties:
+  - type: OpenAPI
+    url: openapi/redfin-property-details-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
+  - type: SpectralRules
+    url: rules/redfin-rules.yml
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/stingray-api.yaml
+  - type: GraphQL
+    url: graphql/redfin-graphql.md
+  - type: Documentation
+    url: https://www.redfin.com/news/data-center/
+  - type: Documentation
+    url: https://support.redfin.com/hc/en-us/articles/360016476931-Downloading-Data
+  - type: JSONSchema
+    url: json-schema/redfin-market-tracker-schema.json
+  - type: JSONSchema
+    url: json-schema/redfin-property-schema.json
+  - type: JSONLD
+    url: json-ld/redfin-context.jsonld
+  - type: JSONStructure
+    url: json-structure/redfin-property-structure.json
+  - type: JSONStructure
+    url: json-structure/redfin-market-tracker-structure.json
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/data-center.yaml
+  - type: Vocabulary
+    url: vocabulary/redfin-vocabulary.yml
+- aid: redfin:redfin-search-api
+  name: Redfin Search API
+  description: Endpoints for searching properties by location, region, and filters.
+  humanURL: https://www.redfin.com
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/redfin-search-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
+  - type: SpectralRules
+    url: rules/redfin-rules.yml
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/stingray-api.yaml
+  - type: GraphQL
+    url: graphql/redfin-graphql.md
+  - type: Documentation
+    url: https://www.redfin.com/news/data-center/
+  - type: Documentation
+    url: https://support.redfin.com/hc/en-us/articles/360016476931-Downloading-Data
+  - type: JSONSchema
+    url: json-schema/redfin-market-tracker-schema.json
+  - type: JSONSchema
+    url: json-schema/redfin-property-schema.json
+  - type: JSONLD
+    url: json-ld/redfin-context.jsonld
+  - type: JSONStructure
+    url: json-structure/redfin-property-structure.json
+  - type: JSONStructure
+    url: json-structure/redfin-market-tracker-structure.json
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/data-center.yaml
+  - type: Vocabulary
+    url: vocabulary/redfin-vocabulary.yml
+- aid: redfin:redfin-valuation-api
+  name: Redfin Valuation API
+  description: Endpoints for automated valuation model (AVM) data and estimates.
+  humanURL: https://www.redfin.com
+  tags:
+  - Valuation
+  properties:
+  - type: OpenAPI
+    url: openapi/redfin-valuation-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
+  - type: SpectralRules
+    url: rules/redfin-rules.yml
+  - type: X-NaftikoCapeability
+    url: capabilities/shared/stingray-api.yaml
+  - type: GraphQL
+    url: graphql/redfin-graphql.md
+  - type: Documentation
+    url: https://www.redfin.com/news/data-center/
+  - type: Documentation
+    url: https://support.redfin.com/hc/en-us/articles/360016476931-Downloading-Data
   - type: JSONSchema
     url: json-schema/redfin-market-tracker-schema.json
   - type: JSONSchema
