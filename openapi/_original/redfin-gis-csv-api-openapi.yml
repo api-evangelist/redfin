@@ -1,0 +1,209 @@
+openapi: 3.1.0
+info:
+  title: Redfin GIS CSV Export API
+  description: >-
+    The Redfin GIS CSV Export API provides bulk property data downloads in
+    CSV format. This endpoint returns up to 350 property records per
+    request in tabular format, making it suitable for data analysis and
+    spreadsheet workflows. It accepts parameters for market selection,
+    price ranges, bedroom and bathroom counts, region identifiers, and
+    property status filters. The CSV output includes fields such as
+    address, list price, property type, square footage, lot size, and
+    listing status, enabling developers and analysts to aggregate
+    property data for research and comparison purposes.
+  version: '1.0.0'
+  contact:
+    name: Redfin
+    url: https://www.redfin.com
+  termsOfService: https://www.redfin.com/about/terms-of-use
+externalDocs:
+  description: Reverse-Engineered API Documentation
+  url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
+servers:
+  - url: https://www.redfin.com/stingray
+    description: Redfin Stingray Production Server
+tags:
+  - name: CSV Export
+    description: >-
+      Endpoints for exporting property search results in CSV format.
+paths:
+  /api/gis-csv:
+    get:
+      operationId: exportGisCsv
+      summary: Export property search results as CSV
+      description: >-
+        Exports property search results in CSV format based on the specified
+        region, property type, status, and filter parameters. Returns up to
+        350 property records per request. The CSV output includes columns
+        for address, city, state, ZIP code, list price, beds, baths, square
+        footage, lot size, year built, days on market, property type, listing
+        status, and other property attributes. This endpoint corresponds to
+        the Download All link on Redfin search result pages.
+      tags:
+        - CSV Export
+      parameters:
+        - name: region_id
+          in: query
+          description: >-
+            The unique identifier for a Redfin region.
+          schema:
+            type: integer
+        - name: region_type
+          in: query
+          description: >-
+            The type of region to search. Values include 1 (neighborhood),
+            2 (ZIP code), 5 (county), 6 (city).
+          schema:
+            type: integer
+            enum:
+              - 1
+              - 2
+              - 5
+              - 6
+        - name: uipt
+          in: query
+          description: >-
+            Property type filter. Values include 1 (house), 2 (condo),
+            3 (townhouse), 4 (multi-family), 5 (land), 6 (other).
+            Multiple values can be comma-separated.
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: >-
+            Listing status filter. Values include 1 (active), 130 (pending),
+            131 (active and pending).
+          schema:
+            type: integer
+            enum:
+              - 1
+              - 130
+              - 131
+        - name: min_price
+          in: query
+          description: >-
+            Minimum listing price filter in USD.
+          schema:
+            type: integer
+        - name: max_price
+          in: query
+          description: >-
+            Maximum listing price filter in USD.
+          schema:
+            type: integer
+        - name: num_beds
+          in: query
+          description: >-
+            Minimum number of bedrooms filter.
+          schema:
+            type: integer
+        - name: max_num_beds
+          in: query
+          description: >-
+            Maximum number of bedrooms filter.
+          schema:
+            type: integer
+        - name: num_baths
+          in: query
+          description: >-
+            Minimum number of bathrooms filter.
+          schema:
+            type: integer
+        - name: max_num_baths
+          in: query
+          description: >-
+            Maximum number of bathrooms filter.
+          schema:
+            type: integer
+        - name: min_year_built
+          in: query
+          description: >-
+            Minimum year built filter.
+          schema:
+            type: integer
+        - name: max_year_built
+          in: query
+          description: >-
+            Maximum year built filter.
+          schema:
+            type: integer
+        - name: min_listing_approx_size
+          in: query
+          description: >-
+            Minimum approximate square footage filter.
+          schema:
+            type: integer
+        - name: max_listing_approx_size
+          in: query
+          description: >-
+            Maximum approximate square footage filter.
+          schema:
+            type: integer
+        - name: min_parcel_size
+          in: query
+          description: >-
+            Minimum lot/parcel size filter.
+          schema:
+            type: integer
+        - name: max_parcel_size
+          in: query
+          description: >-
+            Maximum lot/parcel size filter.
+          schema:
+            type: integer
+        - name: min_stories
+          in: query
+          description: >-
+            Minimum number of stories filter.
+          schema:
+            type: integer
+        - name: max_stories
+          in: query
+          description: >-
+            Maximum number of stories filter.
+          schema:
+            type: integer
+        - name: gar
+          in: query
+          description: >-
+            Garage availability filter.
+          schema:
+            type: boolean
+        - name: hoa
+          in: query
+          description: >-
+            HOA filter. Value of 0 means no HOA.
+          schema:
+            type: integer
+        - name: num_homes
+          in: query
+          description: >-
+            Maximum number of results to return per request. The API
+            caps at approximately 350 records.
+          schema:
+            type: integer
+            maximum: 350
+        - name: sf
+          in: query
+          description: >-
+            Listing type sub-filters for refining results.
+          schema:
+            type: string
+        - name: time_on_market_range
+          in: query
+          description: >-
+            Days on market range filter. Uses reverse range format.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: CSV file containing property search results
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: >-
+                  CSV-formatted property data with columns including
+                  address, city, state, ZIP, price, beds, baths, square
+                  footage, lot size, year built, days on market, property
+                  type, and listing status.

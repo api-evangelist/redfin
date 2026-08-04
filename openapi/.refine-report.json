@@ -1,0 +1,26 @@
+{
+  "provider": "redfin",
+  "sources": [
+    "redfin-csv-export-api-openapi.yml",
+    "redfin-market-tracker-api-openapi.yml",
+    "redfin-market-trends-api-openapi.yml",
+    "redfin-neighborhood-api-openapi.yml",
+    "redfin-property-details-api-openapi.yml",
+    "redfin-search-api-openapi.yml",
+    "redfin-valuation-api-openapi.yml"
+  ],
+  "outputs": [
+    "redfin-csv-export-api-openapi.yml",
+    "redfin-market-tracker-api-openapi.yml",
+    "redfin-market-trends-api-openapi.yml",
+    "redfin-neighborhood-api-openapi.yml",
+    "redfin-property-details-api-openapi.yml",
+    "redfin-search-api-openapi.yml",
+    "redfin-valuation-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
