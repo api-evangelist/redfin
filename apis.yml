@@ -49,8 +49,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/stingray-api.yaml
   - type: GraphQL
     url: graphql/redfin-graphql.md
   - type: Documentation
@@ -67,8 +65,6 @@ apis:
     url: json-structure/redfin-property-structure.json
   - type: JSONStructure
     url: json-structure/redfin-market-tracker-structure.json
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/data-center.yaml
   - type: Vocabulary
     url: vocabulary/redfin-vocabulary.yml
 - aid: redfin:redfin-market-tracker-api
@@ -84,8 +80,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/stingray-api.yaml
   - type: GraphQL
     url: graphql/redfin-graphql.md
   - type: Documentation
@@ -102,8 +96,6 @@ apis:
     url: json-structure/redfin-property-structure.json
   - type: JSONStructure
     url: json-structure/redfin-market-tracker-structure.json
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/data-center.yaml
   - type: Vocabulary
     url: vocabulary/redfin-vocabulary.yml
 - aid: redfin:redfin-market-trends-api
@@ -119,8 +111,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/stingray-api.yaml
   - type: GraphQL
     url: graphql/redfin-graphql.md
   - type: Documentation
@@ -137,8 +127,6 @@ apis:
     url: json-structure/redfin-property-structure.json
   - type: JSONStructure
     url: json-structure/redfin-market-tracker-structure.json
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/data-center.yaml
   - type: Vocabulary
     url: vocabulary/redfin-vocabulary.yml
 - aid: redfin:redfin-neighborhood-api
@@ -154,8 +142,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/stingray-api.yaml
   - type: GraphQL
     url: graphql/redfin-graphql.md
   - type: Documentation
@@ -172,8 +158,6 @@ apis:
     url: json-structure/redfin-property-structure.json
   - type: JSONStructure
     url: json-structure/redfin-market-tracker-structure.json
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/data-center.yaml
   - type: Vocabulary
     url: vocabulary/redfin-vocabulary.yml
 - aid: redfin:redfin-property-details-api
@@ -189,8 +173,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/stingray-api.yaml
   - type: GraphQL
     url: graphql/redfin-graphql.md
   - type: Documentation
@@ -207,8 +189,6 @@ apis:
     url: json-structure/redfin-property-structure.json
   - type: JSONStructure
     url: json-structure/redfin-market-tracker-structure.json
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/data-center.yaml
   - type: Vocabulary
     url: vocabulary/redfin-vocabulary.yml
 - aid: redfin:redfin-search-api
@@ -224,8 +204,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/stingray-api.yaml
   - type: GraphQL
     url: graphql/redfin-graphql.md
   - type: Documentation
@@ -242,8 +220,6 @@ apis:
     url: json-structure/redfin-property-structure.json
   - type: JSONStructure
     url: json-structure/redfin-market-tracker-structure.json
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/data-center.yaml
   - type: Vocabulary
     url: vocabulary/redfin-vocabulary.yml
 - aid: redfin:redfin-valuation-api
@@ -259,8 +235,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/stingray-api.yaml
   - type: GraphQL
     url: graphql/redfin-graphql.md
   - type: Documentation
@@ -277,8 +251,6 @@ apis:
     url: json-structure/redfin-property-structure.json
   - type: JSONStructure
     url: json-structure/redfin-market-tracker-structure.json
-  - type: X-NaftikoCapeability
-    url: capabilities/shared/data-center.yaml
   - type: Vocabulary
     url: vocabulary/redfin-vocabulary.yml
 common:
@@ -322,12 +294,6 @@ common:
 - name: Redfin GitHub
   url: https://github.com/redfin
   type: GitHubOrg
-- name: Redfin Capabilities - Property Research
-  url: capabilities/property-research.yaml
-  type: X-NaftikoCapeability
-- name: Redfin Capabilities - Market Analytics
-  url: capabilities/market-analytics.yaml
-  type: X-NaftikoCapeability
 - type: Integrations
   url: https://www.redfin.com/partners
 integrations:
