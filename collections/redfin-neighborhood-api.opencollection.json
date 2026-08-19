@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Redfin Data Center CSV Export Neighborhood API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Neighborhood",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get neighborhood statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/api/home/details/neighborhoodStats/statsInfo",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin listing identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              }
+            ]
+          },
+          "docs": "Retrieves statistical data about the neighborhood surrounding a property, including demographics, walkability, transit scores, school ratings, and nearby amenities information."
+        },
+        {
+          "info": {
+            "name": "Get commute information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/api/home/details/commute/commuteInfo",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              }
+            ]
+          },
+          "docs": "Retrieves commute time and transportation information for a property, including estimated drive, transit, bike, and walk times to common destinations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

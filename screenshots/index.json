@@ -1,0 +1,11 @@
+[
+  {
+    "repo": "redfin",
+    "captured_at": "2026-08-17T125152",
+    "source_url": "https://www.redfin.com",
+    "source_type": "Website",
+    "file": "redfin-2026-08-17T125152.png",
+    "bytes": 929164,
+    "capture": "playwright-local"
+  }
+]

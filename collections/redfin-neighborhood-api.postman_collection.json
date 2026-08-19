@@ -1,0 +1,242 @@
+{
+  "item": [
+    {
+      "id": "512a3c52-2912-42cb-bef6-a342fdd2bacd",
+      "name": "Neighborhood",
+      "description": {
+        "content": "Endpoints for neighborhood statistics, commute data, and area info.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c3a40e17-4a6b-4c68-ab12-a9f054a63e69",
+          "name": "Get neighborhood statistics",
+          "request": {
+            "name": "Get neighborhood statistics",
+            "description": {
+              "content": "Retrieves statistical data about the neighborhood surrounding a property, including demographics, walkability, transit scores, school ratings, and nearby amenities information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "neighborhoodStats",
+                "statsInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingId",
+                  "value": "<integer>",
+                  "description": "The unique Redfin listing identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6162b11e-3fca-488c-9ba8-fce99e34653b",
+              "name": "Neighborhood statistics data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "neighborhoodStats",
+                    "statsInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 6121,\n  \"payload\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "711470d3-aefe-4a80-b862-db86d0d10e5c",
+          "name": "Get commute information",
+          "request": {
+            "name": "Get commute information",
+            "description": {
+              "content": "Retrieves commute time and transportation information for a property, including estimated drive, transit, bike, and walk times to common destinations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "commute",
+                "commuteInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8c09400-08f5-4ac6-b035-f5c9e224ac61",
+              "name": "Commute information data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "commute",
+                    "commuteInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 2023,\n  \"payload\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://redfin-public-data.s3.us-west-2.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7b65055a-12b9-4568-bddb-15cf7c0156cf",
+    "name": "Redfin Data Center CSV Export Neighborhood API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.\n\nContact Support:\n Name: Redfin Economics Team",
+      "type": "text/plain"
+    }
+  }
+}

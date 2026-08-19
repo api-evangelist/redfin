@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Redfin Data Center CSV Export Valuation API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Valuation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get AVM historical valuation data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/api/home/details/avmHistoricalData",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of AVM data to retrieve, such as estimate type or valuation model variant."
+              }
+            ]
+          },
+          "docs": "Retrieves historical automated valuation model (AVM) data for a property, including Redfin Estimate history over time. Returns time-series data showing estimated property values at various points in history."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

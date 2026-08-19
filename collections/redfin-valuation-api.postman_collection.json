@@ -1,0 +1,140 @@
+{
+  "item": [
+    {
+      "id": "19340174-2fee-4519-a9a7-c742f7bf12b1",
+      "name": "Valuation",
+      "description": {
+        "content": "Endpoints for automated valuation model (AVM) data and estimates.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9e8fb5ec-e430-4617-9bf7-4c067bb95d95",
+          "name": "Get AVM historical valuation data",
+          "request": {
+            "name": "Get AVM historical valuation data",
+            "description": {
+              "content": "Retrieves historical automated valuation model (AVM) data for a property, including Redfin Estimate history over time. Returns time-series data showing estimated property values at various points in history.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "avmHistoricalData"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "The type of AVM data to retrieve, such as estimate type or valuation model variant."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a95db85-b806-4001-976f-d7dea69707b8",
+              "name": "Historical AVM valuation data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "avmHistoricalData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 9621,\n  \"payload\": {\n    \"dataPoints\": [\n      {\n        \"timestamp\": 2389,\n        \"value\": 7595.685348786342\n      },\n      {\n        \"timestamp\": 1940,\n        \"value\": 3111.219836678988\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://redfin-public-data.s3.us-west-2.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "750b61ff-bd2f-4375-84ae-3eb24b42dc97",
+    "name": "Redfin Data Center CSV Export Valuation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.\n\nContact Support:\n Name: Redfin Economics Team",
+      "type": "text/plain"
+    }
+  }
+}

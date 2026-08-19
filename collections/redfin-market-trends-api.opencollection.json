@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Redfin Data Center CSV Export Market Trends API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market Trends",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get regional market trends",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/api/region/:regionType/:regionId/:code/trends",
+            "params": [
+              {
+                "name": "regionType",
+                "value": "",
+                "type": "path",
+                "description": "The type of region (e.g., neighborhood, zipcode, city, county)."
+              },
+              {
+                "name": "regionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the region."
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "The region code."
+              }
+            ]
+          },
+          "docs": "Retrieves market trend data for a specific region, including median sale prices, homes sold, new listings, and days on market over time."
+        },
+        {
+          "info": {
+            "name": "Get aggregated regional market trends",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/api/region/:regionType/:regionId/:code/aggregate-trends",
+            "params": [
+              {
+                "name": "regionType",
+                "value": "",
+                "type": "path",
+                "description": "The type of region (e.g., neighborhood, zipcode, city, county)."
+              },
+              {
+                "name": "regionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the region."
+              },
+              {
+                "name": "code",
+                "value": "",
+                "type": "path",
+                "description": "The region code."
+              }
+            ]
+          },
+          "docs": "Retrieves aggregated market trend data for a specific region, providing summarized statistics and trend indicators over configurable time periods."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

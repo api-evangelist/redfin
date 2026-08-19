@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Redfin Data Center CSV Export Market Tracker API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Market Tracker",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download national market tracker data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/us_national_market_tracker.tsv000.gz"
+          },
+          "docs": "Downloads the national-level housing market tracker dataset in compressed TSV format. Contains aggregate housing metrics across the entire United States including median sale price, homes sold, new listings, days on market, inventory, and price drops."
+        },
+        {
+          "info": {
+            "name": "Download metro-level market tracker data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/redfin_metro_market_tracker.tsv000.gz"
+          },
+          "docs": "Downloads the metro-level housing market tracker dataset in compressed TSV format. Contains housing metrics segmented by metropolitan statistical areas across the United States."
+        },
+        {
+          "info": {
+            "name": "Download state-level market tracker data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/state_market_tracker.tsv000.gz"
+          },
+          "docs": "Downloads the state-level housing market tracker dataset in compressed TSV format. Contains housing metrics aggregated at the state level for all US states and territories."
+        },
+        {
+          "info": {
+            "name": "Download county-level market tracker data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/county_market_tracker.tsv000.gz"
+          },
+          "docs": "Downloads the county-level housing market tracker dataset in compressed TSV format. Contains housing metrics segmented by county across the United States."
+        },
+        {
+          "info": {
+            "name": "Download city-level market tracker data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/city_market_tracker.tsv000.gz"
+          },
+          "docs": "Downloads the city-level housing market tracker dataset in compressed TSV format. Contains housing metrics segmented by city across the United States."
+        },
+        {
+          "info": {
+            "name": "Download ZIP code-level market tracker data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/zip_code_market_tracker.tsv000.gz"
+          },
+          "docs": "Downloads the ZIP code-level housing market tracker dataset in compressed TSV format. Contains housing metrics segmented by ZIP code across the United States. This is the most granular widely available dataset."
+        },
+        {
+          "info": {
+            "name": "Download neighborhood-level market tracker data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/redfin_market_tracker/neighborhood_market_tracker.tsv000.gz"
+          },
+          "docs": "Downloads the neighborhood-level housing market tracker dataset in compressed TSV format. Contains housing metrics segmented by Redfin-defined neighborhood boundaries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

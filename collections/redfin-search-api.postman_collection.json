@@ -1,0 +1,500 @@
+{
+  "item": [
+    {
+      "id": "4b9b3ad6-e978-495c-aea8-731336094bfc",
+      "name": "Search",
+      "description": {
+        "content": "Endpoints for searching properties by location, region, and filters.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c25a40c-81e9-486a-9472-4edbfd553cba",
+          "name": "Search properties via GIS",
+          "request": {
+            "name": "Search properties via GIS",
+            "description": {
+              "content": "Performs a geographic information system search for properties within a specified region. Returns property listings matching the provided filters including price range, property type, bedroom and bathroom counts, and geographic boundaries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "do",
+                "gis-search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region_id",
+                  "value": "<integer>",
+                  "description": "The unique identifier for a Redfin region."
+                },
+                {
+                  "disabled": false,
+                  "key": "region_type",
+                  "value": "<integer>",
+                  "description": "The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city)."
+                },
+                {
+                  "disabled": false,
+                  "key": "uipt",
+                  "value": "<string>",
+                  "description": "Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<integer>",
+                  "description": "Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending)."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_price",
+                  "value": "<integer>",
+                  "description": "Minimum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_price",
+                  "value": "<integer>",
+                  "description": "Maximum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_beds",
+                  "value": "<integer>",
+                  "description": "Minimum number of bedrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_num_beds",
+                  "value": "<integer>",
+                  "description": "Maximum number of bedrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_baths",
+                  "value": "<integer>",
+                  "description": "Minimum number of bathrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_num_baths",
+                  "value": "<integer>",
+                  "description": "Maximum number of bathrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_year_built",
+                  "value": "<integer>",
+                  "description": "Minimum year built filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_year_built",
+                  "value": "<integer>",
+                  "description": "Maximum year built filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_listing_approx_size",
+                  "value": "<integer>",
+                  "description": "Minimum approximate square footage filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_listing_approx_size",
+                  "value": "<integer>",
+                  "description": "Maximum approximate square footage filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_parcel_size",
+                  "value": "<integer>",
+                  "description": "Minimum lot/parcel size filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_parcel_size",
+                  "value": "<integer>",
+                  "description": "Maximum lot/parcel size filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_homes",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_number",
+                  "value": "<integer>",
+                  "description": "Page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_poly",
+                  "value": "<string>",
+                  "description": "Custom polygon coordinates defining a geographic search boundary."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d04051a-6327-44b9-9726-548c828380b2",
+              "name": "Successful property search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "do",
+                    "gis-search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "region_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "uipt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_beds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_num_beds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_baths",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_num_baths",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_year_built",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_year_built",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_listing_approx_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_listing_approx_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_parcel_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_parcel_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_homes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "user_poly",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 1929,\n  \"errorMessage\": \"string\",\n  \"payload\": {\n    \"homes\": [\n      {\n        \"propertyId\": 6242,\n        \"listingId\": 4653,\n        \"mlsId\": \"string\",\n        \"price\": {\n          \"value\": 7015.920684030263\n        },\n        \"address\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"beds\": 7918,\n        \"baths\": 4393.684992324081,\n        \"sqFt\": {\n          \"value\": 8605\n        },\n        \"lotSize\": {\n          \"value\": 401\n        },\n        \"yearBuilt\": {\n          \"value\": 45\n        },\n        \"daysOnMarket\": 3796,\n        \"propertyType\": 2031,\n        \"listingType\": \"string\",\n        \"url\": \"string\",\n        \"latitude\": 8863.197374532667,\n        \"longitude\": 7540.464200921887\n      },\n      {\n        \"propertyId\": 4238,\n        \"listingId\": 2012,\n        \"mlsId\": \"string\",\n        \"price\": {\n          \"value\": 7831.5794057654475\n        },\n        \"address\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"beds\": 3766,\n        \"baths\": 9400.983834987579,\n        \"sqFt\": {\n          \"value\": 3235\n        },\n        \"lotSize\": {\n          \"value\": 6420\n        },\n        \"yearBuilt\": {\n          \"value\": 2069\n        },\n        \"daysOnMarket\": 1740,\n        \"propertyType\": 8145,\n        \"listingType\": \"string\",\n        \"url\": \"string\",\n        \"latitude\": 74.35988864867072,\n        \"longitude\": 7554.098950406985\n      }\n    ],\n    \"totalResultCount\": 706\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "491b6687-7669-4571-a36a-ec1ea2ff5900",
+          "name": "Search properties via GIS API",
+          "request": {
+            "name": "Search properties via GIS API",
+            "description": {
+              "content": "Alternative GIS-based property search endpoint. Returns property data in JSON format matching the specified region and filter criteria. Supports polygon-based geographic boundaries and all standard property filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "gis"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region_id",
+                  "value": "<integer>",
+                  "description": "The unique identifier for a Redfin region."
+                },
+                {
+                  "disabled": false,
+                  "key": "region_type",
+                  "value": "<integer>",
+                  "description": "The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city)."
+                },
+                {
+                  "disabled": false,
+                  "key": "uipt",
+                  "value": "<string>",
+                  "description": "Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<integer>",
+                  "description": "Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending)."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_price",
+                  "value": "<integer>",
+                  "description": "Minimum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_price",
+                  "value": "<integer>",
+                  "description": "Maximum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_beds",
+                  "value": "<integer>",
+                  "description": "Minimum number of bedrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_baths",
+                  "value": "<integer>",
+                  "description": "Minimum number of bathrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_homes",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per request."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_number",
+                  "value": "<integer>",
+                  "description": "Page number for paginated results."
+                },
+                {
+                  "disabled": false,
+                  "key": "al",
+                  "value": "<integer>",
+                  "description": "Access level for the request, controlling the detail of data returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "sp",
+                  "value": "<string>",
+                  "description": "Sort parameter controlling the ordering of search results."
+                },
+                {
+                  "disabled": false,
+                  "key": "v",
+                  "value": "<integer>",
+                  "description": "API version parameter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0e89daf-42a1-4d2e-83bc-4b83fca2ae25",
+              "name": "Successful property search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "gis"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "region_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "uipt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_beds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_baths",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_homes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_number",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "al",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "v",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 1929,\n  \"errorMessage\": \"string\",\n  \"payload\": {\n    \"homes\": [\n      {\n        \"propertyId\": 6242,\n        \"listingId\": 4653,\n        \"mlsId\": \"string\",\n        \"price\": {\n          \"value\": 7015.920684030263\n        },\n        \"address\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"beds\": 7918,\n        \"baths\": 4393.684992324081,\n        \"sqFt\": {\n          \"value\": 8605\n        },\n        \"lotSize\": {\n          \"value\": 401\n        },\n        \"yearBuilt\": {\n          \"value\": 45\n        },\n        \"daysOnMarket\": 3796,\n        \"propertyType\": 2031,\n        \"listingType\": \"string\",\n        \"url\": \"string\",\n        \"latitude\": 8863.197374532667,\n        \"longitude\": 7540.464200921887\n      },\n      {\n        \"propertyId\": 4238,\n        \"listingId\": 2012,\n        \"mlsId\": \"string\",\n        \"price\": {\n          \"value\": 7831.5794057654475\n        },\n        \"address\": {\n          \"streetAddress\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\"\n        },\n        \"beds\": 3766,\n        \"baths\": 9400.983834987579,\n        \"sqFt\": {\n          \"value\": 3235\n        },\n        \"lotSize\": {\n          \"value\": 6420\n        },\n        \"yearBuilt\": {\n          \"value\": 2069\n        },\n        \"daysOnMarket\": 1740,\n        \"propertyType\": 8145,\n        \"listingType\": \"string\",\n        \"url\": \"string\",\n        \"latitude\": 74.35988864867072,\n        \"longitude\": 7554.098950406985\n      }\n    ],\n    \"totalResultCount\": 706\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://redfin-public-data.s3.us-west-2.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c4cc8ca9-dd5e-4134-9307-d265d6b2721f",
+    "name": "Redfin Data Center CSV Export Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.\n\nContact Support:\n Name: Redfin Economics Team",
+      "type": "text/plain"
+    }
+  }
+}

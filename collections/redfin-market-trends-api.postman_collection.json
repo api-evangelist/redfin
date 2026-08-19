@@ -1,0 +1,280 @@
+{
+  "item": [
+    {
+      "id": "10b9f8de-699b-41c5-9d01-6056643ffbfa",
+      "name": "Market Trends",
+      "description": {
+        "content": "Endpoints for regional aggregate and historical market trends.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fe3f1d35-e328-466f-8d40-f1ee1e20a87a",
+          "name": "Get regional market trends",
+          "request": {
+            "name": "Get regional market trends",
+            "description": {
+              "content": "Retrieves market trend data for a specific region, including median sale prices, homes sold, new listings, and days on market over time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "region",
+                ":regionType",
+                ":regionId",
+                ":code",
+                "trends"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "regionType",
+                  "description": "(Required) The type of region (e.g., neighborhood, zipcode, city, county)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "regionId",
+                  "description": "(Required) The unique identifier for the region."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) The region code."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c887cb86-f467-4ea1-8e57-59cb274d4079",
+              "name": "Regional market trend data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "region",
+                    ":regionType",
+                    ":regionId",
+                    ":code",
+                    "trends"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "regionType",
+                      "description": "(Required) The type of region (e.g., neighborhood, zipcode, city, county)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "regionId",
+                      "description": "(Required) The unique identifier for the region."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) The region code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 7474,\n  \"payload\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59f3118d-d06d-4aab-bc35-6e21b3bc9732",
+          "name": "Get aggregated regional market trends",
+          "request": {
+            "name": "Get aggregated regional market trends",
+            "description": {
+              "content": "Retrieves aggregated market trend data for a specific region, providing summarized statistics and trend indicators over configurable time periods.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "region",
+                ":regionType",
+                ":regionId",
+                ":code",
+                "aggregate-trends"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "regionType",
+                  "description": "(Required) The type of region (e.g., neighborhood, zipcode, city, county)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "regionId",
+                  "description": "(Required) The unique identifier for the region."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) The region code."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0398b16-d6c9-45ec-9557-1bc0c1b8d3fc",
+              "name": "Aggregated regional market trend data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "region",
+                    ":regionType",
+                    ":regionId",
+                    ":code",
+                    "aggregate-trends"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "regionType",
+                      "description": "(Required) The type of region (e.g., neighborhood, zipcode, city, county)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "regionId",
+                      "description": "(Required) The unique identifier for the region."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) The region code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 5166,\n  \"payload\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://redfin-public-data.s3.us-west-2.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "280432ae-66d5-4e97-9e81-d0f14276646c",
+    "name": "Redfin Data Center CSV Export Market Trends API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.\n\nContact Support:\n Name: Redfin Economics Team",
+      "type": "text/plain"
+    }
+  }
+}

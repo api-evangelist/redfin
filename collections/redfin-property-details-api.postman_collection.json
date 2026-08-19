@@ -1,0 +1,444 @@
+{
+  "item": [
+    {
+      "id": "c3d5accf-ef3f-4f59-9c76-6c0c10c379e8",
+      "name": "Property Details",
+      "description": {
+        "content": "Endpoints for retrieving detailed information about a specific property.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d903b6b8-1201-4ccb-8115-bf098a3c7676",
+          "name": "Get initial property information",
+          "request": {
+            "name": "Get initial property information",
+            "description": {
+              "content": "Retrieves the initial information for a property, including the propertyId and listingId needed for subsequent detail requests. Takes a property URL path as input and returns identifiers and basic property metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "initialInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) The URL path of the property listing page on Redfin, such as /CA/San-Francisco/123-Main-St-94105/home/12345678."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a724688a-7b16-4951-8fde-11e5b26dd651",
+              "name": "Initial property information with identifiers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "initialInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 1637,\n  \"payload\": {\n    \"propertyId\": 6323,\n    \"listingId\": 261\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6c296722-1416-4fb6-9067-8c45e19e8454",
+          "name": "Get above-the-fold property details",
+          "request": {
+            "name": "Get above-the-fold property details",
+            "description": {
+              "content": "Retrieves the primary property details displayed above the fold on the listing page, including price, address, photos, key facts, and listing status information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "aboveTheFold"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingId",
+                  "value": "<integer>",
+                  "description": "The unique Redfin listing identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3977080b-9556-4b9a-b668-fcaacc5b396e",
+              "name": "Above-the-fold property details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "aboveTheFold"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 9871,\n  \"payload\": {\n    \"addressInfo\": {\n      \"streetAddress\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"zip\": \"string\"\n    },\n    \"price\": 630.2230246121321,\n    \"listingStatus\": \"string\",\n    \"beds\": 9747,\n    \"baths\": 4879.817458358916,\n    \"sqFt\": 2811\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27ffd169-a06b-4408-9912-90bf509f01bb",
+          "name": "Get below-the-fold property details",
+          "request": {
+            "name": "Get below-the-fold property details",
+            "description": {
+              "content": "Retrieves detailed MLS data for a property, including property history, tax information, schools, similar homes, and extended property characteristics. This endpoint provides the most comprehensive data for a single property listing. Note that propertyHistoryInfo may not always be available.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "belowTheFold"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingId",
+                  "value": "<integer>",
+                  "description": "The unique Redfin listing identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34679a39-7d7b-4dff-bfa1-ef4359c2e5aa",
+              "name": "Below-the-fold property details with MLS data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "belowTheFold"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 5116,\n  \"payload\": {\n    \"propertyHistoryInfo\": {\n      \"events\": [\n        {\n          \"eventDate\": \"string\",\n          \"eventType\": \"string\",\n          \"price\": 3882.3297322059725,\n          \"source\": \"string\"\n        },\n        {\n          \"eventDate\": \"string\",\n          \"eventType\": \"string\",\n          \"price\": 9708.950572490347,\n          \"source\": \"string\"\n        }\n      ]\n    },\n    \"publicRecordsInfo\": {},\n    \"schoolsInfo\": {},\n    \"similarHomesInfo\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "77bfd97b-f060-4b36-9d7f-895dd7da7f8a",
+          "name": "Get main house info panel data",
+          "request": {
+            "name": "Get main house info panel data",
+            "description": {
+              "content": "Retrieves the structured property information typically shown in the main info panel, including beds, baths, square footage, lot size, year built, property type, and other key property attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "home",
+                "details",
+                "mainHouseInfoPanelInfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "propertyId",
+                  "value": "<integer>",
+                  "description": "(Required) The unique Redfin property identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "listingId",
+                  "value": "<integer>",
+                  "description": "The unique Redfin listing identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "accessLevel",
+                  "value": "1",
+                  "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1e6242b4-4f0e-4f9a-9938-2025afa41f5a",
+              "name": "Main house information panel data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "home",
+                    "details",
+                    "mainHouseInfoPanelInfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "propertyId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "listingId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "accessLevel",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"resultCode\": 903,\n  \"payload\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://redfin-public-data.s3.us-west-2.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fcfd6196-0ac5-4c47-b06f-d5b2306beb28",
+    "name": "Redfin Data Center CSV Export Property Details API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.\n\nContact Support:\n Name: Redfin Economics Team",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Redfin Data Center CSV Export Property Details API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Property Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get initial property information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/api/home/details/initialInfo",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "The URL path of the property listing page on Redfin, such as /CA/San-Francisco/123-Main-St-94105/home/12345678."
+              }
+            ]
+          },
+          "docs": "Retrieves the initial information for a property, including the propertyId and listingId needed for subsequent detail requests. Takes a property URL path as input and returns identifiers and basic property metadata."
+        },
+        {
+          "info": {
+            "name": "Get above-the-fold property details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/api/home/details/aboveTheFold",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin listing identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              }
+            ]
+          },
+          "docs": "Retrieves the primary property details displayed above the fold on the listing page, including price, address, photos, key facts, and listing status information."
+        },
+        {
+          "info": {
+            "name": "Get below-the-fold property details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/api/home/details/belowTheFold",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin listing identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              }
+            ]
+          },
+          "docs": "Retrieves detailed MLS data for a property, including property history, tax information, schools, similar homes, and extended property characteristics. This endpoint provides the most comprehensive data for a single property listing. Note that propertyHistoryInfo may not always be available."
+        },
+        {
+          "info": {
+            "name": "Get main house info panel data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://redfin-public-data.s3.us-west-2.amazonaws.com/api/home/details/mainHouseInfoPanelInfo",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin property identifier."
+              },
+              {
+                "name": "listingId",
+                "value": "",
+                "type": "query",
+                "description": "The unique Redfin listing identifier."
+              },
+              {
+                "name": "accessLevel",
+                "value": "",
+                "type": "query",
+                "description": "The access level for the request, controlling the detail of data returned. Common value is 1."
+              }
+            ]
+          },
+          "docs": "Retrieves the structured property information typically shown in the main info panel, including beds, baths, square footage, lot size, year built, property type, and other key property attributes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

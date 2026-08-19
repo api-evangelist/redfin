@@ -1,0 +1,336 @@
+{
+  "item": [
+    {
+      "id": "619e79e4-0ca0-4f1e-8a2c-4e6cce5d4c55",
+      "name": "CSV Export",
+      "description": {
+        "content": "Endpoints for exporting property search results in CSV format.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ceb0ab5a-8133-4e18-bb55-3526f60a90ac",
+          "name": "Export property search results as CSV",
+          "request": {
+            "name": "Export property search results as CSV",
+            "description": {
+              "content": "Exports property search results in CSV format based on the specified region, property type, status, and filter parameters. Returns up to 350 property records per request. The CSV output includes columns for address, city, state, ZIP code, list price, beds, baths, square footage, lot size, year built, days on market, property type, listing status, and other property attributes. This endpoint corresponds to the Download All link on Redfin search result pages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "gis-csv"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "region_id",
+                  "value": "<integer>",
+                  "description": "The unique identifier for a Redfin region."
+                },
+                {
+                  "disabled": false,
+                  "key": "region_type",
+                  "value": "<integer>",
+                  "description": "The type of region to search. Values include 1 (neighborhood), 2 (ZIP code), 5 (county), 6 (city)."
+                },
+                {
+                  "disabled": false,
+                  "key": "uipt",
+                  "value": "<string>",
+                  "description": "Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<integer>",
+                  "description": "Listing status filter. Values include 1 (active), 130 (pending), 131 (active and pending)."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_price",
+                  "value": "<integer>",
+                  "description": "Minimum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_price",
+                  "value": "<integer>",
+                  "description": "Maximum listing price filter in USD."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_beds",
+                  "value": "<integer>",
+                  "description": "Minimum number of bedrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_num_beds",
+                  "value": "<integer>",
+                  "description": "Maximum number of bedrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_baths",
+                  "value": "<integer>",
+                  "description": "Minimum number of bathrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_num_baths",
+                  "value": "<integer>",
+                  "description": "Maximum number of bathrooms filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_year_built",
+                  "value": "<integer>",
+                  "description": "Minimum year built filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_year_built",
+                  "value": "<integer>",
+                  "description": "Maximum year built filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_listing_approx_size",
+                  "value": "<integer>",
+                  "description": "Minimum approximate square footage filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_listing_approx_size",
+                  "value": "<integer>",
+                  "description": "Maximum approximate square footage filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_parcel_size",
+                  "value": "<integer>",
+                  "description": "Minimum lot/parcel size filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_parcel_size",
+                  "value": "<integer>",
+                  "description": "Maximum lot/parcel size filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "min_stories",
+                  "value": "<integer>",
+                  "description": "Minimum number of stories filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "max_stories",
+                  "value": "<integer>",
+                  "description": "Maximum number of stories filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "gar",
+                  "value": "<boolean>",
+                  "description": "Garage availability filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "hoa",
+                  "value": "<integer>",
+                  "description": "HOA filter. Value of 0 means no HOA."
+                },
+                {
+                  "disabled": false,
+                  "key": "num_homes",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per request. The API caps at approximately 350 records."
+                },
+                {
+                  "disabled": false,
+                  "key": "sf",
+                  "value": "<string>",
+                  "description": "Listing type sub-filters for refining results."
+                },
+                {
+                  "disabled": false,
+                  "key": "time_on_market_range",
+                  "value": "<string>",
+                  "description": "Days on market range filter. Uses reverse range format."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2bc7d46-fe1c-477b-9e7d-816ea7dbc538",
+              "name": "CSV file containing property search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "gis-csv"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "region_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "region_type",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "uipt",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_price",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_beds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_num_beds",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_baths",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_num_baths",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_year_built",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_year_built",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_listing_approx_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_listing_approx_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_parcel_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_parcel_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "min_stories",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "max_stories",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "gar",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "hoa",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "num_homes",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sf",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_on_market_range",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://redfin-public-data.s3.us-west-2.amazonaws.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e7494e4f-df61-4e70-9efa-1d1f7d54c902",
+    "name": "Redfin Data Center CSV Export API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.\n\nContact Support:\n Name: Redfin Economics Team",
+      "type": "text/plain"
+    }
+  }
+}
