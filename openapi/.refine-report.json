@@ -1,17 +1,13 @@
 {
   "provider": "redfin",
   "sources": [
-    "redfin-csv-export-api-openapi.yml",
-    "redfin-market-tracker-api-openapi.yml",
-    "redfin-market-trends-api-openapi.yml",
-    "redfin-neighborhood-api-openapi.yml",
-    "redfin-property-details-api-openapi.yml",
-    "redfin-search-api-openapi.yml",
-    "redfin-valuation-api-openapi.yml"
+    "_original/redfin-data-center-openapi.yml",
+    "_original/redfin-gis-csv-api-openapi.yml",
+    "_original/redfin-stingray-api-openapi.yml"
   ],
   "outputs": [
-    "redfin-csv-export-api-openapi.yml",
     "redfin-market-tracker-api-openapi.yml",
+    "redfin-csv-export-api-openapi.yml",
     "redfin-market-trends-api-openapi.yml",
     "redfin-neighborhood-api-openapi.yml",
     "redfin-property-details-api-openapi.yml",
@@ -21,6 +17,19 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "redfin-data-center-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "redfin-gis-csv-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "redfin-stingray-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "redfin-csv-export-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "redfin-market-tracker-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "redfin-market-trends-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "redfin-neighborhood-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "redfin-property-details-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "redfin-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "redfin-valuation-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

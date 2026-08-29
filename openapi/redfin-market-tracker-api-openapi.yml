@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Redfin Data Center CSV Export Market Tracker API
+  title: Redfin Data Center Market Tracker API
   description: The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and zip codes across the United States. Data is available at national, metro, state, county, city, zip code, and neighborhood levels. Weekly data is updated every Wednesday with new data for the prior week, computed as rolling 1, 4, or 12-week windows. Monthly data is released during the Friday of the third full week of each month. Datasets cover median sale prices, homes sold, new listings, days on market, inventory levels, and price drops. Data is provided in compressed TSV format hosted on Amazon S3.
   version: 1.0.0
   contact:
