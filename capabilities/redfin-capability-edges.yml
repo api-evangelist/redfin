@@ -1,0 +1,26 @@
+slug: redfin
+provider: Redfin
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Real Estate
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Valuation
+  spec_file: redfin-valuation-api-openapi.yml
+  capability_id: BC-4970
+  capability_id_l1: BC-4970
+  capability_name: Real Estate Valuation & Appraisal Management
+  confidence: 0.75
+  evidence: GET /api/home/details/avmHistoricalData getAvmHistoricalData "Get AVM historical valuation
+    data"; AvmHistoricalDataResponse
+  reason: An automated valuation model history for a property is real-estate valuation output (Redfin
+    Estimates). L2 withheld since the single operation only returns historical AVM series, not a specific
+    appraisal process step.

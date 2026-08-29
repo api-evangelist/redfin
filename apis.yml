@@ -274,6 +274,9 @@ apis:
   - type: Vocabulary
     url: vocabulary/redfin-vocabulary.yml
 common:
+- type: CapabilityMap
+  url: capabilities/redfin-capability-edges.yml
+  name: Redfin Business Capability Map
 - type: AgenticAccess
   url: agentic-access/redfin-agentic-access.yml
 - type: DomainSecurity
