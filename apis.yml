@@ -53,7 +53,7 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/redfin.png
 access: 3rd-Party
 created: '2026-03-20'
 modified: '2026-05-19'
-position: Consumer
+position: Consuming
 specificationVersion: '0.23'
 apis:
 - aid: redfin:redfin-csv-export-api
