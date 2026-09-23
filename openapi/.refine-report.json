@@ -21,7 +21,8 @@
     "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "redfin-data-center-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "redfin-gis-csv-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "redfin-stingray-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "redfin-stingray-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "redfin-csv-export-api-openapi.yml: previously refined output, superseded by openapi/_original/",

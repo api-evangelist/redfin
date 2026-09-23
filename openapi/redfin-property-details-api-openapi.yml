@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Redfin Stingray Property Details API
-  description: The Redfin Stingray API is the internal REST API that powers the Redfin website and mobile applications. It provides endpoints for property search, listing details, home value estimates (Redfin Estimates), neighborhood statistics, commute information, and GIS-based map data. The API supports searching by region, price range, property type, and various filters, returning structured JSON responses with property details including address, price, beds, baths, square footage, lot size, and days on market. While not officially documented by Redfin, this API has been reverse-engineered by the developer community and is accessible at redfin.com/stingray endpoints.
+  description: The Redfin Stingray API is the internal REST API that powers the Redfin website and mobile applications.
   version: 1.0.0
   contact:
     name: Redfin
@@ -91,6 +91,51 @@ paths:
                 $ref: '#/components/schemas/MainHouseInfoPanelResponse'
 components:
   schemas:
+    AboveTheFoldResponse:
+      type: object
+      description: Response containing primary property details shown above the fold.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload containing property details.
+          properties:
+            addressInfo:
+              $ref: '#/components/schemas/Address'
+            price:
+              type: number
+              description: Current listing or sale price.
+            listingStatus:
+              type: string
+              description: Current listing status.
+            beds:
+              type: integer
+              description: Number of bedrooms.
+            baths:
+              type: number
+              description: Number of bathrooms.
+            sqFt:
+              type: integer
+              description: Approximate living area in square feet.
+    InitialInfoResponse:
+      type: object
+      description: Response from the initial info endpoint providing property identifiers.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload containing property identifiers.
+          properties:
+            propertyId:
+              type: integer
+              description: Unique Redfin property identifier.
+            listingId:
+              type: integer
+              description: Unique Redfin listing identifier.
     Address:
       type: object
       description: Property address information.
@@ -107,6 +152,32 @@ components:
         zip:
           type: string
           description: ZIP code.
+    PropertyHistoryEvent:
+      type: object
+      description: A historical event in a property's listing or sale history.
+      properties:
+        eventDate:
+          type: string
+          description: Date of the event.
+        eventType:
+          type: string
+          description: Type of event (e.g., Listed, Sold, PriceChange).
+        price:
+          type: number
+          description: Price associated with the event.
+        source:
+          type: string
+          description: Data source for the event record.
+    MainHouseInfoPanelResponse:
+      type: object
+      description: Response containing main house info panel data.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload with structured property attributes.
     BelowTheFoldResponse:
       type: object
       description: Response containing detailed MLS data and extended property information.
@@ -136,77 +207,6 @@ components:
             similarHomesInfo:
               type: object
               description: Similar properties in the area.
-    MainHouseInfoPanelResponse:
-      type: object
-      description: Response containing main house info panel data.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload with structured property attributes.
-    InitialInfoResponse:
-      type: object
-      description: Response from the initial info endpoint providing property identifiers.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload containing property identifiers.
-          properties:
-            propertyId:
-              type: integer
-              description: Unique Redfin property identifier.
-            listingId:
-              type: integer
-              description: Unique Redfin listing identifier.
-    AboveTheFoldResponse:
-      type: object
-      description: Response containing primary property details shown above the fold.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload containing property details.
-          properties:
-            addressInfo:
-              $ref: '#/components/schemas/Address'
-            price:
-              type: number
-              description: Current listing or sale price.
-            listingStatus:
-              type: string
-              description: Current listing status.
-            beds:
-              type: integer
-              description: Number of bedrooms.
-            baths:
-              type: number
-              description: Number of bathrooms.
-            sqFt:
-              type: integer
-              description: Approximate living area in square feet.
-    PropertyHistoryEvent:
-      type: object
-      description: A historical event in a property's listing or sale history.
-      properties:
-        eventDate:
-          type: string
-          description: Date of the event.
-        eventType:
-          type: string
-          description: Type of event (e.g., Listed, Sold, PriceChange).
-        price:
-          type: number
-          description: Price associated with the event.
-        source:
-          type: string
-          description: Data source for the event record.
   parameters:
     accessLevel:
       name: accessLevel

@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Redfin Stingray Valuation API
-  description: The Redfin Stingray API is the internal REST API that powers the Redfin website and mobile applications. It provides endpoints for property search, listing details, home value estimates (Redfin Estimates), neighborhood statistics, commute information, and GIS-based map data. The API supports searching by region, price range, property type, and various filters, returning structured JSON responses with property details including address, price, beds, baths, square footage, lot size, and days on market. While not officially documented by Redfin, this API has been reverse-engineered by the developer community and is accessible at redfin.com/stingray endpoints.
+  description: The Redfin Stingray API is the internal REST API that powers the Redfin website and mobile applications.
   version: 1.0.0
   contact:
     name: Redfin

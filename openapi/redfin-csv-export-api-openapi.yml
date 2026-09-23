@@ -1,7 +1,7 @@
 openapi: 3.2.0
 info:
   title: Redfin GIS CSV Export API
-  description: The Redfin GIS CSV Export API provides bulk property data downloads in CSV format. This endpoint returns up to 350 property records per request in tabular format, making it suitable for data analysis and spreadsheet workflows. It accepts parameters for market selection, price ranges, bedroom and bathroom counts, region identifiers, and property status filters. The CSV output includes fields such as address, list price, property type, square footage, lot size, and listing status, enabling developers and analysts to aggregate property data for research and comparison purposes.
+  description: The Redfin GIS CSV Export API provides bulk property data downloads in CSV format.
   version: 1.0.0
   contact:
     name: Redfin
