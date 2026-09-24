@@ -15,7 +15,7 @@ tags:
 - Housing Market
 - Listings
 - Property Data
-- Real-Estate
+- Real Estate
 tags_raw:
 - CSV Export
 - GIS
@@ -24,6 +24,7 @@ tags_raw:
 - Listings
 - Property Data
 - Real Estate
+- Real-Estate
 type: Index
 deliveryModel:
   model: saas
@@ -69,8 +70,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: GraphQL
-    url: graphql/redfin-graphql.md
   - type: Documentation
     url: https://www.redfin.com/news/data-center/
   - type: Documentation
@@ -100,8 +99,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: GraphQL
-    url: graphql/redfin-graphql.md
   - type: Documentation
     url: https://www.redfin.com/news/data-center/
   - type: Documentation
@@ -131,8 +128,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: GraphQL
-    url: graphql/redfin-graphql.md
   - type: Documentation
     url: https://www.redfin.com/news/data-center/
   - type: Documentation
@@ -162,8 +157,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: GraphQL
-    url: graphql/redfin-graphql.md
   - type: Documentation
     url: https://www.redfin.com/news/data-center/
   - type: Documentation
@@ -193,8 +186,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: GraphQL
-    url: graphql/redfin-graphql.md
   - type: Documentation
     url: https://www.redfin.com/news/data-center/
   - type: Documentation
@@ -224,8 +215,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: GraphQL
-    url: graphql/redfin-graphql.md
   - type: Documentation
     url: https://www.redfin.com/news/data-center/
   - type: Documentation
@@ -255,8 +244,6 @@ apis:
     url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
   - type: SpectralRules
     url: rules/redfin-rules.yml
-  - type: GraphQL
-    url: graphql/redfin-graphql.md
   - type: Documentation
     url: https://www.redfin.com/news/data-center/
   - type: Documentation
