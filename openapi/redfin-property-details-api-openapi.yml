@@ -90,94 +90,28 @@ paths:
               schema:
                 $ref: '#/components/schemas/MainHouseInfoPanelResponse'
 components:
+  parameters:
+    propertyId:
+      name: propertyId
+      in: query
+      required: true
+      description: The unique Redfin property identifier.
+      schema:
+        type: integer
+    listingId:
+      name: listingId
+      in: query
+      description: The unique Redfin listing identifier.
+      schema:
+        type: integer
+    accessLevel:
+      name: accessLevel
+      in: query
+      description: The access level for the request, controlling the detail of data returned. Common value is 1.
+      schema:
+        type: integer
+        default: 1
   schemas:
-    AboveTheFoldResponse:
-      type: object
-      description: Response containing primary property details shown above the fold.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload containing property details.
-          properties:
-            addressInfo:
-              $ref: '#/components/schemas/Address'
-            price:
-              type: number
-              description: Current listing or sale price.
-            listingStatus:
-              type: string
-              description: Current listing status.
-            beds:
-              type: integer
-              description: Number of bedrooms.
-            baths:
-              type: number
-              description: Number of bathrooms.
-            sqFt:
-              type: integer
-              description: Approximate living area in square feet.
-    InitialInfoResponse:
-      type: object
-      description: Response from the initial info endpoint providing property identifiers.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload containing property identifiers.
-          properties:
-            propertyId:
-              type: integer
-              description: Unique Redfin property identifier.
-            listingId:
-              type: integer
-              description: Unique Redfin listing identifier.
-    Address:
-      type: object
-      description: Property address information.
-      properties:
-        streetAddress:
-          type: string
-          description: Street address of the property.
-        city:
-          type: string
-          description: City name.
-        state:
-          type: string
-          description: Two-letter state abbreviation.
-        zip:
-          type: string
-          description: ZIP code.
-    PropertyHistoryEvent:
-      type: object
-      description: A historical event in a property's listing or sale history.
-      properties:
-        eventDate:
-          type: string
-          description: Date of the event.
-        eventType:
-          type: string
-          description: Type of event (e.g., Listed, Sold, PriceChange).
-        price:
-          type: number
-          description: Price associated with the event.
-        source:
-          type: string
-          description: Data source for the event record.
-    MainHouseInfoPanelResponse:
-      type: object
-      description: Response containing main house info panel data.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload with structured property attributes.
     BelowTheFoldResponse:
       type: object
       description: Response containing detailed MLS data and extended property information.
@@ -207,27 +141,93 @@ components:
             similarHomesInfo:
               type: object
               description: Similar properties in the area.
-  parameters:
-    accessLevel:
-      name: accessLevel
-      in: query
-      description: The access level for the request, controlling the detail of data returned. Common value is 1.
-      schema:
-        type: integer
-        default: 1
-    propertyId:
-      name: propertyId
-      in: query
-      required: true
-      description: The unique Redfin property identifier.
-      schema:
-        type: integer
-    listingId:
-      name: listingId
-      in: query
-      description: The unique Redfin listing identifier.
-      schema:
-        type: integer
+    Address:
+      type: object
+      description: Property address information.
+      properties:
+        streetAddress:
+          type: string
+          description: Street address of the property.
+        city:
+          type: string
+          description: City name.
+        state:
+          type: string
+          description: Two-letter state abbreviation.
+        zip:
+          type: string
+          description: ZIP code.
+    InitialInfoResponse:
+      type: object
+      description: Response from the initial info endpoint providing property identifiers.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload containing property identifiers.
+          properties:
+            propertyId:
+              type: integer
+              description: Unique Redfin property identifier.
+            listingId:
+              type: integer
+              description: Unique Redfin listing identifier.
+    PropertyHistoryEvent:
+      type: object
+      description: A historical event in a property's listing or sale history.
+      properties:
+        eventDate:
+          type: string
+          description: Date of the event.
+        eventType:
+          type: string
+          description: Type of event (e.g., Listed, Sold, PriceChange).
+        price:
+          type: number
+          description: Price associated with the event.
+        source:
+          type: string
+          description: Data source for the event record.
+    MainHouseInfoPanelResponse:
+      type: object
+      description: Response containing main house info panel data.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload with structured property attributes.
+    AboveTheFoldResponse:
+      type: object
+      description: Response containing primary property details shown above the fold.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload containing property details.
+          properties:
+            addressInfo:
+              $ref: '#/components/schemas/Address'
+            price:
+              type: number
+              description: Current listing or sale price.
+            listingStatus:
+              type: string
+              description: Current listing status.
+            beds:
+              type: integer
+              description: Number of bedrooms.
+            baths:
+              type: number
+              description: Number of bathrooms.
+            sqFt:
+              type: integer
+              description: Approximate living area in square feet.
 externalDocs:
   description: Reverse-Engineered API Documentation
   url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md

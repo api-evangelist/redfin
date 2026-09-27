@@ -50,35 +50,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CommuteInfoResponse'
 components:
-  schemas:
-    CommuteInfoResponse:
-      type: object
-      description: Response containing commute and transportation information.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload with commute time estimates.
-    NeighborhoodStatsResponse:
-      type: object
-      description: Response containing neighborhood statistical data.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload with neighborhood statistics.
   parameters:
-    accessLevel:
-      name: accessLevel
-      in: query
-      description: The access level for the request, controlling the detail of data returned. Common value is 1.
-      schema:
-        type: integer
-        default: 1
     propertyId:
       name: propertyId
       in: query
@@ -92,6 +64,34 @@ components:
       description: The unique Redfin listing identifier.
       schema:
         type: integer
+    accessLevel:
+      name: accessLevel
+      in: query
+      description: The access level for the request, controlling the detail of data returned. Common value is 1.
+      schema:
+        type: integer
+        default: 1
+  schemas:
+    NeighborhoodStatsResponse:
+      type: object
+      description: Response containing neighborhood statistical data.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload with neighborhood statistics.
+    CommuteInfoResponse:
+      type: object
+      description: Response containing commute and transportation information.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload with commute time estimates.
 externalDocs:
   description: Reverse-Engineered API Documentation
   url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
