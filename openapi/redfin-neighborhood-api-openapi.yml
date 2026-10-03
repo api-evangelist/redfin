@@ -58,12 +58,6 @@ components:
       description: The unique Redfin property identifier.
       schema:
         type: integer
-    listingId:
-      name: listingId
-      in: query
-      description: The unique Redfin listing identifier.
-      schema:
-        type: integer
     accessLevel:
       name: accessLevel
       in: query
@@ -71,6 +65,12 @@ components:
       schema:
         type: integer
         default: 1
+    listingId:
+      name: listingId
+      in: query
+      description: The unique Redfin listing identifier.
+      schema:
+        type: integer
   schemas:
     NeighborhoodStatsResponse:
       type: object
