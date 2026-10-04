@@ -91,67 +91,6 @@ paths:
                 $ref: '#/components/schemas/MainHouseInfoPanelResponse'
 components:
   schemas:
-    AboveTheFoldResponse:
-      type: object
-      description: Response containing primary property details shown above the fold.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload containing property details.
-          properties:
-            addressInfo:
-              $ref: '#/components/schemas/Address'
-            price:
-              type: number
-              description: Current listing or sale price.
-            listingStatus:
-              type: string
-              description: Current listing status.
-            beds:
-              type: integer
-              description: Number of bedrooms.
-            baths:
-              type: number
-              description: Number of bathrooms.
-            sqFt:
-              type: integer
-              description: Approximate living area in square feet.
-    Address:
-      type: object
-      description: Property address information.
-      properties:
-        streetAddress:
-          type: string
-          description: Street address of the property.
-        city:
-          type: string
-          description: City name.
-        state:
-          type: string
-          description: Two-letter state abbreviation.
-        zip:
-          type: string
-          description: ZIP code.
-    InitialInfoResponse:
-      type: object
-      description: Response from the initial info endpoint providing property identifiers.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload containing property identifiers.
-          properties:
-            propertyId:
-              type: integer
-              description: Unique Redfin property identifier.
-            listingId:
-              type: integer
-              description: Unique Redfin listing identifier.
     MainHouseInfoPanelResponse:
       type: object
       description: Response containing main house info panel data.
@@ -207,6 +146,67 @@ components:
         source:
           type: string
           description: Data source for the event record.
+    Address:
+      type: object
+      description: Property address information.
+      properties:
+        streetAddress:
+          type: string
+          description: Street address of the property.
+        city:
+          type: string
+          description: City name.
+        state:
+          type: string
+          description: Two-letter state abbreviation.
+        zip:
+          type: string
+          description: ZIP code.
+    InitialInfoResponse:
+      type: object
+      description: Response from the initial info endpoint providing property identifiers.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload containing property identifiers.
+          properties:
+            propertyId:
+              type: integer
+              description: Unique Redfin property identifier.
+            listingId:
+              type: integer
+              description: Unique Redfin listing identifier.
+    AboveTheFoldResponse:
+      type: object
+      description: Response containing primary property details shown above the fold.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload containing property details.
+          properties:
+            addressInfo:
+              $ref: '#/components/schemas/Address'
+            price:
+              type: number
+              description: Current listing or sale price.
+            listingStatus:
+              type: string
+              description: Current listing status.
+            beds:
+              type: integer
+              description: Number of bedrooms.
+            baths:
+              type: number
+              description: Number of bathrooms.
+            sqFt:
+              type: integer
+              description: Approximate living area in square feet.
   parameters:
     listingId:
       name: listingId

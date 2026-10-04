@@ -82,16 +82,6 @@ paths:
                 $ref: '#/components/schemas/RegionAggregateTrendsResponse'
 components:
   schemas:
-    RegionAggregateTrendsResponse:
-      type: object
-      description: Response containing aggregated market trend data for a region.
-      properties:
-        resultCode:
-          type: integer
-          description: API result code indicating success or failure.
-        payload:
-          type: object
-          description: Response payload with aggregated trend data.
     RegionTrendsResponse:
       type: object
       description: Response containing market trend data for a region.
@@ -102,6 +92,16 @@ components:
         payload:
           type: object
           description: Response payload with trend data.
+    RegionAggregateTrendsResponse:
+      type: object
+      description: Response containing aggregated market trend data for a region.
+      properties:
+        resultCode:
+          type: integer
+          description: API result code indicating success or failure.
+        payload:
+          type: object
+          description: Response payload with aggregated trend data.
 externalDocs:
   description: Reverse-Engineered API Documentation
   url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md

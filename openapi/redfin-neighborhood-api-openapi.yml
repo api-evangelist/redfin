@@ -51,11 +51,10 @@ paths:
                 $ref: '#/components/schemas/CommuteInfoResponse'
 components:
   parameters:
-    propertyId:
-      name: propertyId
+    listingId:
+      name: listingId
       in: query
-      required: true
-      description: The unique Redfin property identifier.
+      description: The unique Redfin listing identifier.
       schema:
         type: integer
     accessLevel:
@@ -65,10 +64,11 @@ components:
       schema:
         type: integer
         default: 1
-    listingId:
-      name: listingId
+    propertyId:
+      name: propertyId
       in: query
-      description: The unique Redfin listing identifier.
+      required: true
+      description: The unique Redfin property identifier.
       schema:
         type: integer
   schemas:

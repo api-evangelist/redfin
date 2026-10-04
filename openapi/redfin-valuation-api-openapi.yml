@@ -37,6 +37,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/AvmHistoricalDataResponse'
 components:
+  parameters:
+    propertyId:
+      name: propertyId
+      in: query
+      required: true
+      description: The unique Redfin property identifier.
+      schema:
+        type: integer
+    accessLevel:
+      name: accessLevel
+      in: query
+      description: The access level for the request, controlling the detail of data returned. Common value is 1.
+      schema:
+        type: integer
+        default: 1
   schemas:
     AvmHistoricalDataResponse:
       type: object
@@ -61,21 +76,6 @@ components:
                   value:
                     type: number
                     description: Estimated property value at this point in time.
-  parameters:
-    propertyId:
-      name: propertyId
-      in: query
-      required: true
-      description: The unique Redfin property identifier.
-      schema:
-        type: integer
-    accessLevel:
-      name: accessLevel
-      in: query
-      description: The access level for the request, controlling the detail of data returned. Common value is 1.
-      schema:
-        type: integer
-        default: 1
 externalDocs:
   description: Reverse-Engineered API Documentation
   url: https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md
