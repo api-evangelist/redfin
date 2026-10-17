@@ -94,22 +94,10 @@ paths:
                 $ref: '#/components/schemas/GisSearchResponse'
 components:
   parameters:
-    minPrice:
-      name: min_price
+    maxListingApproxSize:
+      name: max_listing_approx_size
       in: query
-      description: Minimum listing price filter in USD.
-      schema:
-        type: integer
-    numBeds:
-      name: num_beds
-      in: query
-      description: Minimum number of bedrooms filter.
-      schema:
-        type: integer
-    numBaths:
-      name: num_baths
-      in: query
-      description: Minimum number of bathrooms filter.
+      description: Maximum approximate square footage filter.
       schema:
         type: integer
     maxNumBaths:
@@ -118,16 +106,22 @@ components:
       description: Maximum number of bathrooms filter.
       schema:
         type: integer
-    minParcelSize:
-      name: min_parcel_size
+    numBeds:
+      name: num_beds
       in: query
-      description: Minimum lot/parcel size filter.
+      description: Minimum number of bedrooms filter.
       schema:
         type: integer
-    maxNumBeds:
-      name: max_num_beds
+    minYearBuilt:
+      name: min_year_built
       in: query
-      description: Maximum number of bedrooms filter.
+      description: Minimum year built filter.
+      schema:
+        type: integer
+    maxYearBuilt:
+      name: max_year_built
+      in: query
+      description: Maximum year built filter.
       schema:
         type: integer
     regionType:
@@ -141,28 +135,22 @@ components:
         - 2
         - 5
         - 6
-    maxListingApproxSize:
-      name: max_listing_approx_size
+    pageNumber:
+      name: page_number
       in: query
-      description: Maximum approximate square footage filter.
+      description: Page number for paginated results.
       schema:
         type: integer
-    minListingApproxSize:
-      name: min_listing_approx_size
+    minParcelSize:
+      name: min_parcel_size
       in: query
-      description: Minimum approximate square footage filter.
+      description: Minimum lot/parcel size filter.
       schema:
         type: integer
     maxPrice:
       name: max_price
       in: query
       description: Maximum listing price filter in USD.
-      schema:
-        type: integer
-    pageNumber:
-      name: page_number
-      in: query
-      description: Page number for paginated results.
       schema:
         type: integer
     status:
@@ -175,28 +163,16 @@ components:
         - 1
         - 130
         - 131
-    minYearBuilt:
-      name: min_year_built
-      in: query
-      description: Minimum year built filter.
-      schema:
-        type: integer
-    maxYearBuilt:
-      name: max_year_built
-      in: query
-      description: Maximum year built filter.
-      schema:
-        type: integer
     regionId:
       name: region_id
       in: query
       description: The unique identifier for a Redfin region.
       schema:
         type: integer
-    maxParcelSize:
-      name: max_parcel_size
+    minPrice:
+      name: min_price
       in: query
-      description: Maximum lot/parcel size filter.
+      description: Minimum listing price filter in USD.
       schema:
         type: integer
     uipt:
@@ -205,10 +181,34 @@ components:
       description: Property type filter. Values include 1 (house), 2 (condo), 3 (townhouse), 4 (multi-family), 5 (land), 6 (other). Multiple values can be comma-separated.
       schema:
         type: string
+    maxParcelSize:
+      name: max_parcel_size
+      in: query
+      description: Maximum lot/parcel size filter.
+      schema:
+        type: integer
+    numBaths:
+      name: num_baths
+      in: query
+      description: Minimum number of bathrooms filter.
+      schema:
+        type: integer
+    maxNumBeds:
+      name: max_num_beds
+      in: query
+      description: Maximum number of bedrooms filter.
+      schema:
+        type: integer
     numHomes:
       name: num_homes
       in: query
       description: Maximum number of results to return per request.
+      schema:
+        type: integer
+    minListingApproxSize:
+      name: min_listing_approx_size
+      in: query
+      description: Minimum approximate square footage filter.
       schema:
         type: integer
   schemas:

@@ -38,13 +38,6 @@ paths:
                 $ref: '#/components/schemas/AvmHistoricalDataResponse'
 components:
   parameters:
-    propertyId:
-      name: propertyId
-      in: query
-      required: true
-      description: The unique Redfin property identifier.
-      schema:
-        type: integer
     accessLevel:
       name: accessLevel
       in: query
@@ -52,6 +45,13 @@ components:
       schema:
         type: integer
         default: 1
+    propertyId:
+      name: propertyId
+      in: query
+      required: true
+      description: The unique Redfin property identifier.
+      schema:
+        type: integer
   schemas:
     AvmHistoricalDataResponse:
       type: object
