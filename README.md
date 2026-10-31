@@ -1,4 +1,4 @@
-# Redfin (redfin)
+# Redfin
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,126 +66,177 @@
 
 Redfin is a technology-powered real estate brokerage that provides property search, home value estimates, listing details, neighborhood statistics, commute data, and downloadable housing market data across the United States. Their platform exposes a Stingray REST API used by the Redfin website and mobile apps, a GIS CSV Export endpoint for bulk property downloads, and the Redfin Data Center for time-series housing market statistics at national, metro, state, county, city, ZIP code, and neighborhood levels.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/redfin/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/redfin/refs/heads/main/apis.yml)
+**Areas:** CSV Export · GIS · Home Values · Housing Market · Listings · Property Data · Real Estate
 
-## Scope
+## Redfin on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Redfin is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/redfin/](https://apis.io/providers/redfin/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- CSV Export
-- GIS
-- Home Values
-- Housing Market
-- Listings
-- Property Data
-- Real Estate
+- [Redfin CSV Export API](https://apis.io/apis/redfin/redfin-csv-export-api/) — Endpoints for exporting property search results in CSV format.
+- [Redfin Market Tracker API](https://apis.io/apis/redfin/redfin-market-tracker-api/) — Downloadable housing market tracker datasets segmented by region level.
+- [Redfin Market Trends API](https://apis.io/apis/redfin/redfin-market-trends-api/) — Endpoints for regional aggregate and historical market trends.
+- [Redfin Neighborhood API](https://apis.io/apis/redfin/redfin-neighborhood-api/) — Endpoints for neighborhood statistics, commute data, and area info.
+- [Redfin Property Details API](https://apis.io/apis/redfin/redfin-property-details-api/) — Endpoints for retrieving detailed information about a specific property.
+- [Redfin Search API](https://apis.io/apis/redfin/redfin-search-api/) — Endpoints for searching properties by location, region, and filters.
+- [Redfin Valuation API](https://apis.io/apis/redfin/redfin-valuation-api/) — Endpoints for automated valuation model (AVM) data and estimates.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-20
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Redfin Stingray API
+GraphQL schemas.
 
-The Redfin Stingray API is the internal REST API powering the Redfin website and mobile applications. It provides endpoints for property search, listing details, home value estimates (Redfin Estimate), neighborhood statistics, commute information, and GIS-based map data. Accessible at redfin.com/stingray endpoints and reverse-engineered by the developer community.
+- [Moved to /providers/redfin/](https://apis.io/graphqls/redfin/redfin-graphql/)
 
-- **Human URL:** [https://www.redfin.com](https://www.redfin.com)
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- GIS
-- Home Values
-- Listings
-- Property Data
-- Property Search
-- Real Estate
+- [Redfin Agentic Access](https://apis.io/agentic-access/redfin/redfin-agentic-access/)
 
-#### Properties
+#### JSON Schema (2)
 
-- [Documentation](https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md)
-- [OpenAPI](openapi/redfin-stingray-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/redfin-stingray-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/redfin-stingray-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Spectral Rules](rules/redfin-rules.yml)
-- [Naftiko Capeability](capabilities/shared/stingray-api.yaml)
+The data models the API reads and writes.
 
-### Redfin GIS CSV Export API
+- [Redfin Market Tracker Record](https://apis.io/schemas/redfin/redfin-market-tracker/)
+- [Redfin Property](https://apis.io/schemas/redfin/redfin-property/)
 
-The Redfin GIS CSV Export API provides bulk property data downloads in CSV format. Returns up to 350 property records per request including address, price, beds, baths, square footage, lot size, year built, days on market, property type, and listing status.
+#### JSON Structure (2)
 
-- **Human URL:** [https://www.redfin.com](https://www.redfin.com)
+Data models expressed in JSON Structure.
 
-#### Tags
+- [Redfin Market Tracker Structure](https://apis.io/json-structure/redfin/redfin-market-tracker-structure/)
+- [Redfin Property Structure](https://apis.io/json-structure/redfin/redfin-property-structure/)
 
-- Bulk Data
-- CSV
-- Export
-- GIS
-- Property Data
-- Real Estate
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://github.com/alientechsw/RedfinPlus/blob/master/docs/REDFIN.md)
-- [OpenAPI](openapi/redfin-gis-csv-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/redfin-gis-csv-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/redfin-gis-csv-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Redfin Context](https://apis.io/jsonld/redfin/redfin-context/)
 
-### Redfin Data Center
+#### Vocabulary (1)
 
-The Redfin Data Center provides downloadable housing market data for metropolitan areas, cities, neighborhoods, and ZIP codes across the United States. Data is available at national, metro, state, county, city, ZIP code, and neighborhood levels. Datasets cover median sale prices, homes sold, new listings, days on market, inventory, and price drops. Files are served as compressed TSV from Amazon S3.
+The provider's domain terms, defined.
 
-- **Human URL:** [https://www.redfin.com/news/data-center/](https://www.redfin.com/news/data-center/)
+- [Redfin API Vocabulary](https://apis.io/vocabularies/redfin/redfin-vocabulary/)
 
-#### Tags
+#### Examples (3)
 
-- Analytics
-- CSV
-- Housing Market
-- Market Data
-- Real Estate
-- Statistics
+Example requests and responses.
 
-#### Properties
+- [Redfin Gis Search Example](https://apis.io/examples/redfin/redfin-gis-search-example/)
+- [Redfin Market Tracker Example](https://apis.io/examples/redfin/redfin-market-tracker-example/)
+- [Redfin Property Details Example](https://apis.io/examples/redfin/redfin-property-details-example/)
 
-- [Documentation](https://www.redfin.com/news/data-center/)
-- [Documentation](https://support.redfin.com/hc/en-us/articles/360016476931-Downloading-Data)
-- [OpenAPI](openapi/redfin-data-center-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/redfin-data-center.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/redfin-data-center.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/redfin-market-tracker-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/redfin-property-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/redfin-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [JSON Structure](json-structure/redfin-property-structure.json)
-- [JSON Structure](json-structure/redfin-market-tracker-structure.json)
-- [Naftiko Capeability](capabilities/shared/data-center.yaml)
-- [Vocabulary](vocabulary/redfin-vocabulary.yml)
+#### Collections (10)
 
-## Common Properties
+Postman and Open Collection request collections.
+
+- [Redfin Data Center CSV Export API](https://apis.io/collections/redfin/open-redfin-csv-export-api/)
+- [Redfin Data Center](https://apis.io/collections/redfin/open-redfin-data-center/)
+- [Redfin GIS CSV Export API](https://apis.io/collections/redfin/open-redfin-gis-csv-api/)
+- [Redfin Data Center CSV Export Market Tracker API](https://apis.io/collections/redfin/open-redfin-market-tracker-api/)
+- [Redfin Data Center CSV Export Market Trends API](https://apis.io/collections/redfin/open-redfin-market-trends-api/)
+- [Redfin Data Center CSV Export Neighborhood API](https://apis.io/collections/redfin/open-redfin-neighborhood-api/)
+- [Redfin Data Center CSV Export Property Details API](https://apis.io/collections/redfin/open-redfin-property-details-api/)
+- [Redfin Data Center CSV Export Search API](https://apis.io/collections/redfin/open-redfin-search-api/)
+- [Redfin Stingray API](https://apis.io/collections/redfin/open-redfin-stingray-api/)
+- [Redfin Data Center CSV Export Valuation API](https://apis.io/collections/redfin/open-redfin-valuation-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Redfin — jsonschema rules](https://apis.io/rules/redfin/redfin-jsonschema-spectral-rules/)
+- [Redfin API Rules](https://apis.io/rules/redfin/redfin-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Redfin Domain Security](https://apis.io/security/redfin/redfin-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Redfin Plans Pricing](https://apis.io/plans/redfin/redfin-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Redfin Rate Limits](https://apis.io/rate-limits/redfin/redfin-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Redfin Finops](https://apis.io/finops/redfin/redfin-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.redfin.com)
-- [Blog](https://www.redfin.com/news/)
 - [Support](https://support.redfin.com)
-- [Privacy Policy](https://www.redfin.com/about/privacy-policy)
-- [Terms of Service](https://www.redfin.com/about/terms-of-use)
-- [Login](https://www.redfin.com/login)
-- [Data Center](https://www.redfin.com/news/data-center/)
-- [News](https://www.redfin.com/news/)
-- [LinkedIn](https://www.linkedin.com/company/redfin)
-- [X (Twitter)](https://twitter.com/redfin)
-- [Investor Relations](https://investors.redfin.com/)
-- [Git Hub Org](https://github.com/redfin)
-- [Naftiko Capeability](capabilities/property-research.yaml)
-- [Naftiko Capeability](capabilities/market-analytics.yaml)
-- [Integrations](https://www.redfin.com/partners)
+- [Blog](https://www.redfin.com/news/)
+- [Terms of service](https://www.redfin.com/about/terms-of-use)
+- [Privacy policy](https://www.redfin.com/about/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 36.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 54.5 |
+| Contract governance | 23.5 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 16.7 |
+| Access clarity | 39.5 |
+
+**Agent readiness 17.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 18.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/redfin/](https://apis.io/providers/redfin/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Redfin: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/redfin/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
